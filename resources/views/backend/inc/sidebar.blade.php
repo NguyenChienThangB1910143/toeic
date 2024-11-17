@@ -6,7 +6,7 @@
      <!-- Bootstrap CSS -->
      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
      <!-- Font Awesome -->
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
     
     <title>Admin Page</title>
@@ -34,10 +34,9 @@
             font-family: 'Roboto', sans-serif;
         }
 
-
         /* Sidebar styling */
         .sidebar {
-            width: 250px;
+            width: 200px;
             position: fixed;
             left: 0;
             top: 0;
@@ -46,19 +45,9 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
 
-        .sidebar-brand {
-            height: 90px;
-            padding: 1rem 0 1rem 2rem;
-            color: #5595d9;
-        }
-
         .sidebar-brand span {
             display: inline-block;
             padding-right: 1rem;
-        }
-
-        .sidebar-menu {
-            padding-top: 1rem; /* Khoảng cách trên menu */
         }
 
         .sidebar-menu li {
@@ -103,10 +92,10 @@
 
         /* Admin content */
         .admin-content {
-            margin-left: 300px; /* Khoảng cách bằng chiều rộng của sidebar */
+            margin-left: 220px; /* Khoảng cách bằng chiều rộng của sidebar */
             padding: 0px;
             background-color: #f8f9fc;
-            min-height: 100vh;
+            min-height: 90vh;
         }
 
         .admin-content-main h1 {
@@ -117,7 +106,9 @@
         }
 
         .admin-sidebar-top {
-            padding-left: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -131,61 +122,53 @@
             <div class="sidebar-menu">
                 <ul>
                     <li>
-                        <a href="/Backend/IndexAdmin.html" class="active">
+                        <a href="{{ route('admin.index') }}" class="active">
                             <div class="header-account">
-                                <i class="ri-account-circle-line"></i> Dashboard
+                                <i class="fa-solid fa-house"></i> Dashboard
                             </div>
                         </a>
                     </li> 
-                    
+                    <li>
+                        <a href="{{ route('qlsection') }}">
+                            <div class="header-account">
+                                <i class="fa-solid fa-section"></i> Section 
+                            </div>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('qltopic') }}">
                             <div class="header-account">
-                                <i class="ri-pages-line"></i> Topic
+                                <i class="fa-solid fa-file-lines"></i> Topic
                             </div>
                         </a>
                     </li>
                     
                     <li>
-                        <a href="/Backend/QLLesson.html">
+                        <a href="{{ route('qlgrammar') }}">
                             <div class="header-account">
-                                <i class="ri-draft-line"></i> Lesson
+                                <i class="fa-solid fa-spell-check"></i> Grammar
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="/Backend/QlSection.html">
+                        <a href="{{ route('qllearner') }}">
                             <div class="header-account">
-                                <i class="ri-layout-horizontal-line"></i> Section
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/Backend/QLGrammar.html">
-                            <div class="header-account">
-                                <i class="ri-book-shelf-fill"></i> Grammar
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Backend/QLLeaner.html">
-                            <div class="header-account">
-                                <i class="ri-team-fill"></i> Learner
+                                <i class="fa-solid fa-user-graduate"></i> Learner
                             </div>
                         </a>
                     </li>                   
+
                     <li>
-                        <a href="QLTuvung.html">
+                        <a href="{{ route('qlexam') }}">
                             <div class="header-account">
-                                <i class="ri-book-shelf-fill"></i> Vocabulary
+                                <i class="fa-solid fa-file"></i> Exam
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="/Backend/QLExam.html">
+                        <a href="{{ route('qlmaterial') }}">
                             <div class="header-account">
-                                <i class="ri-pages-line"></i> Exam
+                                <i class="fa-solid fa-folder-open"></i> Material
                             </div>
                         </a>
                     </li>

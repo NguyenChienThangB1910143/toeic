@@ -1,0 +1,250 @@
+/* Reset CSS */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fc; 
+    color: #333;
+}
+
+.pagination-links .pagination {
+    font-size: 16px !important; /* Tăng kích thước chữ của các nút phân trang */
+}
+
+.pagination-links .pagination .page-item .page-link {
+    padding: 10px 15px !important; /* Tăng kích thước của nút phân trang */
+    font-size: 16px !important; /* Kích thước chữ */
+    border-radius: 5px !important; /* Bo góc cho nút */
+}
+
+.pagination-links .pagination .page-item.active .page-link {
+    background-color: #007bff !important; /* Màu nền khi nút được chọn */
+    color: white !important; /* Màu chữ khi nút được chọn */
+}
+
+/* Modal Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    display: none;
+}
+
+.modal-content {
+    background-color: #f9f9f9;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 850px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-content h2 {
+    text-align: left;
+    color: #4e73df;
+    margin-bottom: 15px;
+}
+
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 20px; 
+    font-size: 24px;
+    color: #ff4d4d; 
+    cursor: pointer;
+    transition: color 0.3s; 
+    background: none; 
+    border: none; 
+}
+.admin-topic {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+.topic-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #4e73df;
+    text-align: left;
+}
+
+
+/* Form Elements */
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #4e73df;
+    outline: none;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+}
+
+/* Form Columns */
+.form-columns {
+    display: flex;
+    gap: 20px;
+}
+
+/* Left and Right Columns */
+.formleft, .formright {
+    flex: 1;
+}
+
+/* Search and Add Button */
+.search-add {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 70%;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-input:focus {
+    border-color: #4e73df;
+    outline: none;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+}
+
+.btn-add {
+    padding: 12px;
+    background-color: #6bda83;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-add:hover {
+    background-color: #06a006;
+    transform: scale(1.05);
+}
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: center;
+}
+
+.table th {
+    background-color: #f8f9fc;
+    color: #4e73df;
+}
+
+.table tr:hover {
+    background-color: #f1f3f7;
+}
+
+/* Edit and Delete Buttons */
+.btn-edit,
+.btn-delete {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-edit {
+    background-color: #e8ba67;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #e28635;
+    transform: scale(1.05);
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+/* Image in Table */
+.table-image {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Cố định kích thước của bảng */
+.table-container {
+    min-height: 550px; /* Chiều cao nhỏ nhất cho bảng */
+    overflow-y: auto; /* Cho phép cuộn dọc khi bảng quá dài */
+    margin-bottom: 20px; /* Khoảng cách dưới bảng */
+}
+
+/* Điều chỉnh kích thước của nút phân trang */
+.pagination-links .pagination {
+    font-size: 14px; /* Kích thước chữ của các nút phân trang */
+    display: flex;
+    justify-content: center; /* Căn giữa các nút phân trang */
+    margin-top: 20px; /* Khoảng cách trên phân trang */
+}
+
+/* Cải thiện giao diện của các nút phân trang */
+.pagination-links .pagination .page-item .page-link {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.pagination-links .pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+}
