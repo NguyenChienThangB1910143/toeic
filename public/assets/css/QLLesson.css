@@ -11,6 +11,9 @@ body {
     background-color: #f8f9fc; 
     color: #333;
 }
+.breadcrumb-item + .breadcrumb-item::before {
+    content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$breadcrumb-divider-color}'/></svg>");
+  }
 
 .pagination-links .pagination {
     font-size: 16px !important; /* Tăng kích thước chữ của các nút phân trang */

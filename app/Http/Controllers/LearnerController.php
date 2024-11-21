@@ -15,3 +15,14 @@ class LearnerController extends Controller
     }
 
 }
+
+Route::prefix('learner')->group(function () {
+    Route::get('/login', [LearnerAuthController::class, 'showLoginForm'])->name('learner.login');
+    Route::post('/login', [LearnerAuthController::class, 'login'])->name('learner.login.post');
+    Route::post('/logout', [LearnerAuthController::class, 'logout'])->name('learner.logout');
+
+    Route::get('/index', function () {
+        return view('fontend.index');
+    })->name('learner.index')->middleware('auth');
+});
+

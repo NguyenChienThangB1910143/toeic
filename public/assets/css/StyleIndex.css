@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: rgba(217, 229, 255, 0.892);
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 99999;
+    position: sticky;
+    top: 0;
+}
+
+.container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 80px;
+    width: auto;
+}
+
+nav {
+    flex: 1;
+    text-align: center;
+}
+
+.nav {
+    display: inline-flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    position: relative;
+}
+.nav-link {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+.nav-link:hover{
+    color: #007bff;
+}
+
+.nav-item:hover {
+    color: #007bff;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Canh dưới menu chính */
+    left: 0;
+    display: none; /* Ẩn mặc định */
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    list-style: none;
+    padding: 10px 0;
+    z-index: 1000;
+    min-width: 200px; /* Đặt chiều rộng tối thiểu */
+}
+
+.dropdown-menu li {
+    padding: 5px 20px;
+}
+
+.dropdown-menu li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+    color: #007bff;
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block; /* Hiển thị khi hover */
+}
+li {
+    text-decoration: none;
+}
+
+.bgr {
+    display: flex;
+    height: 90vh;
+/* background-image: url('/images/rb_10088.png');
+    background-size: cover; */
+    background-color: rgb(78, 139, 174);
+}
+.bgr_img{
+    width: 60%;
+}
+
+.title{
+    width: 40%;
+    text-align: right; /* Căn văn bản về bên phải */
+    padding-right: 20px; /* Thêm khoảng cách từ văn bản đến lề phải nếu cần */
+}
+
+.fa-circle-user {
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.fa-circle-user:hover {
+    color: #007bff;
+}
+
+
+.dropdown-content {
+    position: absolute;
+    top: 40px; /* Khoảng cách từ icon đến menu */
+    right: 0; /* Canh lề phải */
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    list-style: none;
+    padding: 10px 0;
+    width: 200px;
+    visibility: hidden; /* Ẩn mặc định */
+    opacity: 0; /* Mờ mặc định */
+    transition: visibility 0s, opacity 0.3s ease;
+    z-index: 9999;
+}
+
+.dropdown-content li {
+    padding: 5px 15px;
+}
+
+.dropdown-content li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.dropdown-content li a:hover {
+    color: #007bff;
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.dropdown-learner:hover .dropdown-content {
+    visibility: visible; /* Hiển thị khi hover */
+    opacity: 1; /* Rõ ràng */
+}
+
+
+/* FOOTER */
+.site-footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    position: relative;
+    margin-top: auto; /* Đẩy footer xuống cuối */
+}
+
+.site-footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 10px;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #007bff;
+}

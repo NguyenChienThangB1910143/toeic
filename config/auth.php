@@ -2,14 +2,14 @@
 return [
 
     'defaults' => [
-        'guard' => 'admin',
-        'passwords' => 'admins',
+        'guard' => 'web',
+        'passwords' => 'learners',
     ],
 
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'learners',
         ],
 
         'admin' => [
@@ -19,9 +19,9 @@ return [
     ],
 
     'providers' => [
-        'users' => [
+        'learners' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Learner::class,
         ],
 
         'admins' => [
@@ -31,8 +31,8 @@ return [
     ],
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'learners' => [
+            'provider' => 'learners',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
