@@ -28,27 +28,6 @@ class SectionQuestionController extends Controller
 
         // Lấy danh sách câu hỏi dựa trên section_id
         $questions = SectionQuestion::where('section_id', $section_id)->paginate(5);
-
-        // // Xác định các type cho từng section
-        // switch ($section_id) {
-        //     case 1:
-        //         $types = ['[Part 1] Tranh tả người', 
-        //                     '[Part 1] Tranh tả vật', 
-        //                     '[Part 1] Tranh tả người và vật'];
-        //         break;
-        //     case 2:
-        //         $types = ['[Part 2] Câu hỏi đuôi', 
-        //                     '[Part 2] Câu hỏi Yes/No',
-        //                     '[Part 2] Câu hỏi trần thuật'];
-        //         break;
-        //     default:
-        //         $types = ['[Part 3] Chi tiết cuộc hội thoại',
-        //                     '[Part 3] Danh tính người nói', 
-        //                     '[Part 3] Chủ đề, mục đích', 
-        //                     '[Part 3] Địa điểm hội thoại'];
-        //         break;
-        // }
-
         return view('backend.section_questions.index', compact('questions', 'section_id', 'types'));
     }
     

@@ -183,7 +183,7 @@
                         <!-- AUDIO -->
                         <div class="form-group">
                             <label for="audio">Audio:</label>
-                            <input type="file" name="audio" id="audio" class="form-control" accept="audio/*" required>
+                            <input type="file" name="audio" id="audio" class="form-control" accept="audio/*" >
                         </div>
                         <!-- SCRIPT -->
                         <div class="form-group">

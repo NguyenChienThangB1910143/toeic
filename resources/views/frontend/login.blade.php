@@ -21,15 +21,24 @@
         border-radius: 2px;
     }
 
-    #notification.close {
-        display: none;
+    #notification.show {
+        display: block;
     }
 </style>
 <body>
-    <div id="notification">
-        <span id="message"></span>
+    <div id="notification" class="{{ session('success') ? 'show' : '' }}">
+        <span id="message">{{ session('success') }}</span>
         <button id="close-button">Đóng</button>
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <div class="container" id="container">
         <div class="form-container sign-up-container">
@@ -44,25 +53,24 @@
                 <span>Đăng ký bằng email </span>
                 <input id="name" name="name" type="text" placeholder="Tên" value="{{ old('name') }}" autocomplete="name">
                 @error('name') <span class="error">{{ $message }}</span> @enderror
-            
+
                 <input id="sg_up_email" name="email" type="email" placeholder="Email" value="{{ old('email') }}" autocomplete="email">
                 @error('email') <span class="error">{{ $message }}</span> @enderror
-            
+
                 <input id="sg_up_username" name="username" type="text" placeholder="Tên đăng nhập" value="{{ old('username') }}" autocomplete="username">
                 @error('username') <span class="error">{{ $message }}</span> @enderror
-            
+
                 <input id="sg_up_password" name="password" type="password" placeholder="Mật khẩu" autocomplete="new-password">
                 @error('password') <span class="error">{{ $message }}</span> @enderror
-            
+
                 <input id="phoneNumber" name="phoneNumber" type="tel" placeholder="Số điện thoại" value="{{ old('phoneNumber') }}" autocomplete="tel">
                 @error('phoneNumber') <span class="error">{{ $message }}</span> @enderror
-            
+
                 <button id="btnSignup" type="submit">Đăng ký</button>
             </form>
-            
         </div>
         <div class="form-container sign-in-container">
-            <form action="{{ route('login') }}" method="POST">
+            <form action="{{ route('login.submit') }}" method="POST">
                 @csrf
                 <h1>ĐĂNG NHẬP</h1>
                 <div class="social-container">
@@ -72,7 +80,11 @@
                 </div>
                 <span>Đăng nhập bằng tài khoản </span>
                 <input id="username" name="username" type="text" placeholder="Tên đăng nhập" autocomplete="username" value="{{ old('username') }}">
+                @error('username') <span class="error">{{ $message }}</span> @enderror
+                
                 <input id="password" name="password" type="password" placeholder="Mật khẩu" autocomplete="current-password">
+                @error('password') <span class="error">{{ $message }}</span> @enderror
+                
                 <a href="#"> Quên mật khẩu?</a>
                 <button id="btnSignin" type="submit">Đăng nhập</button>
                 <a href="{{ url('/') }}">Về trang chủ</a>
@@ -119,15 +131,14 @@
         };
 
         document.getElementById('btnSignup').addEventListener('click', (e) => {
-        const email = document.getElementById('sg_up_email').value;
-        const password = document.getElementById('sg_up_password').value;
+            const email = document.getElementById('sg_up_email').value;
+            const password = document.getElementById('sg_up_password').value;
 
-        if (!email.includes('@')) {
-            e.preventDefault();
-            alert('Email không hợp lệ ');
-        }
-    });
-
+            if (!email.includes('@')) {
+                e.preventDefault();
+                alert('Email không hợp lệ ');
+            }
+        });
     </script>
 </body>
 </html>

@@ -2,21 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable; // Kế thừa từ Authenticatable
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Learner extends Authenticatable
+class Learner extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, HasFactory;
 
     protected $table = 'learners';
     public $timestamps = false;
 
-
     protected $primaryKey = 'learner_id';
 
-    // Các cột có thể được gán dữ liệu hàng loạt
     protected $fillable = [
         'name',
         'username',
@@ -36,4 +35,6 @@ class Learner extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Hàm set password để tự động mã hóa mật khẩu
 }
