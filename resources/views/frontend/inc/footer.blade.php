@@ -1,5 +1,5 @@
 <footer class="site-footer">
-    <div class="container">
+    <div class="container-inc">
         <p>&copy; {{ date('Y') }} Learn & Lead TOEIC. All Rights Reserved.</p>
         <div class="social-links">
             <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -8,6 +8,5 @@
         </div>
     </div>
 </footer>
-
 </body>
 </html>

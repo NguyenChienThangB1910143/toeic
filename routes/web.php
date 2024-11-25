@@ -21,47 +21,92 @@ Route::prefix('toeic/admin')->group(function () {
     Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.post');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
+    // Route::get('/IndexAdmin', function () {
+    //     return view('backend.IndexAdmin');
+    // })->name('admin.index')->middleware('auth:admin');
+});
+// Admin dashboard
+Route::middleware('auth:admin')->group(function () {
     Route::get('/IndexAdmin', function () {
         return view('backend.IndexAdmin');
-    })->name('admin.index')->middleware('auth:admin');
+    })->name('admin.index');
+
+    Route::resources([
+        'sections' => SectionController::class,
+        'lessons' => LessonController::class,
+        'lesson_contents' => LessonContentController::class,
+        'section_questions' => SectionQuestionController::class,
+        'topics' => TopicController::class,
+        'grammars' => GrammarController::class,
+        'profiles' => ProfileController::class,
+        'learners' => LearnerController::class,
+        'exams' => ExamController::class,
+        'materials' => MaterialController::class,
+    ]);
 });
 
 // Route cho các chức năng quản lý của Admin
 Route::middleware('auth:admin')->group(function () {
     Route::resource('sections', SectionController::class)->except(['show', 'create']);
+    Route::get('/qlsection', [SectionController::class, 'showQLSection'])->name('qlsection');
+
     Route::resource('lessons', LessonController::class)->except(['show', 'create']);
+    Route::get('/qllesson', [LessonController::class, 'showQLLesson'])->name('qllesson');
+
     Route::resource('lesson_contents', LessonContentController::class)->except(['show', 'create']);
+    Route::get('/qllesson_content', [LessonContentController::class, 'showQLLessonContent'])->name('qllesson_content');
+
     Route::resource('section_questions', SectionQuestionController::class)->except(['show', 'create']);
+    Route::get('/qlsection_question', [SectionQuestionController::class, 'showQLSectionQuestion'])->name('qlsection_question');
+
     Route::resource('topics', TopicController::class)->except(['show', 'create']);
+    Route::get('/qltopic', [TopicController::class, 'showQLTopic'])->name('qltopic');
+
     Route::resource('grammars', GrammarController::class)->except(['show', 'create']);
+    Route::get('/qlgrammar', [GrammarController::class, 'showQLGrammar'])->name('qlgrammar');
+
     Route::resource('profiles', ProfileController::class)->except(['show', 'create']);
     Route::resource('learners', LearnerController::class)->except(['show', 'create']);
+    Route::get('/qllearner', [LearnerController::class, 'showQLLearner'])->name('qllearner');
+
     Route::resource('exams', ExamController::class)->except(['show', 'create']);
+    Route::get('/qlexam', [ExamController::class, 'showQLExam'])->name('qlexam');
+
     Route::resource('materials', MaterialController::class)->except(['show', 'create']);
+    Route::get('/qlmaterial', [MaterialController::class, 'showQLMaterial'])->name('qlmaterial');
 
     Route::get('/qlprofile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 });
 
 // Route nhóm cho Learner
+
 Route::prefix('learner')->group(function () {
+    
     Route::get('/login', [LearnerAuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LearnerAuthController::class, 'login'])->name('login.submit');
+    Route::post('/login', [LearnerAuthController::class, 'login'])->name('login.submit');
     Route::post('/logout', [LearnerAuthController::class, 'logout'])->name('logout');
 
     Route::get('/register', [LearnerAuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [LearnerAuthController::class, 'register'])->name('register');
 
-    Route::middleware('auth')->group(function () {
-        Route::get('/index', function () {
-            return view('frontend.index');
-        })->name('learner.index');
+    // Route::middleware('auth')->group(function () {
+    //     Route::get('/index', function () {
+    //         return view('frontend.index');
+    //     })->name('learner.index');
+    // });
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/home', [LearnerController::class, 'index'])->name('home');
+        Route::get('/profile', [LearnerController::class, 'profile'])->name('profile');
+        Route::post('/profile/update', [LearnerController::class, 'update'])->name('profile.update');
+        Route::post('/profile/update-photo', [LearnerController::class, 'updatePhoto'])->name('profile.updatePhoto');
+        Route::post('/profile/change-password', [LearnerController::class, 'changePassword'])->name('profile.changePassword');
     });
 });
 
 // Route cho các trang frontend
-Route::get('home', function () {
-    return view('frontend.home');
-})->name('home');
+// Route::get('home', function () {
+//     return view('frontend.home');
+// })->name('home');
 
 Route::get('practice-listening', function () {
     return view('frontend.practice.practice-listening');
@@ -103,14 +148,14 @@ Route::get('tips-reading', function () {
     return view('frontend.tips.tips-reading');
 })->name('tips-reading');
 
-Route::get('profile', function () {
-    return view('frontend.profile.profile');
-})->name('profile');
+// Route::get('/profile', function () {
+//     return view('frontend.profile.profile');
+// })->name('profile');
 
-Route::get('learnerroute', function () {
-    return view('frontend.learnerroute.learnerroute');
-})->name('learnerroute');
+Route::get('learningroute', function () {
+    return view('frontend.learningroute.learningroute');
+})->name('learningroute');
 
-Route::get('learner-vocabulary', function () {
-    return view('frontend.learner-vocabulary.learner-vocabulary');
-})->name('learner-vocabulary');
+Route::get('learner-vocabularies', function () {
+    return view('frontend.learner-vocabularies.learner-vocabularies');
+})->name('learner-vocabularies');

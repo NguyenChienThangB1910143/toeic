@@ -1,0 +1,99 @@
+/* Container styling */
+.download-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.download-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.download-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #0056b3;
+}
+
+/* File cards */
+.download-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.file-card {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 45%;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.file-card:hover {
+    background-color: #e6f3ff;
+    transform: translateY(-5px);
+}
+
+.file-icon {
+    font-size: 40px;
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.file-info h4 {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+
+/* Practice section */
+.practice-section {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.practice-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.practice-section ul li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.practice-section ul li:hover {
+    background-color: #f0f0f0;
+}

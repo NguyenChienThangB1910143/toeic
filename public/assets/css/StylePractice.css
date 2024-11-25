@@ -1,18 +1,96 @@
-.curved-background {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-    background-size: cover; /* Đảm bảo ảnh nền hiển thị đầy đủ */
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: -1;
-    background-image: url('/images/Wave.svg');    
+.container-practice {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 80%;
+    padding: 20px;
 }
-h1{
+.title-text {
+    font-size: 28px;
+    font-weight: bold;
     text-align: center;
-
+    margin-bottom: 5px;
+}
+.subtitle {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555;
 }
 
+/* Content Section */
+.content {
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+    margin-bottom: 30px;
+}
+/* Lesson Section */
+.lesson-section {
+    flex: 7;
+}
+ .practice-section{
+    flex: 3;
+ }
+.lesson-section h3, .practice-section h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
 
+.lesson-list, .practice-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.lesson-list li, .practice-list li {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.lesson-list li:hover, .practice-list li:hover {
+    background-color: #f0f0f0;
+}
+/* Tests Section */
+.tests {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 
+.test-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    max-width: 18%;
+    min-width: 170px;
+}
+.test-card h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.test-card p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.test-card button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.test-card button:hover {
+    background-color: #0056b3;
+}

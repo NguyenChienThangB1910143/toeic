@@ -1,0 +1,291 @@
+/*BODY*/
+.container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/*----------------------------slogan.wellcome---------------------------*/
+.welcome-section {
+    padding: 40px 10px; 
+    text-align: center;
+    background-color: transparent;
+}
+.title-text {
+    width: 500px;
+    z-index: 2;
+    color: #000000;
+    position: relative;
+    border: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+.welcome-title {
+    font-size: 2.3em; 
+    margin-bottom: 20px;
+    text-align: center;
+ 
+}
+
+.welcome-text {
+    font-size: 1.1em; 
+    line-height: 1.6; 
+    width: 450px;
+}
+.online-text {
+    color: #477cd1; 
+    font-weight: bold; 
+}
+/* Khi màn hình nhỏ hơn 1024px */
+@media (max-width: 1024px) {
+    .title-text {
+        width: 500px; /* Thu hẹp chiều rộng */
+    }
+
+    .welcome-title {
+        font-size: 2em; /* Giảm kích thước tiêu đề */
+    }
+
+    .welcome-text {
+        width: 90%; /* Giảm chiều rộng văn bản */
+        font-size: 1em; /* Giảm kích thước chữ */
+    }
+}
+/* Khi màn hình nhỏ hơn 768px */
+@media (max-width: 768px) {
+    .title-text {
+        width: 90%; /* Chiếm toàn bộ chiều rộng màn hình */
+        margin: 0 auto; /* Căn giữa nội dung */
+    }
+
+    .welcome-title {
+        font-size: 1.8em; /* Tiếp tục giảm kích thước tiêu đề */
+    }
+
+    .welcome-text {
+        font-size: 0.9em; /* Giảm kích thước chữ thêm */
+        line-height: 1.5; /* Điều chỉnh khoảng cách dòng */
+    }
+}
+/* Khi màn hình nhỏ hơn 576px (điện thoại di động) */
+@media (max-width: 576px) {
+    .title-text {
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+        padding: 10px; /* Thêm đệm để tránh tràn văn bản */
+    }
+
+    .welcome-title {
+        font-size: 1.5em; /* Kích thước nhỏ hơn cho tiêu đề */
+    }
+
+    .welcome-text {
+        font-size: 0.8em; /* Kích thước nhỏ hơn cho văn bản */
+    }
+}
+/* BACKGROUND IMAGE */
+.bgr_img{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    right: 0;
+    top: 0; 
+    height: 90vh;
+    background-image: url('/images/rb_10088.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    padding-right: 20px;
+}
+
+/* ----------courses---------- */
+.event_box {
+    display: flex; /* Sử dụng flexbox để bố trí */
+    flex-wrap: wrap; /* Cho phép các ô xuống hàng */
+    justify-content: space-between; /* Căn giữa các ô */
+}
+/* Đặt chiều rộng mỗi ô để vừa 3 ô trên một hàng */
+.col-lg-4 {
+    width: 30%; /* Chiều rộng để vừa 3 ô trên một hàng */
+    margin-bottom: 30px; /* Khoảng cách giữa các hàng */
+  }
+  
+  /* Định dạng từng ô khóa học */
+  .events_item {
+    background-color: #fff; /* Màu nền của ô */
+    border-radius: 10px; /* Bo góc cho ô */
+    overflow: hidden; /* Ẩn các phần vượt ra ngoài */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Đổ bóng cho ô */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng khi hover */
+    position: relative; /* Để có thể sử dụng cho việc căn chỉnh */
+    padding-top: 60%; /* Đặt chiều cao bằng 50% chiều rộng để tạo thành hình vuông nhỏ */
+  }
+  
+  .events_item:hover {
+    transform: translateY(-10px); /* Di chuyển lên khi hover */
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2); /* Tăng độ bóng khi hover */
+  }
+  
+  .events_item .thumb {
+    position: absolute; /* Để giữ hình ảnh bên trong */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column; /* Để căn chỉnh hình ảnh và thông tin bên dưới */
+  }
+  
+  .events_item .thumb img {
+    width: 100%; /* Chiều rộng hình ảnh bằng chiều rộng ô */
+    height: 100%; /* Chiều cao hình ảnh bằng chiều cao ô */
+    object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+  }
+  
+  .events_item .thumb .category {
+    position: absolute; /* Để định vị danh mục */
+    top: 15px;
+    left: 15px;
+    background-color: hsl(211, 100%, 46%); /* Màu nền cho danh mục */
+    color: #fff; /* Màu chữ cho danh mục */
+    padding: 5px 10px; /* Khoảng cách bên trong cho danh mục */
+    border-radius: 5px; /* Bo góc cho danh mục */
+    font-size: 12px; /* Kích thước chữ cho danh mục */
+  }
+  
+  .events_item .thumb .price {
+    position: absolute; /* Để định vị giá */
+    bottom: 15px;
+    right: 15px;
+    background-color: rgba(0, 0, 0, 0.7); /* Màu nền cho giá */
+    color: #fff; /* Màu chữ cho giá */
+    padding: 5px 10px; /* Khoảng cách bên trong cho giá */
+    border-radius: 5px; /* Bo góc cho giá */
+    font-size: 16px; /* Kích thước chữ cho giá */
+  }
+  
+  .events_item .down-content {
+    padding: 20px; /* Khoảng cách bên trong cho nội dung */
+  }
+  
+  .events_item .down-content .author {
+    color: #7f8c8d; /* Màu chữ cho tác giả */
+    font-size: 14px; /* Kích thước chữ cho tác giả */
+    margin-bottom: 10px; /* Khoảng cách phía dưới tác giả */
+  }
+  
+  .events_item .down-content h4 {
+    font-size: 18px; /* Kích thước chữ cho tiêu đề khóa học */
+    color: #333; /* Màu chữ cho tiêu đề khóa học */
+    margin-bottom: auto; /* Khoảng cách phía dưới tiêu đề khóa học */
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+  }
+  
+  /* Định nghĩa hiệu ứng hover cho tiêu đề khóa học */
+  .events_item .down-content h4:hover {
+    color: #1c8ccc; /* Màu mới khi hover */
+  }
+  .events_item:hover .down-content h4 {
+    color: #1c8ccc; /* Đổi màu khi hover lên toàn bộ ô */
+}
+/* RESPONSIVE FOR COURSE ITEMS */
+@media (max-width: 768px) {
+    .col-lg-4 {
+        width: 45%; /* 2 cột trên một hàng */
+    }
+}
+
+@media (max-width: 576px) {
+    .col-lg-4 {
+        width: 100%; /* Cột chiếm toàn bộ chiều rộng màn hình */
+    }
+}
+/* -------NEWLETTER------- */
+.newsletter {
+    background-color: #f4faff; /* Màu nền sáng */
+    padding: 40px 20px; /* Đệm cho phần tử */
+    text-align: center; /* Căn giữa nội dung */
+    border-radius: 10px; /* Bo tròn các góc */
+    box-shadow: 0 4px 20px rgba(30, 157, 255, 0.51); /* Hiệu ứng bóng */
+    margin: 40px auto; /* Đưa phần tử vào giữa và tạo khoảng cách bên ngoài */
+    max-width: 1000px; /* Giới hạn chiều rộng tối đa */
+    height:auto;
+}
+
+.newsletter h2 {
+    font-size: 2em; /* Kích thước chữ lớn hơn */
+    color: #333; /* Màu chữ tối */
+    margin-bottom: 15px; /* Khoảng cách dưới tiêu đề */
+}
+
+.newsletter p {
+    font-size: 1.2em; /* Kích thước chữ lớn hơn cho mô tả */
+    color: #555; /* Màu chữ nhạt hơn */
+    margin-bottom: 20px; /* Khoảng cách dưới mô tả */
+}
+
+.newsletter form {
+    display: flex; /* Hiển thị như một hàng */
+    justify-content: center; /* Căn giữa */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.newsletter input[type="email"] {
+    padding: 10px 15px; /* Đệm cho ô nhập */
+    border: 2px solid #007bff; /* Đường viền màu xanh */
+    border-radius: 5px; /* Bo tròn các góc */
+    font-size: 1em; /* Kích thước chữ */
+    width: 60%; /* Chiều rộng của ô nhập */
+    max-width: 300px; /* Chiều rộng tối đa của ô nhập */
+    margin-right: 10px; /* Khoảng cách bên phải */
+    transition: border-color 0.3s; /* Hiệu ứng chuyển tiếp cho đường viền */
+}
+
+.newsletter input[type="email"]:focus {
+    border-color: #0056b3; /* Đổi màu đường viền khi ô được chọn */
+    outline: none; /* Ẩn viền mặc định */
+}
+
+.newsletter button {
+    padding: 10px 20px; /* Đệm cho nút */
+    background-color: #007bff; /* Màu nền nút */
+    color: white; /* Màu chữ nút */
+    border: none; /* Ẩn đường viền */
+    border-radius: 5px; /* Bo tròn các góc */
+    font-size: 1em; /* Kích thước chữ */
+    cursor: pointer; /* Đổi con trỏ khi di chuột lên nút */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp cho màu nền */
+}
+
+.newsletter button:hover {
+    background-color: #0056b3; /* Đổi màu nền khi di chuột lên nút */
+}
+.newsletter button:active {
+    transform: scale(0.98);
+}
+/* RESPONSIVE FOR NEWSLETTER */
+@media (max-width: 768px) {
+    .newsletter h2 {
+        font-size: 1.8em;
+    }
+    .newsletter input[type="email"] {
+        width: 70%;
+    }
+}
+
+@media (max-width: 576px) {
+    .newsletter h2 {
+        font-size: 1.5em;
+    }
+    .newsletter form {
+        flex-direction: column;
+    }
+    .newsletter input[type="email"] {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    .newsletter button {
+        width: 100%;
+    }
+}
