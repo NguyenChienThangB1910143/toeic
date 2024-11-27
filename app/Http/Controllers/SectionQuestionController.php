@@ -218,16 +218,118 @@ class SectionQuestionController extends Controller
                              ->with('success', '3 câu hỏi đã được thêm thành công cho Part 4.');
         }
         elseif ($type=="part_5") {
+            // Validate dữ liệu
+            $request->validate([
+                'section_id' => 'required|int',
+                'questions.*.option1' => 'required|string',
+                'questions.*.option2' => 'required|string',
+                'questions.*.option3' => 'required|string',
+                'questions.*.option4' => 'required|string',
+                'questions.*.correct_option' => 'required|in:A,B,C,D',
+            ]);
+        
+            // Tạo một QuestionGroup mới
+            $questionGroup = QuestionGroup::create([
+                'audio' => null,
+                'image' => null,
+                'passage' => null,
+                'script' => null,
+                'text' => $request->input('text'),
+            ]);
+        
+                SectionQuestion::create([
+                    'option1' => $request->input('option1'),
+                    'option2' => $request->input('option2'),
+                    'option3' => $request->input('option3'),
+                    'option4' => $request->input('option4'),
+                    'correct_option' => $request->input('correct_option'),
+                    'section_id' => $request->input('section_id'),
+                    'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào câu hỏi
+                ]);
+        
+            // Chuyển hướng về trang quản lý câu hỏi
             return redirect()->route('qlsection_question', ['section_id' => $section, 'type' => $type])
-                            ->with('success', 'Question added successfully!');
+                             ->with('success', '3 câu hỏi đã được thêm thành công cho Part 5.');
         }
         elseif ($type=="part_6") {
+            // Validate dữ liệu
+            $request->validate([
+                'section_id' => 'required|int',
+                'text' => 'required|string',
+                'questions.*.content' => 'required|string',
+                'questions.*.option1' => 'required|string',
+                'questions.*.option2' => 'required|string',
+                'questions.*.option3' => 'required|string',
+                'questions.*.option4' => 'required|string',
+                'questions.*.correct_option' => 'required|in:A,B,C,D',
+            ]);
+        
+            // Tạo một QuestionGroup mới
+            $questionGroup = QuestionGroup::create([
+                'audio' => null,
+                'image' => null,
+                'passage' => null,
+                'script' => null,
+                'text' => $request->input('text'),
+            ]);
+        
+                // Thêm từng câu hỏi
+                foreach ($request->input('questions') as $question) {
+                    SectionQuestion::create([
+                        'content' => $question['content'],
+                        'option1' => $question['option1'],
+                        'option2' => $question['option2'],
+                        'option3' => $question['option3'],
+                        'option4' => $question['option4'],
+                        'correct_option' => $question['correct_option'],
+                        'section_id' => $request->input('section_id'),
+                        'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào từng câu hỏi
+                    ]);
+                }
+        
+            // Chuyển hướng về trang quản lý câu hỏi
             return redirect()->route('qlsection_question', ['section_id' => $section, 'type' => $type])
-                            ->with('success', 'Question added successfully!');
+                             ->with('success', '4 câu hỏi đã được thêm thành công cho Part 6.');
         }
         elseif ($type=="part_7") {
+            // Validate dữ liệu
+            $request->validate([
+                'section_id' => 'required|int',
+                'text' => 'required|string',
+                'questions.*.content' => 'required|string',
+                'questions.*.option1' => 'required|string',
+                'questions.*.option2' => 'required|string',
+                'questions.*.option3' => 'required|string',
+                'questions.*.option4' => 'required|string',
+                'questions.*.correct_option' => 'required|in:A,B,C,D',
+            ]);
+        
+            // Tạo một QuestionGroup mới
+            $questionGroup = QuestionGroup::create([
+                'audio' => null,
+                'image' => null,
+                'passage' => null,
+                'script' => null,
+                'text' => $request->input('text'),
+            ]);
+        
+                // Thêm từng câu hỏi
+                foreach ($request->input('questions') as $question) {
+                    SectionQuestion::create([
+                        'content' => $question['content'],
+                        'option1' => $question['option1'],
+                        'option2' => $question['option2'],
+                        'option3' => $question['option3'],
+                        'option4' => $question['option4'],
+                        'correct_option' => $question['correct_option'],
+                        'section_id' => $request->input('section_id'),
+                        'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào từng câu hỏi
+                    ]);
+                }
+        
+            // Chuyển hướng về trang quản lý câu hỏi
             return redirect()->route('qlsection_question', ['section_id' => $section, 'type' => $type])
-                            ->with('success', 'Question added successfully!');
+                             ->with('success', '5 câu hỏi đã được thêm thành công cho Part 7.');
         }
     }
 
@@ -236,14 +338,18 @@ class SectionQuestionController extends Controller
 // Hiển thị form chỉnh sửa question
 public function edit($question_id)
 {
-    $question = SectionQuestion::find($question_id);
+    $question = SectionQuestion::with('group')->find($question_id);
 
     if (!$question) {
         return response()->json(['error' => 'Câu hỏi không tồn tại.'], 404);
     }
 
-    return response()->json($question);
+    return response()->json([
+        'question' => $question,
+        'group_text' => $question->group ? $question->group->text : null,
+    ]);
 }
+
 
 
 public function update(Request $request, $question_id)
@@ -373,6 +479,103 @@ public function update(Request $request, $question_id)
             'section_id' => $request->section_id, 
             'type' => $request->type
         ])->with('success', 'Question updated successfully!');
+    }
+    elseif ($request->type == "part_5") {
+        $group = $question->group; // Nhóm câu hỏi
+
+        $request->validate([
+            'text' => 'nullable|string', // Text của nhóm câu hỏi
+            'option1' => 'required|string',
+            'option2' => 'required|string',
+            'option3' => 'required|string',
+            'option4' => 'nullable|string',
+            'correct_option' => 'required|in:A,B,C,D',
+        ]);
+    
+        // Cập nhật text cho nhóm câu hỏi
+        if ($group) {
+            $group->text = $request->input('text');
+            $group->save();
+        }
+    
+        // Cập nhật thông tin câu hỏi
+        $question->option1 = $request->input('option1');
+        $question->option2 = $request->input('option2');
+        $question->option3 = $request->input('option3');
+        $question->option4 = $request->input('option4');
+        $question->correct_option = $request->input('correct_option');
+        $question->save();
+    
+        return redirect()->route('qlsection_question', [
+            'section_id' => $request->section_id, 
+            'type' => $request->type
+        ])->with('success', 'Câu hỏi đã được cập nhật thành công!');
+    }
+    elseif ($request->type == "part_6") {
+        $group = $question->group; // Nhóm câu hỏi
+
+        $request->validate([
+            'text' => 'nullable|string', // Text của nhóm câu hỏi
+            'content' => 'required|string',
+            'option1' => 'required|string',
+            'option2' => 'required|string',
+            'option3' => 'required|string',
+            'option4' => 'nullable|string',
+            'correct_option' => 'required|in:A,B,C,D',
+        ]);
+    
+        // Cập nhật text cho nhóm câu hỏi
+        if ($group) {
+            $group->text = $request->input('text');
+            $group->save();
+        }
+    
+        // Cập nhật thông tin câu hỏi
+        $question->content = $request->input('content');
+        $question->option1 = $request->input('option1');
+        $question->option2 = $request->input('option2');
+        $question->option3 = $request->input('option3');
+        $question->option4 = $request->input('option4');
+        $question->correct_option = $request->input('correct_option');
+        $question->save();
+    
+        return redirect()->route('qlsection_question', [
+            'section_id' => $request->section_id, 
+            'type' => $request->type
+        ])->with('success', 'Câu hỏi đã được cập nhật thành công!');
+    }
+    elseif ($request->type == "part_7") {
+        $group = $question->group; // Nhóm câu hỏi
+
+        $request->validate([
+            'text' => 'nullable|string', // Text của nhóm câu hỏi
+            'content' => 'required|string',
+            'option1' => 'required|string',
+            'option2' => 'required|string',
+            'option3' => 'required|string',
+            'option4' => 'nullable|string',
+            'correct_option' => 'required|in:A,B,C,D',
+        ]);
+    
+        // Cập nhật text cho nhóm câu hỏi
+        if ($group) {
+            $group->text = $request->input('text');
+            $group->save();
+        }
+    
+        // Cập nhật thông tin câu hỏi
+        $question->content = $request->input('content');
+        $question->option1 = $request->input('option1');
+        $question->option2 = $request->input('option2');
+        $question->option3 = $request->input('option3');
+        $question->option4 = $request->input('option4');
+        $question->correct_option = $request->input('correct_option');
+        $question->save();
+    
+        return redirect()->route('qlsection_question', [
+            'section_id' => $request->section_id, 
+            'type' => $request->type
+        ])->with('success', 'Câu hỏi đã được cập nhật thành công!');
     }
 }
 
