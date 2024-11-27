@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class QuestionGroup extends Model
 {
-    protected $table = 'question_groups';
+    protected $table = 'tbl_question_group';
     protected $primaryKey = 'question_group_id';
 
     protected $fillable = [
