@@ -1,0 +1,70 @@
+.container-dictonary {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 80%;
+    padding: 20px;
+}
+/* Tra cứu */
+.dictionary-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 10px;
+    width: 300px;
+}
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+}
+/* translate */
+.label{
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+.texarea, .select, .button{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.texarea{
+    resize: none;
+    overflow-y: scroll;
+}
+.button{
+    background-color: aqua;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.button:hover{
+    background-color: blue;
+}
+#outputText{
+    background-color: #fff;
+    min-height: 80px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 13px;
+    white-space: pre-wrap;
+}

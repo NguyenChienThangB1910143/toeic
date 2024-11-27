@@ -18,8 +18,6 @@ class Material extends Model
         'title',
         'description',
         'file_pdf',
-        'created_at',
-        'updated_at',
     ];
 
     // Tùy chọn: Nếu không muốn sử dụng timestamps tự động

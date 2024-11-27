@@ -14,6 +14,8 @@ use App\Http\Controllers\GrammarController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\DictionaryController;
 
 // Route nhóm cho phần quản lý Admin
 Route::prefix('toeic/admin')->group(function () {
@@ -74,6 +76,11 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::resource('materials', MaterialController::class)->except(['show', 'create']);
     Route::get('/qlmaterial', [MaterialController::class, 'showQLMaterial'])->name('qlmaterial');
+    Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
+    Route::get('materials/{material}/edit', [MaterialController::class, 'edit'])->name('materials.edit');
+    Route::put('materials/{material}', [MaterialController::class, 'update'])->name('materials.update');
+    Route::get('/materials', [MaterialController::class, 'showMaterials'])->name('materials.show');
+
 
     Route::get('/qlprofile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 });
@@ -100,7 +107,13 @@ Route::prefix('learner')->group(function () {
         Route::post('/profile/update', [LearnerController::class, 'update'])->name('profile.update');
         Route::post('/profile/update-photo', [LearnerController::class, 'updatePhoto'])->name('profile.updatePhoto');
         Route::post('/profile/change-password', [LearnerController::class, 'changePassword'])->name('profile.changePassword');
+
+        route::get('/feedback',[FeedbackController::class,'create'])->name('feedback.feedback');
+        route::post('/feedback/create',[FeedbackController::class,'store'])->name('feedback.store');
     });
+
+    Route::get('/dictionary', [DictionaryController::class, 'index']);
+    Route::post('/search', [DictionaryController::class, 'search']);
 });
 
 // Route cho các trang frontend
@@ -132,9 +145,7 @@ Route::get('fulltest', function () {
     return view('frontend.fulltest.fulltest');
 })->name('fulltest');
 
-Route::get('material', function () {
-    return view('frontend.material.material');
-})->name('material');
+Route::get('material',[MaterialController::class,'showMaterials'])->name('material');
 
 Route::get('feedback', function () {
     return view('frontend.feedback.feedback');
