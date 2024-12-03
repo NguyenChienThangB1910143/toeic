@@ -6,16 +6,22 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LearnerAuthController;
 use App\Http\Controllers\LearnerController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\VocabularyController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LessonContentController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SectionQuestionController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\GrammarController;
+use App\Http\Controllers\GrammarContentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\DictionaryController;
+use App\Http\Controllers\TestQuestionController;
+
+
 
 // Route nhóm cho phần quản lý Admin
 Route::prefix('toeic/admin')->group(function () {
@@ -35,7 +41,9 @@ Route::middleware('auth:admin')->group(function () {
         'lesson_contents' => LessonContentController::class,
         'section_questions' => SectionQuestionController::class,
         'topics' => TopicController::class,
+        'vocabularys' => VocabularyController::class,
         'grammars' => GrammarController::class,
+        'grammar_contents' => GrammarContentController::class,
         'profiles' => ProfileController::class,
         'learners' => LearnerController::class,
         'exams' => ExamController::class,
@@ -60,11 +68,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/section_questions', [SectionQuestionController::class, 'store'])->name('section_questions.store');
     Route::get('/section_questions/{question_id}/edit', [SectionQuestionController::class, 'edit'])->name('section_questions.edit');
     Route::put('/section_questions/{question_id}', [SectionQuestionController::class, 'update'])->name('section_questions.update');
-// Route vẫn cần sử dụng đúng ID
-Route::delete('/section_questions/{question}', [SectionQuestionController::class, 'destroy'])->name('section_questions.destroy');
+    // Route vẫn cần sử dụng đúng ID
+    Route::delete('/section_questions/{question}', [SectionQuestionController::class, 'destroy'])->name('section_questions.destroy');
    
-    
-
+    Route::resource('tests', TestController::class)->except(['show', 'create']);
+    Route::get('/qltest', [TestController::class, 'showQLTest'])->name('qltest');
+    Route::get('/qltest_question', [TestQuestionController::class, 'showQLTestQuestion'])->name('qltest_question');
 
 
     
@@ -74,8 +83,13 @@ Route::delete('/section_questions/{question}', [SectionQuestionController::class
     Route::resource('topics', TopicController::class)->except(['show', 'create']);
     Route::get('/qltopic', [TopicController::class, 'showQLTopic'])->name('qltopic');
 
+    Route::resource('vocabularys', VocabularyController::class)->except(['show', 'create']);
+    Route::get('/qlvocabulary', [VocabularyController::class, 'showQLVocabulary'])->name('qlvocabulary');
+
     Route::resource('grammars', GrammarController::class)->except(['show', 'create']);
     Route::get('/qlgrammar', [GrammarController::class, 'showQLGrammar'])->name('qlgrammar');
+    Route::resource('grammar_contents', GrammarContentController::class)->except(['show', 'create']);
+    Route::get('/qlgrammar_content', [GrammarContentController::class, 'showQLGrammarContent'])->name('qlgrammar_content');
 
     Route::resource('profiles', ProfileController::class)->except(['show', 'create']);
     Route::resource('learners', LearnerController::class)->except(['show', 'create']);
@@ -102,11 +116,11 @@ Route::prefix('learner')->group(function () {
     Route::get('/login', [LearnerAuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LearnerAuthController::class, 'login'])->name('login.submit');
     Route::post('/logout', [LearnerAuthController::class, 'logout'])->name('logout');
+    Route::get('/home', [LearnerController::class, 'index'])->name('home');
 
     Route::get('/register', [LearnerAuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [LearnerAuthController::class, 'register'])->name('register');
     Route::middleware(['auth'])->group(function () {
-        Route::get('/home', [LearnerController::class, 'index'])->name('home');
         Route::get('/profile', [LearnerController::class, 'profile'])->name('profile');
         Route::post('/profile/update', [LearnerController::class, 'update'])->name('profile.update');
         Route::post('/profile/update-photo', [LearnerController::class, 'updatePhoto'])->name('profile.updatePhoto');

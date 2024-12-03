@@ -1,6 +1,6 @@
 {{-- Bao gồm header --}}
 @include('frontend.inc.header')
-<link rel="stylesheet" href="{{ asset('assets/css/StyleVocabularies.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/StyleLearnerVocabularies.css') }}">
 
 {{-- Nội dung chính của trang --}}
 <div class="container-vocabularies">

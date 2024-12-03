@@ -50,9 +50,10 @@
                             <th>STT</th>
                             <th>Tên Topic</th>
                             <th>Hình ảnh</th>
-                            <th>Mô tả</th>
-                            <th>Loại</th>
+                            <th>Ngày tạo</th>
+                            <th>Ngày cập nhật</th>
                             <th>Hành động</th>
+                            <th>Quản lý</th>
                         </tr>
                     </thead>
                     
@@ -62,14 +63,14 @@
                             <td>{{ ($topics->currentPage() - 1) * $topics->perPage() + $loop->iteration }}</td>
                             <td>{{ $topic->name }}</td>
                             <td><img src="{{ asset('storage/' . $topic->image) }}" alt="Image" class="table-image" width="100" height="100"></td>
-                            <td>{{ $topic->description }}</td>
-                            <td>{{ $topic->topic_type }}</td>
+                            <td>{{ $topic->created_at }}</td>
+                            <td>{{ $topic->updated_at }}</td>
                             <td>
                                 <button class="btn-edit" data-toggle="modal" data-target="#editTopicModal"
                                     data-id="{{ $topic->id }}"
                                     data-name="{{ $topic->name }}"
-                                    data-description="{{ $topic->description }}"
-                                    data-topic_type="{{ $topic->topic_type }}"
+                                    data-created_at="{{ $topic->created_at }}"
+                                    data-updated_at="{{ $topic->updated_at }}"
                                     data-image="{{ $topic->image }}">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
@@ -78,6 +79,9 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><i class="fa-solid fa-trash-can"></i></button>
                                 </form>
+                            </td>
+                            <td>
+                                <a href="{{ route('qlvocabulary', ['topic_id' => $topic->topic_id]) }}" class="btn-manage vocabularyBtn">Vocabulary</a>
                             </td>
                         </tr>
                         @empty
@@ -119,22 +123,7 @@
                         <div class="form-group">
                             <label for="image">Ảnh:</label>
                             <input type="file" name="image" id="image" class="form-control" accept="image/*" required>
-                        </div>
-
-                        <!-- Loại của topic -->
-                        <div class="form-group">
-                            <label for="topic_type">Loại Topic:</label>
-                            <select name="topic_type" id="topic_type" class="form-control" required>
-                                <option value="listening" {{ old('topic_type') == 'listening' ? 'selected' : '' }}>Listening</option>
-                                <option value="reading" {{ old('topic_type') == 'reading' ? 'selected' : '' }}>Reading</option>
-                            </select>
-                        </div>                        
-
-                        <!-- Mô tả (description) -->
-                        <div class="form-group">
-                            <label for="description">Mô Tả:</label>
-                            <textarea name="description" id="description" class="form-control">{{ old('description') }}</textarea>
-                        </div>
+                        </div>                      
 
                         <button type="submit" class="btn btn-primary">Thêm Topic</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
@@ -165,27 +154,11 @@
                             <input type="text" name="name" id="edit_name" class="form-control" required>
                         </div>
 
-
                         <!-- Ảnh topic (nếu người dùng muốn thay đổi) -->
                         <div class="form-group">
                             <label for="edit_image">Ảnh Mới:</label>
                             <input type="file" name="image" id="edit_image" class="form-control" accept="image/*">
                             <img id="current_image" src="" alt="Current Image" class="img-thumbnail" width="150">
-                        </div>
-
-                        <!-- Loại của topic -->
-                        <div class="form-group">
-                            <label for="edit_topic_type">Loại Topic:</label>
-                            <select name="topic_type" id="edit_topic_type" class="form-control" required>
-                                <option value="listening">Listening</option>
-                                <option value="reading">Reading</option>
-                            </select>
-                        </div>
-
-                        <!-- Mô tả (description) -->
-                        <div class="form-group">
-                            <label for="edit_description">Mô Tả:</label>
-                            <textarea name="description" id="edit_description" class="form-control" required></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
@@ -206,14 +179,10 @@
             var button = $(event.relatedTarget);
             var id = button.data('id');
             var name = button.data('name');
-            var description = button.data('description');
-            var topic_type = button.data('topic_type');
             var image = button.data('image'); // Dữ liệu ảnh cũ
 
             var modal = $(this);
             modal.find('#edit_name').val(name);
-            modal.find('#edit_description').val(description);
-            modal.find('#edit_topic_type').val(topic_type);
             modal.find('#editTopicForm').attr('action', '/topics/' + id);
 
             // Cập nhật đường dẫn hình ảnh cũ

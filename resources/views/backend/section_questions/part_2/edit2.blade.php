@@ -29,10 +29,8 @@
                                 class="form-control" 
                                 value="" 
                                 required>
-
                         </div>
                         @endforeach
-
 
                     <!-- Correct Option -->
                     <div class="form-group">
@@ -48,6 +46,11 @@
                         <label for="edit_audio">Audio:</label>
                         <input type="file" name="audio" id="edit_audio" class="form-control" accept="audio/*">
                         <audio id="current_audio" controls class="mt-2"></audio>
+                    </div>
+                    <!-- script -->
+                    <div class="form-group">
+                        <label for="script">Script:</label>
+                        <input type="text" name="script" id="script" class="form-control" value="{{ old('script') }}" required>
                     </div>
 
                     <input type="hidden" name="section_id" id="edit_section_id">

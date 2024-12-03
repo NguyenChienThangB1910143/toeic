@@ -27,11 +27,10 @@
                                 name="{{ $option }}" 
                                 id="edit_{{ $option }}" 
                                 class="form-control" 
-                                value="{{ old($option, $question->$option) }}" 
+                                value="" 
                                 required>
                         </div>
                         @endforeach
-
 
                     <!-- Correct Option -->
                     <div class="form-group">
@@ -56,6 +55,11 @@
                         <label for="edit_audio">Audio:</label>
                         <input type="file" name="audio" id="edit_audio" class="form-control" accept="audio/*">
                         <audio id="current_audio" controls class="mt-2"></audio>
+                    </div>
+                    <!-- Script -->
+                    <div class="form-group">
+                        <label for="edit_script">Script:</label>
+                        <input type="text" name="script" id="edit_script" class="form-control">
                     </div>
 
                     <input type="hidden" name="section_id" id="edit_section_id">
@@ -93,6 +97,7 @@
                 $('#edit_option3').val(response.option3); // Đáp án C
                 $('#edit_option4').val(response.option4); // Đáp án D
                 $('#edit_correct_option').val(response.correct_option); // Đáp án đúng
+                $('#edit_script').val(response.script);
                 $('#edit_section_id').val(response.section_id); // Section ID
 
                 // Hiển thị hình ảnh hiện tại (nếu có)
@@ -120,7 +125,4 @@
         }
     });
 });
-
-
-
 </script>

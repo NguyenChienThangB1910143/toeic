@@ -11,6 +11,9 @@ body {
     background-color: #f8f9fc; 
     color: #333;
 }
+.breadcrumb-item + .breadcrumb-item::before {
+    content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$breadcrumb-divider-color}'/></svg>");
+  }
 
 .pagination-links .pagination {
     font-size: 16px !important; /* Tăng kích thước chữ của các nút phân trang */
@@ -70,7 +73,7 @@ body {
     background: none; 
     border: none; 
 }
-.admin-topic {
+.admin-grammar_content {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -79,13 +82,12 @@ body {
     margin: 0 auto;
 }
 
-.topic-title {
+.grammar_content-title {
     font-size: 26px;
     margin-bottom: 20px;
     color: #4e73df;
     text-align: left;
 }
-
 
 /* Form Elements */
 .form-group {
@@ -214,6 +216,7 @@ body {
     background-color: #c82333;
     transform: scale(1.05);
 }
+
 /* Button Manage */
 .btn-manage {
     color: #2c0a76;

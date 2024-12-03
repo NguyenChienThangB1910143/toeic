@@ -29,8 +29,7 @@
                             <option value="5">5</option>
                         </select>
                     </div>
-                    
-
+            
                     <!-- Câu hỏi sẽ được hiển thị tại đây -->
                     <div id="questions_container"></div>
 
@@ -86,6 +85,10 @@
                         <option value="C">C</option>
                         <option value="D">D</option>
                     </select>
+                </div>
+                < class="form-group">
+                    <label for="questions[${i}][script]">Script:</label>
+                    <input type="text" name="questions[${i}][script]" id="questions[${i}][script]" class="form-control" required>
                 </div>
             `;
             container.append(questionHtml);

@@ -49,6 +49,11 @@
                             <option value="C">C</option>
                         </select>
                     </div>
+                    <!-- script -->
+                    <div class="form-group">
+                        <label for="script">Script:</label>
+                        <input type="text" name="script" id="script" class="form-control" value="{{ old('script') }}" required>
+                    </div>
 
                     <!-- Thêm nút hành động -->
                     <button type="submit" class="btn btn-primary">Thêm question</button>

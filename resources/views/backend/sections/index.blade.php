@@ -90,7 +90,7 @@
                                 <td>
                                     <a href="{{ route('qllesson', ['section_id' => $section->section_id]) }}" class="btn-manage lessonBtn">Lesson</a>
                                     <a href="{{ route('qlsection_question', ['section_id' => $section->section_id, 'type' => $section->type]) }}" class="btn-manage questionBtn">Question</a>
-                                    <button class="btn-manage testBtn">Test</button>
+                                    <a href="{{ route('qltest', ['section_id' => $section->section_id]) }}" class="btn-manage testBtn">Test</a>
                                 </td>
                             </tr>
                         @empty
@@ -147,9 +147,7 @@
             // Hiển thị ảnh hiện tại
             var imageUrl = image ? '/storage/' + image : '/assets/images/default.png';  // Đảm bảo ảnh mặc định
             modal.find('#current_image').attr('src', imageUrl);
-        });
-
-        
+        });       
     </script>
 </body>
 </html>

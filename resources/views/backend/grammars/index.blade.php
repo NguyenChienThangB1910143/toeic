@@ -76,8 +76,7 @@
                                 </form>
                             </td>
                             <td>
-                                <button class="btn-manage contentBtn">Content</button>
-                                <button class="btn-manage questionBtn">Question</button>
+                                <a href="{{ route('qlgrammar_content', ['grammar_id' => $grammar->grammar_id]) }}" class="btn-manage contentBtn">Content</a>
                             </td>
                         </tr>
                         @empty

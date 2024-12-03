@@ -12,6 +12,21 @@ body {
     color: #333;
 }
 
+.pagination-links .pagination {
+    font-size: 16px !important; /* Tăng kích thước chữ của các nút phân trang */
+}
+
+.pagination-links .pagination .page-item .page-link {
+    padding: 10px 15px !important; /* Tăng kích thước của nút phân trang */
+    font-size: 16px !important; /* Kích thước chữ */
+    border-radius: 5px !important; /* Bo góc cho nút */
+}
+
+.pagination-links .pagination .page-item.active .page-link {
+    background-color: #007bff !important; /* Màu nền khi nút được chọn */
+    color: white !important; /* Màu chữ khi nút được chọn */
+}
+
 /* Modal Overlay */
 .overlay {
     position: fixed;
@@ -71,7 +86,6 @@ body {
     text-align: left;
 }
 
-
 /* Form Elements */
 .form-group {
     width: 100%;
@@ -109,7 +123,7 @@ body {
 }
 
 /* Search and Add Button */
-.search-add {
+.search-material {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -205,4 +219,31 @@ body {
     width: 50px;
     height: auto;
     border-radius: 5px;
+}
+
+/* Cố định kích thước của bảng */
+.table-container {
+    min-height: 550px; /* Chiều cao nhỏ nhất cho bảng */
+    overflow-y: auto; /* Cho phép cuộn dọc khi bảng quá dài */
+    margin-bottom: 20px; /* Khoảng cách dưới bảng */
+}
+
+/* Điều chỉnh kích thước của nút phân trang */
+.pagination-links .pagination {
+    font-size: 14px; /* Kích thước chữ của các nút phân trang */
+    display: flex;
+    justify-content: center; /* Căn giữa các nút phân trang */
+    margin-top: 20px; /* Khoảng cách trên phân trang */
+}
+
+/* Cải thiện giao diện của các nút phân trang */
+.pagination-links .pagination .page-item .page-link {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.pagination-links .pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
 }

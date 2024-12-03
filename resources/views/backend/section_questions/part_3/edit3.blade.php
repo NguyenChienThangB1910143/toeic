@@ -43,6 +43,11 @@
                             <option value="C">C</option>
                         </select>
                     </div>
+                    <!-- script -->
+                    <div class="form-group">
+                        <label for="script">Script:</label>
+                        <input type="text" name="script" id="script" class="form-control" value="{{ old('script') }}" required>
+                    </div>
 
                     <input type="hidden" name="section_id" id="edit_section_id">
                     <input type="hidden" name="type" value="{{ request()->type }}">

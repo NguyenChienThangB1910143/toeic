@@ -116,8 +116,8 @@ class SectionController extends Controller
     public function search(Request $request)
     {
         $keyword = $request->input('keyword');
-        $sections = Section::where('name', 'LIKE', "%{$keyword}%")->paginate(5);
+        $search = Section::where('name', 'LIKE', "%{$keyword}%")->paginate(5);
 
-        return response()->json($sections);
+        return response()->json($search);
     }
 }

@@ -12,5 +12,8 @@ class LessonContent extends Model
     protected $fillable = [
         'lesson_id', 'title', 'content', 'created_at', 'updated_at',
     ];
-
+    public function lessoncontent()
+    {
+        return $this->belongsTo(Lesson::class, 'lesson_id');
+    }
 }

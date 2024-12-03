@@ -48,6 +48,11 @@
                             <option value="D">D</option>
                         </select>
                     </div>
+                    <!-- script -->
+                    <div class="form-group">
+                        <label for="script">Script:</label>
+                        <input type="text" name="script" id="script" class="form-control" value="{{ old('script') }}" required>
+                    </div>                    
                     @endfor
 
                     <!-- Thêm nút hành động -->

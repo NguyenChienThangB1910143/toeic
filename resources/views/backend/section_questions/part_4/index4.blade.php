@@ -101,10 +101,7 @@
                                     <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
-                                </form>
-                                
-                                
-                                
+                                </form> 
                             </td>
                         </tr>
                         @empty

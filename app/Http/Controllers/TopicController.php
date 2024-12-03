@@ -25,8 +25,6 @@ class TopicController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg', // Thêm kiểm tra kích thước ảnh
-            'description' => 'required|string',
-            'topic_type' => 'required|string',
         ]);
 
         // Lưu ảnh vào thư mục public/storage/images
@@ -36,8 +34,6 @@ class TopicController extends Controller
         Topic::create([
             'name' => $request->name,
             'image' => $imagePath,
-            'description' => $request->description,
-            'topic_type' => $request->topic_type,
         ]);
 
         // Redirect với thông báo thành công
@@ -61,8 +57,6 @@ class TopicController extends Controller
         // Validate dữ liệu đầu vào
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'topic_type' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg', // Kiểm tra nếu có ảnh mới
         ]);
 
@@ -80,8 +74,6 @@ class TopicController extends Controller
         // Cập nhật các thông tin khác
         $topic->update([
             'name' => $request->name,
-            'description' => $request->description,
-            'topic_type' => $request->topic_type,
         ]);
 
         return redirect()->route('qltopic')->with('success', 'Topic updated successfully!');
