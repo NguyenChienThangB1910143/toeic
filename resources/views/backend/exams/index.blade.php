@@ -62,7 +62,7 @@
                             <td>{{ $exam->created_at }}</td>
                             <td>{{ $exam->updated_at }}</td>
                             <td>
-                                <button class="btn-edit" data-toggle="modal" data-target="#editgrammarModal"
+                                <button class="btn-edit" data-toggle="modal" data-target="#editexamModal"
                                     data-id="{{ $exam->exam_id }}"
                                     data-name="{{ $exam->name }}"
                                     data-duration="{{ $exam->duration }}"

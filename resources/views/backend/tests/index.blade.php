@@ -79,7 +79,7 @@
                             
                         </td>
                         <td>
-                            <a href="{{ route('qltest_question', ['test_id' => $test->test_id]) }}" class="btn-manage indicateBtn">Indicate Question</a>
+                            <a href="{{ route('qltest_question', ['section_id' => $section_id, 'test_id' => $test->test_id]) }}" class="btn-manage indicateBtn">Indicate Question</a>
                         </td>
                     </tr>
                     @empty

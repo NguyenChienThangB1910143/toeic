@@ -13,9 +13,10 @@ class Test extends Model
         'section_id', 'name', 'created_at', 'updated_at',
     ];
 
-    public function tests()
-    {
-        return $this->belongsTo(Section::class, 'section_id');
-    }
+    public function questions()
+{
+    return $this->hasMany(TestQuestion::class, 'test_id');
+}
+
 
 }

@@ -86,7 +86,7 @@
                         <option value="D">D</option>
                     </select>
                 </div>
-                < class="form-group">
+                <div class="form-group">
                     <label for="questions[${i}][script]">Script:</label>
                     <input type="text" name="questions[${i}][script]" id="questions[${i}][script]" class="form-control" required>
                 </div>

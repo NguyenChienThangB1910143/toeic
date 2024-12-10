@@ -1,8 +1,9 @@
 <?php
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Model;
+use App\Models\SectionQuestion;
 class QuestionGroup extends Model
 {
     protected $table = 'tbl_question_group';
