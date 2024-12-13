@@ -46,6 +46,11 @@
                                 <input type="text" name="questions[{{ $i }}][option3]" id="option3_{{ $i }}" class="form-control" required>
                             </div>
 
+                            <!-- Đáp án D -->
+                            <div class="form-group">
+                                <label for="option4_{{ $i }}">Đáp án D:</label>
+                                <input type="text" name="questions[{{ $i }}][option4]" id="option4_{{ $i }}" class="form-control" required>
+                            </div>
                             <!-- Đáp án đúng -->
                             <div class="form-group">
                                 <label for="correct_option_{{ $i }}">Đáp án đúng:</label>
@@ -53,6 +58,7 @@
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                     <option value="C">C</option>
+                                    <option value="D">D</option>
                                 </select>
                             </div>
                             <!-- script -->

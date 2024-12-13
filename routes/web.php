@@ -20,6 +20,8 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\DictionaryController;
 use App\Http\Controllers\TestQuestionController;
+use App\Http\Controllers\ExamTestController;
+
 
 
 
@@ -98,6 +100,13 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::resource('exams', ExamController::class)->except(['show', 'create']);
     Route::get('/qlexam', [ExamController::class, 'showQLExam'])->name('qlexam');
+
+    Route::get('/exam_test', [ExamTestController::class, 'ExamTestIndex'])->name('exam.test');
+    Route::post('/exam_test', [ExamTestController::class, 'store'])->name('exam_test.store');
+    Route::get('/qlexam/{exam_id}/details', [ExamController::class, 'viewExamDetails'])->name('exam.details');
+
+
+
 
     Route::resource('materials', MaterialController::class)->except(['show', 'create']);
     Route::get('/qlmaterial', [MaterialController::class, 'showQLMaterial'])->name('qlmaterial');

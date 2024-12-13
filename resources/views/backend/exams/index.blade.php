@@ -79,7 +79,15 @@
                                 </form>
                             </td>
                             <td>
-                                <button class="btn-manage questionBtn">Question</button>
+                                @php
+                                    $exam_id = $exam->exam_id;
+                                    $asset = DB::table('exam_tests')->where('exam_id', $exam_id)->exists();
+                                @endphp
+                                @if ($asset)
+                                    <a href="{{ route('exam.details', ['exam_id' => $exam_id]) }}" class="btn btn-primary btn-manage indicateBtn">Xem Test </a>
+                                @else
+                                    <a href="{{ route('exam.test', ['exam_id' => $exam->exam_id]) }}" class="btn btn-primary btn-manage indicateBtn">Indicate Test</a>
+                                @endif
                             </td>
                         </tr>
                         @empty

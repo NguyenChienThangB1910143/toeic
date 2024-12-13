@@ -34,4 +34,5 @@ class SectionQuestion extends Model
     {
         return $this->belongsTo(QuestionGroup::class, 'question_group_id');
     }
+    
 }

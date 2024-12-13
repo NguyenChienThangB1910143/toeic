@@ -89,6 +89,7 @@ class SectionQuestionController extends Controller
                             ->with('success', 'Question đã được thêm thành công.');
         }
         elseif ($type=="part_2") {
+            
             // Validate dữ liệu
             $request->validate([
                 'section_id' => 'required|int',
@@ -128,6 +129,7 @@ class SectionQuestionController extends Controller
                 'questions.*.option1' => 'required|string',
                 'questions.*.option2' => 'required|string',
                 'questions.*.option3' => 'required|string',
+                'questions.*.option4' => 'required|string',
                 'questions.*.correct_option' => 'required|in:A,B,C',
             ]);
         
@@ -154,6 +156,7 @@ class SectionQuestionController extends Controller
                     'option1' => $questionData['option1'],
                     'option2' => $questionData['option2'],
                     'option3' => $questionData['option3'],
+                    'option4' => $questionData['option4'],
                     'correct_option' => $questionData['correct_option'],
                     'section_id' => $request->input('section_id'),
                     'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào câu hỏi
@@ -432,13 +435,15 @@ class SectionQuestionController extends Controller
                 'option1' => 'required|string',
                 'option2' => 'required|string',
                 'option3' => 'required|string',
-                'correct_option' => 'required|in:A,B,C',
+                'option4' => 'required|string',
+                'correct_option' => 'required|in:A,B,C,D',
             ]);
         
             $question->content = $request->input('content');
             $question->option1 = $request->input('option1');
             $question->option2 = $request->input('option2');
             $question->option3 = $request->input('option3');
+            $question->option4 = $request->input('option4');
             $question->correct_option = $request->input('correct_option');
         
             $question->save();

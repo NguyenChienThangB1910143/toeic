@@ -19,7 +19,7 @@
                     </div>
 
                     <!-- Options -->
-                    @foreach(['A' => 'option1', 'B' => 'option2', 'C' => 'option3'] as $key => $option)
+                    @foreach(['A' => 'option1', 'B' => 'option2', 'C' => 'option3', 'D' => 'option4'] as $key => $option)
                         <div class="form-group">
                             <label for="edit_{{ $option }}">Option {{ $key }}:</label>
                             <input 
@@ -41,6 +41,7 @@
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
+                            <option value="D">D</option>
                         </select>
                     </div>
                     <!-- script -->
@@ -82,6 +83,7 @@
                 $('#edit_option1').val(response.option1); // Đáp án A
                 $('#edit_option2').val(response.option2); // Đáp án B
                 $('#edit_option3').val(response.option3); // Đáp án C
+                $('#edit_option4').val(response.option4); // Đáp án D
                 $('#edit_correct_option').val(response.correct_option); // Đáp án đúng
                 $('#edit_section_id').val(response.section_id); // Section ID
 

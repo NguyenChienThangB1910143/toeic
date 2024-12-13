@@ -53,6 +53,7 @@
                             <th>Opt A</th>
                             <th>Opt B</th>
                             <th>Opt C</th>
+                            <th>Opt D</th>
                             <th>Correct Opt</th>
                             <th>Audio</th>
                             <th>Script</th>
@@ -68,6 +69,7 @@
                             <td>{{ $question->option1 }}</td>
                             <td>{{ $question->option2 }}</td>
                             <td>{{ $question->option3 }}</td>
+                            <td>{{ $question->option4 }}</td>
                             <td>{{ $question->correct_option }}</td>
                             <td>
                                 @if($question->group && $question->group->audio) <!-- Kiểm tra tồn tại question_group và audio -->
