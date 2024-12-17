@@ -16,5 +16,8 @@ use Illuminate\Http\Request;
 
 class FullTestController extends Controller
 {
-
+    public function showExam()
+    {
+        return view('fulltest');
+    }
 }
