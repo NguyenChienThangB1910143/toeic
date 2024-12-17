@@ -1,0 +1,97 @@
+.container-flashcards {
+    text-align: center;
+    margin: 20px;
+}
+
+.flashcards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.flashcard {
+    perspective: 1000px;
+}
+
+.card {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card-front {
+    background-color: #fff;
+}
+
+.card-back {
+    background-color: #f8f8f8;
+    transform: rotateY(180deg);
+}
+
+.flashcard.clicked .card {
+    transform: rotateY(180deg);
+}
+
+/**/
+.flashcard-container {
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    position: relative;
+}
+
+.card-content {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.card-image img {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.card-info .word {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-info .ipa {
+    font-size: 1.2rem;
+    color: #777;
+}
+
+.card-navigation {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-navigation a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #333;
+}
+
+.card-navigation span {
+    font-size: 1rem;
+}

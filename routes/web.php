@@ -21,7 +21,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\DictionaryController;
 use App\Http\Controllers\TestQuestionController;
 use App\Http\Controllers\ExamTestController;
-
+use App\Http\Controllers\PracticeController;
 
 
 
@@ -43,7 +43,7 @@ Route::middleware('auth:admin')->group(function () {
         'lesson_contents' => LessonContentController::class,
         'section_questions' => SectionQuestionController::class,
         'topics' => TopicController::class,
-        'vocabularys' => VocabularyController::class,
+        'vocabularies' => VocabularyController::class,
         'grammars' => GrammarController::class,
         'grammar_contents' => GrammarContentController::class,
         'profiles' => ProfileController::class,
@@ -86,8 +86,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('topics', TopicController::class)->except(['show', 'create']);
     Route::get('/qltopic', [TopicController::class, 'showQLTopic'])->name('qltopic');
 
-    Route::resource('vocabularys', VocabularyController::class)->except(['show', 'create']);
+    Route::resource('vocabularies', VocabularyController::class)->except(['show', 'create']);
     Route::get('/qlvocabulary', [VocabularyController::class, 'showQLVocabulary'])->name('qlvocabulary');
+    Route::post('/vocabularies/store', [VocabularyController::class, 'store'])->name('vocabularies.store');
 
     Route::resource('grammars', GrammarController::class)->except(['show', 'create']);
     Route::get('/qlgrammar', [GrammarController::class, 'showQLGrammar'])->name('qlgrammar');
@@ -97,6 +98,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('profiles', ProfileController::class)->except(['show', 'create']);
     Route::resource('learners', LearnerController::class)->except(['show', 'create']);
     Route::get('/qllearner', [LearnerController::class, 'showQLLearner'])->name('qllearner');
+    Route::get('/qllearner/{learner_id}/status', [LearnerController::class, 'status'])->name('learner.status');
 
     Route::resource('exams', ExamController::class)->except(['show', 'create']);
     Route::get('/qlexam', [ExamController::class, 'showQLExam'])->name('qlexam');
@@ -145,21 +147,19 @@ Route::prefix('learner')->group(function () {
 });
 
 
-Route::get('practice-listening', function () {
-    return view('frontend.practice.practice-listening');
-})->name('practice-listening');
-
-Route::get('practice-reading', function () {
-    return view('frontend.practice.practice-reading');
-})->name('practice-reading');
+Route::get('practice', [PracticeController::class, 'index'])->name('practice');
+Route::get('/practice/section/{id}', [PracticeController::class, 'show'])->name('practice.section');
+Route::get('/practice/section/lesson/{id}', [PracticeController::class, 'lesson'])->name('practice.lesson');
+Route::get('/practice/test/{id}', [PracticeController::class, 'test'])->name('practice.test');
 
 Route::get('grammar', function () {
     return view('frontend.skill.grammar');
 })->name('grammar');
 
-Route::get('topic', function () {
-    return view('frontend.skill.topic');
-})->name('topic');
+Route::get('topic', [TopicController::class, 'showTopics'])->name('topic');
+Route::get('/topics/{id}/vocabularies', [VocabularyController::class, 'showVocabulariesByTopic'])->name('topic.vocabularies');
+Route::get('/vocabularies/{topic_id}/page/{page}', [VocabularyController::class, 'getVocabularyPage'])->name('vocabulary.page');
+
 
 Route::get('dictionary', function () {
     return view('frontend.skill.dictionary');

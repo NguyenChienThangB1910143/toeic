@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="download-button-container">
-                    <button class="download-button" href="{{ asset('storage/' . $material->file_pdf) }}" download><i class="fa-solid fa-download"></i></button>
+                    <a class="download-button" href="{{ asset('storage/' . $material->file_pdf) }}"><i class="fa-solid fa-download"></i></a>
                 </div>
             </div>
         @endforeach

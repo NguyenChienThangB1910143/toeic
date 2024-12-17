@@ -81,7 +81,7 @@
                                 </form>
                             </td>
                             <td>
-                                <a href="{{ route('qlvocabulary', ['topic_id' => $topic->topic_id]) }}" class="btn-manage vocabularyBtn">Vocabulary</a>
+                                <a href="{{ route('qlvocabulary', ['topic_id' => $topic->id]) }}" class="btn-manage vocabularyBtn">Vocabulary</a>
                             </td>
                         </tr>
                         @empty

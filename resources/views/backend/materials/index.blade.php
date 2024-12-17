@@ -63,7 +63,7 @@
                             <td>{{ ($materials->currentPage() - 1) * $materials->perPage() + $loop->iteration }}</td>
                             <td>{{ $material->title }}</td>
                             <td>{{ $material->description }}</td>
-                            <td><img src="{{ asset('storage/' . $material->file) }}" alt="File" class="table-file" width="100" height="100"></td>
+                            <td><a class="view-button" href="{{ asset('storage/' . $material->file_pdf) }}"><i class="fa-solid fa-eye"></i></a></td>
                             <td>{{ $material->created_at }}</td>
                             <td>{{ $material->updated_at }}</td>
                             <td>                           

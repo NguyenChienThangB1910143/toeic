@@ -21,4 +21,13 @@ class Section extends Model
     {
         return $this->hasMany(SectionQuestion::class, 'section_id');
     }
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class, 'section_id');
+    }
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class, 'section_id');
+    }
 }

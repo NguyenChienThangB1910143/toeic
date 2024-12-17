@@ -27,6 +27,16 @@ class LearnerAuthController extends Controller
 
     \Log::info('Login attempt: ', $credentials);
 
+    // Kiểm tra người dùng theo username
+    $user = \App\Models\Learner::where('username', $credentials['username'])->first();
+
+    if ($user && $user->status == 0) {
+        \Log::warning('Login attempt for locked account: ' . $credentials['username']);
+
+        return redirect()->route('login')->with('error', 'Tai khoan da bi khoa!');
+
+    }
+
     if (Auth::guard('web')->attempt($credentials)) {
         \Log::info('Login successful for user: ' . $credentials['username']);
         return redirect()->route('home')->with('success', 'Đăng nhập thành công!');
@@ -40,9 +50,6 @@ class LearnerAuthController extends Controller
 }
 
 
-    
-
-
     public function showRegister()
     {
         return view('frontend.register');
@@ -54,7 +61,7 @@ class LearnerAuthController extends Controller
         'name' => 'required|string',
         'username' => 'required|string|unique:learners,username',
         'email' => 'required|string|email|unique:learners,email',
-        'password' => 'required|string|min:8',
+        'password' => 'required|string',
         'phoneNumber' => 'nullable|string|max:15',
     ]);
 
@@ -75,6 +82,7 @@ class LearnerAuthController extends Controller
         'password' => Hash::make($request->password), // Đảm bảo mã hóa mật khẩu
         'phoneNumber' => $request->phoneNumber,
         'image' => $imagePath,
+        'status' => '1',
     ]);
 
     Auth::login($learner);

@@ -58,6 +58,7 @@ class SectionQuestionController extends Controller
                 'correct_option' => 'required|in:A,B,C,D',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
                 'audio' => 'nullable|mimes:mp3,wav',
+                'script' => 'nullable'
             ]);
     
             // Xử lý ảnh nếu có
@@ -82,6 +83,7 @@ class SectionQuestionController extends Controller
                 'correct_option' => $request->input('correct_option'),
                 'image' => $imagePath,
                 'audio' => $audioPath,
+                'script' => $request->input('script'),
                 'section_id' => $request->input('section_id'), // Truyền section_id từ form
             ]);
             // Redirect về trang showQLSectionQuestion với section_id và type
@@ -99,6 +101,7 @@ class SectionQuestionController extends Controller
                 'option3' => 'required|string',
                 'correct_option' => 'required|in:A,B,C',
                 'audio' => 'nullable|mimes:mp3,wav',
+                'script' => 'nullable'
             ]);
             // Xử lý audio nếu có
             $audioPath = null;
@@ -114,6 +117,7 @@ class SectionQuestionController extends Controller
                 'option3' => $request->input('option3'),
                 'correct_option' => $request->input('correct_option'),
                 'audio' => $audioPath,
+                'script' => $request->input('script'),
                 'section_id' => $request->input('section_id'), // Truyền section_id từ form
             ]);
             return redirect()->route('qlsection_question', ['section_id' => $section, 'type' => $type])
@@ -124,6 +128,7 @@ class SectionQuestionController extends Controller
             $request->validate([
                 'section_id' => 'required|int',
                 'audio' => 'nullable|mimes:mp3,wav',
+                'script' => 'nullable',
                 'questions' => 'required|array|min:3|max:3',
                 'questions.*.content' => 'required|string',
                 'questions.*.option1' => 'required|string',
@@ -158,6 +163,7 @@ class SectionQuestionController extends Controller
                     'option3' => $questionData['option3'],
                     'option4' => $questionData['option4'],
                     'correct_option' => $questionData['correct_option'],
+                    'script' => $request->input('script'),
                     'section_id' => $request->input('section_id'),
                     'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào câu hỏi
                 ]);
@@ -173,6 +179,7 @@ class SectionQuestionController extends Controller
             $request->validate([
                 'section_id' => 'required|int',
                 'audio' => 'nullable|mimes:mp3,wav',
+                'script' => 'nullable',
                 'questions' => 'required|array|min:3|max:3',
                 'questions.*.content' => 'required|string',
                 'questions.*.option1' => 'required|string',
@@ -206,6 +213,7 @@ class SectionQuestionController extends Controller
                     'option2' => $questionData['option2'],
                     'option3' => $questionData['option3'],
                     'option4' => $questionData['option4'],
+                    'script' => $request->input('script'),
                     'correct_option' => $questionData['correct_option'],
                     'section_id' => $request->input('section_id'),
                     'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào câu hỏi
@@ -220,6 +228,7 @@ class SectionQuestionController extends Controller
             // Validate dữ liệu
             $request->validate([
                 'section_id' => 'required|int',
+                'script' => 'nullable',
                 'questions.*.option1' => 'required|string',
                 'questions.*.option2' => 'required|string',
                 'questions.*.option3' => 'required|string',
@@ -242,6 +251,7 @@ class SectionQuestionController extends Controller
                     'option3' => $request->input('option3'),
                     'option4' => $request->input('option4'),
                     'correct_option' => $request->input('correct_option'),
+                    'script' => $request->input('script'),
                     'section_id' => $request->input('section_id'),
                     'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào câu hỏi
                 ]);
@@ -255,6 +265,7 @@ class SectionQuestionController extends Controller
             $request->validate([
                 'section_id' => 'required|int',
                 'text' => 'required|string',
+                'script' => 'nullable',
                 'questions.*.content' => 'required|string',
                 'questions.*.option1' => 'required|string',
                 'questions.*.option2' => 'required|string',
@@ -281,6 +292,7 @@ class SectionQuestionController extends Controller
                         'option3' => $question['option3'],
                         'option4' => $question['option4'],
                         'correct_option' => $question['correct_option'],
+                        'script' => $request->input('script'),
                         'section_id' => $request->input('section_id'),
                         'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào từng câu hỏi
                     ]);
@@ -295,6 +307,7 @@ class SectionQuestionController extends Controller
             $request->validate([
                 'section_id' => 'required|int',
                 'text' => 'required|string',
+                'script' => 'nullable',
                 'questions.*.content' => 'required|string',
                 'questions.*.option1' => 'required|string',
                 'questions.*.option2' => 'required|string',
@@ -321,6 +334,7 @@ class SectionQuestionController extends Controller
                         'option3' => $question['option3'],
                         'option4' => $question['option4'],
                         'correct_option' => $question['correct_option'],
+                        'script' => $request->input('script'),
                         'section_id' => $request->input('section_id'),
                         'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào từng câu hỏi
                     ]);
@@ -366,6 +380,7 @@ class SectionQuestionController extends Controller
                 'option3' => 'required|string',
                 'option4' => 'required|string',
                 'correct_option' => 'required|in:A,B,C,D',
+                'script' => 'nullable',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
                 'audio' => 'nullable|mimes:mp3,wav',
             ]);
@@ -376,6 +391,7 @@ class SectionQuestionController extends Controller
             $question->option3 = $request->input('option3');
             $question->option4 = $request->input('option4');
             $question->correct_option = $request->input('correct_option');
+            $question->script = $request->input('script');
         
             if ($request->hasFile('image')) {
                 if ($question->image) {
@@ -405,7 +421,9 @@ class SectionQuestionController extends Controller
                 'option2' => 'required|string',
                 'option3' => 'required|string',
                 'correct_option' => 'required|in:A,B,C',
+                'script' => 'nullable',
                 'audio' => 'nullable|mimes:mp3,wav',
+
             ]);
         
             $question->content = $request->input('content');
@@ -413,6 +431,7 @@ class SectionQuestionController extends Controller
             $question->option2 = $request->input('option2');
             $question->option3 = $request->input('option3');
             $question->correct_option = $request->input('correct_option');
+            $question->script = $request->input('script');
 
         
             if ($request->hasFile('audio')) {
@@ -437,6 +456,7 @@ class SectionQuestionController extends Controller
                 'option3' => 'required|string',
                 'option4' => 'required|string',
                 'correct_option' => 'required|in:A,B,C,D',
+                'script' => 'nullable',
             ]);
         
             $question->content = $request->input('content');
@@ -445,6 +465,7 @@ class SectionQuestionController extends Controller
             $question->option3 = $request->input('option3');
             $question->option4 = $request->input('option4');
             $question->correct_option = $request->input('correct_option');
+            $question->script = $request->input('script');
         
             $question->save();
         
@@ -461,6 +482,7 @@ class SectionQuestionController extends Controller
                 'option3' => 'required|string',
                 'option4' => 'required|string',
                 'correct_option' => 'required|in:A,B,C,D',
+                'script' => 'nullable',
             ]);
         
             $question->content = $request->input('content');
@@ -469,6 +491,7 @@ class SectionQuestionController extends Controller
             $question->option3 = $request->input('option3');
             $question->option4 = $request->input('option4');
             $question->correct_option = $request->input('correct_option');
+            $question->script = $request->input('script');
         
             $question->save();
         
@@ -487,6 +510,7 @@ class SectionQuestionController extends Controller
                 'option3' => 'required|string',
                 'option4' => 'nullable|string',
                 'correct_option' => 'required|in:A,B,C,D',
+                'script' => 'nullable',
             ]);
         
             // Cập nhật text cho nhóm câu hỏi
@@ -501,6 +525,7 @@ class SectionQuestionController extends Controller
             $question->option3 = $request->input('option3');
             $question->option4 = $request->input('option4');
             $question->correct_option = $request->input('correct_option');
+            $question->script = $request->input('script');
             $question->save();
         
             return redirect()->route('qlsection_question', [
@@ -519,6 +544,7 @@ class SectionQuestionController extends Controller
                 'option3' => 'required|string',
                 'option4' => 'nullable|string',
                 'correct_option' => 'required|in:A,B,C,D',
+                'script' => 'nullable',
             ]);
         
             // Cập nhật text cho nhóm câu hỏi
@@ -534,6 +560,7 @@ class SectionQuestionController extends Controller
             $question->option3 = $request->input('option3');
             $question->option4 = $request->input('option4');
             $question->correct_option = $request->input('correct_option');
+            $question->script = $request->input('script');
             $question->save();
         
             return redirect()->route('qlsection_question', [
@@ -552,6 +579,7 @@ class SectionQuestionController extends Controller
                 'option3' => 'required|string',
                 'option4' => 'nullable|string',
                 'correct_option' => 'required|in:A,B,C,D',
+                'script' => 'nullable',
             ]);
         
             // Cập nhật text cho nhóm câu hỏi
@@ -567,6 +595,7 @@ class SectionQuestionController extends Controller
             $question->option3 = $request->input('option3');
             $question->option4 = $request->input('option4');
             $question->correct_option = $request->input('correct_option');
+            $question->script = $request->input('script');
             $question->save();
         
             return redirect()->route('qlsection_question', [

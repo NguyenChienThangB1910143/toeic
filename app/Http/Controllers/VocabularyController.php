@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vocabulary;
 use Illuminate\Http\Request;
+use App\Models\Topic;
 
 class VocabularyController extends Controller
 {
@@ -12,13 +13,34 @@ class VocabularyController extends Controller
     {
         $topic_id = $request->input('topic_id');
     
-        if ($topic_id) {
-            $vocabularys = Vocabulary::where('topic_id', $topic_id)->paginate(5);
-        } else {
-            $vocabularys = Vocabulary::paginate(5);
-        }
+            $vocabularies = Vocabulary::where('topic_id', $topic_id)->paginate(5);
+        return view('backend.vocabularies.index', compact('vocabularies', 'topic_id'));
+    }
+    public function showVocabulariesByTopic(Request $request, $id)
+    {
+        // Lấy danh sách từ vựng theo topic_id
+        $vocabularies = Vocabulary::where('topic_id', $id)->paginate(1); // Assuming you're paginating by 1 vocabulary per page
+        $vocabulary = $vocabularies->first(); // Get the first vocabulary if exists
+        $topic=Topic::find($id);
+
+        // Return the view with the necessary data
+        return view('frontend.skill.flashcards', [
+            'vocabulary' => $vocabulary,
+            'vocabularies' => $vocabularies,  // Pass $vocabularies for pagination controls
+            'currentPage' => $vocabularies->currentPage(),
+            'totalPages' => $vocabularies->lastPage(),
+            'topic' => $topic
+        ]);
+    }    
     
-        return view('backend.vocabularys.index', compact('vocabularys', 'topic_id'));
+    public function getVocabularyPage($topic_id, $page)
+    {
+        // Fetch paginated vocabularies
+        $vocabularies = Vocabulary::where('topic_id', $topic_id)->paginate(1, ['*'], 'page', $page);
+        $vocabulary = $vocabularies->first(); // Get the first vocabulary of the current page
+    
+        // Return the partial view for updating flashcards
+        return view('frontend.skill.flashcard_partial', compact('vocabulary', 'vocabularies'));
     }
     
     // Xử lý việc lưu vocabulary mới vào cơ sở dữ liệu
@@ -29,7 +51,7 @@ class VocabularyController extends Controller
             'word'	=> 'required|string|max:255',
             'ipa'=> 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg', // Thêm kiểm tra kích thước ảnh
-            'meaning'=> 'required|string|max:255',
+            'meaning'=> 'required|string|max:1024',
             'example_sentence'=> 'required|string|max:1024',
         ]);
         // Lưu ảnh vào thư mục public/storage/images
@@ -53,7 +75,7 @@ class VocabularyController extends Controller
     public function edit($id)
     {
         $vocabulary = Vocabulary::findOrFail($id);
-        return view('backend.vocabularys.edit', compact('vocabulary'));
+        return view('backend.vocabularies.edit', compact('vocabulary'));
     }
 
     // Xử lý việc cập nhật vocabulary trong cơ sở dữ liệu
@@ -64,7 +86,7 @@ class VocabularyController extends Controller
         $request->validate([
             'word' => 'required|string|max:255',
             'ipa' => 'required|string|max:255',
-            'meaning' => 'required|string|max:255',
+            'meaning' => 'required|string|max:1024',
             'example_sentence' => 'required|string|max:1024',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg', // Kiểm tra nếu có ảnh mới
         ]);
@@ -105,6 +127,4 @@ class VocabularyController extends Controller
         return redirect()->route('qlvocabulary', ['topic_id' => $topicId])
                          ->with('success', 'Vocabulary deleted successfully!');
     }
-    
-    
 }

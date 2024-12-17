@@ -15,7 +15,7 @@
                     <!-- Content -->
                     <div class="form-group">
                         <label for="edit_content">Content:</label>
-                        <input type="text" name="content" id="edit_content" class="form-control" required>
+                        <input type="text" name="content" id="edit_content" class="form-control" value="{{ old('content') }}" required>
                     </div>
 
                     <!-- Options -->
@@ -27,7 +27,7 @@
                                 name="{{ $option }}" 
                                 id="edit_{{ $option }}" 
                                 class="form-control" 
-                                value="" 
+                                value="{{ old('option') }}" 
                                 required>
                         </div>
                         @endforeach
@@ -76,49 +76,42 @@
 
 <script>
    $('#editquestionModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Button mở modal
-    var questionId = button.data('id');  // Lấy ID câu hỏi từ button
+    var button = $(event.relatedTarget);
+    var questionId = button.data('id');
 
     if (!questionId) {
         alert('Không thể xác định câu hỏi.');
         return;
     }
 
-    // Gửi yêu cầu AJAX để lấy thông tin câu hỏi
     $.ajax({
         url: '/section_questions/' + questionId + '/edit',
         method: 'GET',
         success: function(response) {
-            if (response) {
-                // Điền dữ liệu vào các trường input
-                $('#edit_content').val(response.content); // Nội dung câu hỏi
-                $('#edit_option1').val(response.option1); // Đáp án A
-                $('#edit_option2').val(response.option2); // Đáp án B
-                $('#edit_option3').val(response.option3); // Đáp án C
-                $('#edit_option4').val(response.option4); // Đáp án D
-                $('#edit_correct_option').val(response.correct_option); // Đáp án đúng
-                $('#edit_script').val(response.script);
-                $('#edit_section_id').val(response.section_id); // Section ID
+            const question = response.question;
 
-                // Hiển thị hình ảnh hiện tại (nếu có)
-                if (response.image) {
-                    $('#current_image').attr('src', '/storage/' + response.image).show();
-                } else {
-                    $('#current_image').hide();
-                }
+            $('#edit_content').val(question.content);
+            $('#edit_option1').val(question.option1);
+            $('#edit_option2').val(question.option2);
+            $('#edit_option3').val(question.option3);
+            $('#edit_option4').val(question.option4);
+            $('#edit_correct_option').val(question.correct_option);
+            $('#edit_script').val(question.script);
+            $('#edit_section_id').val(question.section_id);
 
-                // Hiển thị audio hiện tại (nếu có)
-                if (response.audio) {
-                    $('#current_audio').attr('src', '/storage/' + response.audio).show();
-                } else {
-                    $('#current_audio').hide();
-                }
-
-                // Cập nhật URL form để submit đúng endpoint
-                $('#editquestionForm').attr('action', '/section_questions/' + questionId);
+            if (question.image) {
+                $('#current_image').attr('src', '/storage/' + question.image).show();
             } else {
-                alert('Không thể tải thông tin câu hỏi.');
+                $('#current_image').hide();
             }
+
+            if (question.audio) {
+                $('#current_audio').attr('src', '/storage/' + question.audio).show();
+            } else {
+                $('#current_audio').hide();
+            }
+
+            $('#editquestionForm').attr('action', '/section_questions/' + questionId);
         },
         error: function() {
             alert('Đã xảy ra lỗi khi tải thông tin câu hỏi.');

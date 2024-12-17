@@ -24,7 +24,7 @@
                       <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" 
                          href="{{ route('home') }}">Trang chủ</a>
                   </li>
-                  <li class="nav-item dropdown">
+                  {{-- <li class="nav-item dropdown">
                       <span class="nav-link dropdown-toggle {{ Request::is('practice-*') ? 'active' : '' }}" 
                             data-bs-toggle="dropdown" role="button"
                             onclick="redirectIfNotLoggedIn(event, '{{ route('login') }}')">Luyện thi</span>
@@ -34,7 +34,7 @@
                           <li><a class="dropdown-item {{ Request::is('practice-reading') ? 'active' : '' }}" 
                                  href="{{ Auth::check() ? route('practice-reading') : route('login') }}">Luyện đọc</a></li>
                       </ul>
-                  </li>
+                  </li> --}}
                   <li class="nav-item dropdown">
                       <span class="nav-link dropdown-toggle {{ Request::is('grammar') || Request::is('topic') || Request::is('dictionary') ? 'active' : '' }}" 
                          data-bs-toggle="dropdown" role="button">Kỹ năng</span>
@@ -46,6 +46,10 @@
                           <li><a class="dropdown-item {{ Request::is('dictionary') ? 'active' : '' }}" 
                                  href="{{ route('dictionary') }}">Tra cứu từ điển</a></li>
                       </ul>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link {{ Request::is('practice') ? 'active' : '' }}" 
+                         href="{{ Auth::check() ? route('practice') : route('login') }}">Luyện thi</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link {{ Request::is('fulltest') ? 'active' : '' }}" 
@@ -108,8 +112,8 @@
     <span class="close-btn" onclick="toggleSidebar()">✖</span>
     <ul>
         <li><a href="{{ route('home') }}">Trang chủ</a></li>
-        <li><a href="{{ Auth::check() ? route('practice-listening') : route('login') }}">Luyện nghe</a></li>
         <li><a href="{{ Auth::check() ? route('grammar') : route('login') }}">Ngữ pháp</a></li>
+        <li><a href="{{ Auth::check() ? route('practice') : route('login') }}">Luyện nghe</a></li>
         <li><a href="{{ Auth::check() ? route('fulltest') : route('login') }}">Thi thử</a></li>
         <li><a href="{{ Auth::check() ? route('feedback') : route('login') }}">Góp ý</a></li>
         <li><a href="{{ Auth::check() ? route('profile') : route('login') }}">Hồ sơ cá nhân</a></li>

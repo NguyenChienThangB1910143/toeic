@@ -25,11 +25,6 @@
                 <p><strong>Không nên xem trước phần đọc</strong> vì khi thi chính thức sẽ bị thu bài.</p>
             </li>
         </ul>
-        <p class="current-target">
-            Mục tiêu của bạn đang là <strong>630</strong>
-            <a href="#" class="edit-link">[Điều chỉnh ngay]</a>
-        </p>
-        <button class="start-button">BẮT ĐẦU NGAY</button>
     </div>
 </div>
 

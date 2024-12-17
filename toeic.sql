@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2024 at 05:40 AM
+-- Generation Time: Dec 03, 2024 at 03:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -138,6 +138,21 @@ INSERT INTO `grammars` (`grammar_id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `grammars_contents`
+--
+
+CREATE TABLE `grammars_contents` (
+  `content_id` int(11) NOT NULL,
+  `grammar_id` int(11) NOT NULL,
+  `title` int(11) DEFAULT NULL,
+  `content` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jobs`
 --
 
@@ -256,10 +271,22 @@ CREATE TABLE `materials` (
   `material_id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `file_pdf` varchar(255) DEFAULT NULL,
+  `file_pdf` longblob DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `materials`
+--
+
+INSERT INTO `materials` (`material_id`, `title`, `description`, `file_pdf`, `created_at`, `updated_at`) VALUES
+(1, 'Very Easy', 'Very Easy', 0x6d6174657269616c732f59336c764d50764d38324954666b4f6366336452614958524b6357756c6e4a4d7946544a424a6a582e706466, '2024-11-26 04:15:15', '2024-11-26 04:15:15'),
+(2, '600 ESSENTIAL WORDS', '600 word', 0x6d6174657269616c732f4467353277666f6a715978734e6751526e683252326d3762527042427555646d3830367a77454c572e706466, '2024-11-26 05:14:12', '2024-11-26 05:14:12'),
+(3, 'Big Step 3', 'big step 3', 0x6d6174657269616c732f76724f49474c4c673163347a496d743258493552504f52634c4b5268735771746a76427a673973742e706466, '2024-11-26 05:19:11', '2024-11-26 05:19:11'),
+(4, 'Starter', 'starter', 0x6d6174657269616c732f316d704c56786733476a545651766c434369776d6c5452416f5544444e675035544c3479634568722e706466, '2024-11-26 05:20:37', '2024-11-26 05:20:37'),
+(5, 'Đề thi 2024', 'new', 0x6d6174657269616c732f413839374b5563304753414341567630745a3434475372703758664b66555356785034576a79344e2e706466, '2024-11-26 05:27:01', '2024-11-26 05:27:01'),
+(6, 'abc', 'abc', 0x6d6174657269616c732f6a6969374e684854725630395239644b4463336e6e43446441653833797947616d4f5769716857732e706466, '2024-11-26 05:28:58', '2024-11-26 05:28:58');
 
 -- --------------------------------------------------------
 
@@ -315,13 +342,13 @@ CREATE TABLE `sections` (
 --
 
 INSERT INTO `sections` (`section_id`, `name`, `image`, `description`, `type`, `created_at`, `updated_at`) VALUES
-(3, 'Phần 1: Mô tả tranh', 'images/f5SKVzt9MlkCRhn7mi3wkbrcP7ORXuDHBekrHIUE.png', 'Nghe 1 lần duy nhất mô tả 4 bức tranh, sau đó chọn 1 đáp án mô tả đúng nhất về bức tranh đó', 'listening', '2024-11-13 05:20:22', '2024-11-15 03:59:29'),
-(4, 'Phần 2: Hỏi - đáp', 'images/LBrNDf6HPdGgwgRQDuv8U80KeSLqlOXYQgHyY4Vf.png', 'Nghe 1 lần duy nhất 3 câu hỏi đáp, sau đó chọn câu hỏi đáp phù hợp nhất', 'listening', '2024-11-13 05:21:12', '2024-11-15 03:59:38'),
-(6, 'Phần 3: Đoạn hội thoại', 'images/ti02alRetgFHrg8BEYUME1cN4BvxoCohz2CpdO4c.png', 'Nghe đối thoại giữa 2 hoặc 3 người, sau đó chọn câu hỏi đáp phù hợp nhất', 'listening', '2024-11-15 02:56:37', '2024-11-15 03:59:47'),
-(7, 'Phần 4: Bài nói ngắn', 'images/wFQe7GxLKqyrHDcqCKdqdZCTB0lWitAtG6nYwJlm.png', 'Nghe 1 lần duy nhất, mỗi bài có 3 câu hỏi, mỗi câu hỏi có 4 lựa chọn, sau đó chọn câu hỏi phù hợp nhất', 'listening', '2024-11-15 03:53:34', '2024-11-15 03:59:56'),
-(8, 'Phần 5: Hoàn thành câu', 'images/xTYZDrN0Tu8uRqQeq94mq2Sv0LzQ9SisMgVVJre1.png', 'Chọn đáp án đúng nhất để hoàn thành câu', 'reading', '2024-11-15 03:55:41', '2024-11-15 04:00:08'),
-(9, 'Phần 6: Hoàn thành đoạn văn', 'images/GBhl57VJlInGpMeIRWyLknY8zp425dsQbC2ESzBB.png', 'Hoàn thành câu', 'reading', '2024-11-15 03:58:47', '2024-11-15 03:58:47'),
-(10, 'Phần 7: Đọc hiểu - Đoạn đơn', 'images/sSIsgsGoTtmew1F3keFmCiccrH074qEaitmFscJx.png', 'Bài đọc gồm 2 - 4 câu hỏi, chọn đáp án đúng nhất cho các câu hỏi', 'reading', '2024-11-15 04:02:46', '2024-11-15 04:02:46');
+(3, 'Phần 1: Mô tả tranh', 'images/f5SKVzt9MlkCRhn7mi3wkbrcP7ORXuDHBekrHIUE.png', 'Nghe 1 lần duy nhất mô tả 4 bức tranh, sau đó chọn 1 đáp án mô tả đúng nhất về bức tranh đó', 'part_1', '2024-11-13 05:20:22', '2024-11-15 03:59:29'),
+(4, 'Phần 2: Hỏi - đáp', 'images/LBrNDf6HPdGgwgRQDuv8U80KeSLqlOXYQgHyY4Vf.png', 'Nghe 1 lần duy nhất 3 câu hỏi đáp, sau đó chọn câu hỏi đáp phù hợp nhất', 'part_2', '2024-11-13 05:21:12', '2024-11-15 03:59:38'),
+(6, 'Phần 3: Đoạn hội thoại', 'images/ti02alRetgFHrg8BEYUME1cN4BvxoCohz2CpdO4c.png', 'Nghe đối thoại giữa 2 hoặc 3 người, sau đó chọn câu hỏi đáp phù hợp nhất', 'part_3', '2024-11-15 02:56:37', '2024-11-15 03:59:47'),
+(7, 'Phần 4: Bài nói ngắn', 'images/wFQe7GxLKqyrHDcqCKdqdZCTB0lWitAtG6nYwJlm.png', 'Nghe 1 lần duy nhất, mỗi bài có 3 câu hỏi, mỗi câu hỏi có 4 lựa chọn, sau đó chọn câu hỏi phù hợp nhất', 'part_4', '2024-11-15 03:53:34', '2024-11-15 03:59:56'),
+(8, 'Phần 5: Hoàn thành câu', 'images/xTYZDrN0Tu8uRqQeq94mq2Sv0LzQ9SisMgVVJre1.png', 'Chọn đáp án đúng nhất để hoàn thành câu', 'part_5', '2024-11-15 03:55:41', '2024-11-15 04:00:08'),
+(9, 'Phần 6: Hoàn thành đoạn văn', 'images/GBhl57VJlInGpMeIRWyLknY8zp425dsQbC2ESzBB.png', 'Hoàn thành câu', 'part_6', '2024-11-15 03:58:47', '2024-11-15 03:58:47'),
+(10, 'Phần 7: Đọc hiểu - Đoạn đơn', 'images/sSIsgsGoTtmew1F3keFmCiccrH074qEaitmFscJx.png', 'Bài đọc gồm 2 - 4 câu hỏi, chọn đáp án đúng nhất cho các câu hỏi', 'part_7', '2024-11-15 04:02:46', '2024-11-15 04:02:46');
 
 -- --------------------------------------------------------
 
@@ -332,20 +359,27 @@ INSERT INTO `sections` (`section_id`, `name`, `image`, `description`, `type`, `c
 CREATE TABLE `section_questions` (
   `question_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
-  `question_group_id` int(11) NOT NULL,
-  `content` varchar(1024) NOT NULL,
+  `question_group_id` int(11) DEFAULT NULL,
+  `content` varchar(1024) DEFAULT NULL,
   `option1` varchar(1024) DEFAULT NULL,
   `option2` varchar(1024) DEFAULT NULL,
   `option3` varchar(1024) DEFAULT NULL,
   `option4` varchar(1024) DEFAULT NULL,
   `correct_option` varchar(1024) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `audio` varchar(2048) DEFAULT NULL,
-  `text` varchar(2048) NOT NULL,
+  `audio` longblob DEFAULT NULL,
+  `text` varchar(2048) DEFAULT NULL,
   `script` varchar(2048) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `section_questions`
+--
+
+INSERT INTO `section_questions` (`question_id`, `section_id`, `question_group_id`, `content`, `option1`, `option2`, `option3`, `option4`, `correct_option`, `image`, `audio`, `text`, `script`, `updated_at`, `created_at`) VALUES
+(1, 3, NULL, 'part1 ls1', 'a', 'b', 'c', 'd', 'B', 'questions/images/7h6uf0xkVj2n8SAVcTEbZa6ZIHVFlEYKWjTcFRwI.png', 0x7175657374696f6e732f617564696f2f4638796b6c454953647a4330465a41513448624363716b3631744d774d6c687374777066627233562e6d7033, NULL, NULL, '2024-11-30 10:03:30', '2024-11-30 10:03:30');
 
 -- --------------------------------------------------------
 
@@ -367,7 +401,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('b1Ngf7OIA0X4T0RYegvP2f2YhM0d8lLHe4qgiWp9', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSmU1bmVOcGlzN2NLZkNJajE1V3BRQjlyUjh2Q1UxZW9EZEVON2tpaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kaWN0aW9uYXJ5Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1732452822);
+('uENgE79gdivOOgnAL9L3SJszAyWxSXgJEb5SmOMD', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidVQ1QU93QWRUdjVzMU1MMktwN1QxQ0xCeGE4RkhFanBXWnFSZkt6YyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL0luZGV4QWRtaW4iO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL0luZGV4QWRtaW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1733035496),
+('uRsahGjPl1OyeRRUxF2GYgw4vtKAl9js5hE4bFse', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiTTVzT01NZVJKaXFVdzJoWmwwQlVIc0M0SFU0bDU1UWxuZEJYOHpzSCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3Fsc2VjdGlvbiI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZnVsbHRlc3QiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9', 1733040094),
+('yl9BgQ8Dxd6pcLjH3pixcZ7oXVAqL8IujR2mlbEn', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSFhWWHNCOExQTFk2SkVSR3M2UFJ2R1ExZ1l3SkdHUkRaa0RzUXJZSiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC90b3BpYyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1733192110);
 
 -- --------------------------------------------------------
 
@@ -393,19 +429,6 @@ CREATE TABLE `tbl_exam_question` (
   `part` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_grammar_content`
---
-
-CREATE TABLE `tbl_grammar_content` (
-  `content_id` int(11) NOT NULL,
-  `grammar_id` int(11) NOT NULL,
-  `title` int(11) DEFAULT NULL,
-  `content` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -466,7 +489,9 @@ CREATE TABLE `tbl_question_group` (
   `image` varchar(255) DEFAULT NULL,
   `passage` varchar(255) DEFAULT NULL,
   `script` varchar(255) DEFAULT NULL,
-  `text` varchar(255) DEFAULT NULL
+  `text` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -485,44 +510,33 @@ CREATE TABLE `tbl_score` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_test`
+-- Table structure for table `tests`
 --
 
-CREATE TABLE `tbl_test` (
+CREATE TABLE `tests` (
   `test_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `participants` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tests`
+--
+
+INSERT INTO `tests` (`test_id`, `section_id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Test 1', '2024-11-30 14:02:31', '2024-11-30 14:02:31');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_test_question`
+-- Table structure for table `test_question`
 --
 
-CREATE TABLE `tbl_test_question` (
+CREATE TABLE `test_question` (
   `test_id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_vocabulary`
---
-
-CREATE TABLE `tbl_vocabulary` (
-  `vocabulary_id` int(11) NOT NULL,
-  `topic_id` int(11) NOT NULL,
-  `word` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `meaning` varchar(255) DEFAULT NULL,
-  `example_sentence` text DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -535,8 +549,6 @@ CREATE TABLE `topics` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `image` varchar(1000) DEFAULT NULL,
-  `description` varchar(255) NOT NULL,
-  `topic_type` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -545,13 +557,16 @@ CREATE TABLE `topics` (
 -- Dumping data for table `topics`
 --
 
-INSERT INTO `topics` (`id`, `name`, `image`, `description`, `topic_type`, `created_at`, `updated_at`) VALUES
-(5, 'A', 'images/8kiOh1S0yVfKg834MyJnSWyNgT8mgXqBwREMz9Uy.png', 'a', 'reading', '2024-11-13 01:31:10', '2024-11-13 01:31:10'),
-(6, 'abc', 'images/dOIYCTiUQy9UBbmI3X7gLlvWo7C9XFjiWV5wAURX.png', 'abc', 'listening', '2024-11-13 03:14:10', '2024-11-13 05:18:56'),
-(7, 'Tài liệu sơ cấp (1-200)', 'images/8Fs1p55NMb7BN9s3a5NiuQgXU0Em4FrlyVTkbVzD.png', 'lv1', 'reading', '2024-11-13 03:18:06', '2024-11-13 03:34:44'),
-(8, 'Tài liệu sơ cấp (1-200)', 'images/duYupl5Ck2w7CmvUCr3CLg93Mm71jWRzPzt6ddz4.jpg', 'sâc', 'listening', '2024-11-13 03:22:00', '2024-11-13 03:34:34'),
-(9, 'A', 'images/JvH9iw8xq4bw8H2HYffIf64f3h5qCvQaQzDrH7JU.png', 'a', 'reading', '2024-11-13 03:34:20', '2024-11-13 03:34:20'),
-(10, 'Tài liệu sơ cấp (1-200)', 'images/kW9zHQzJPoqzgdNeqMrwOAlyIm2Cn7b45l9zDloM.jpg', 'sâf', 'listening', '2024-11-13 03:36:43', '2024-11-13 03:36:43');
+INSERT INTO `topics` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUES
+(5, 'CONTRACTS', 'images/GZdETa5v2pwJRrlHxcbA0ziH3itFf2xLOHR97dsE.jpg', '2024-11-13 01:31:10', '2024-11-29 12:33:43'),
+(6, 'MARKETING', 'images/Uu4HcY003Q56kuByowi2h3s22WzEVyeIuKVWjHLJ.jpg', '2024-11-13 03:14:10', '2024-11-29 12:31:38'),
+(7, 'WARRANTIES', 'images/2xyQFVDsRTtRdwnuGXscy7Lq1KPAoi01NjLWDq6W.jpg', '2024-11-13 03:18:06', '2024-11-29 12:31:26'),
+(8, 'Business Planning', 'images/vABdehhv29zxHx4JqGAdPEtqzYmy2JuEHJOmZ5hz.jpg', '2024-11-13 03:22:00', '2024-11-29 12:36:28'),
+(9, 'Conferences', 'images/NN67apzrAO3bW3YSMORGw5fVPvATzMwIfBjSp5mn.jpg', '2024-11-13 03:34:20', '2024-11-29 12:38:42'),
+(10, 'Computers', 'images/qm216oPjUl7yE4HaECu23SIGamIG3BiGFUyjCV4h.jpg', '2024-11-13 03:36:43', '2024-11-29 12:39:37'),
+(11, 'Office Technology', 'images/9Zhai0TRH2fx3Mli4ukFrD3vt8GnvxkL6hsx96J7.jpg', '2024-11-29 12:40:29', '2024-11-29 12:40:29'),
+(12, 'Office Procedures', 'images/WbvM2PJz4g5lnGZ12WimCTwFFm7MtMHEUqAfpURG.jpg', '2024-11-29 12:41:22', '2024-11-29 12:41:22'),
+(13, 'Electronics', 'images/a2VgVnIazYv75pu3ijpftiu2EtIWE101lQmIWTo3.jpg', '2024-11-29 12:42:40', '2024-11-29 12:42:40');
 
 -- --------------------------------------------------------
 
@@ -569,6 +584,24 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vocabularys`
+--
+
+CREATE TABLE `vocabularys` (
+  `vocabulary_id` int(11) NOT NULL,
+  `topic_id` int(11) NOT NULL,
+  `word` varchar(255) DEFAULT NULL,
+  `ipa` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `meaning` varchar(255) DEFAULT NULL,
+  `example_sentence` varchar(1024) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -610,6 +643,13 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `grammars`
   ADD PRIMARY KEY (`grammar_id`);
+
+--
+-- Indexes for table `grammars_contents`
+--
+ALTER TABLE `grammars_contents`
+  ADD PRIMARY KEY (`content_id`),
+  ADD KEY `grammar_id` (`grammar_id`);
 
 --
 -- Indexes for table `jobs`
@@ -692,13 +732,6 @@ ALTER TABLE `tbl_exam_question`
   ADD KEY `exam_id` (`exam_id`);
 
 --
--- Indexes for table `tbl_grammar_content`
---
-ALTER TABLE `tbl_grammar_content`
-  ADD PRIMARY KEY (`content_id`),
-  ADD KEY `grammar_id` (`grammar_id`);
-
---
 -- Indexes for table `tbl_learner_exam`
 --
 ALTER TABLE `tbl_learner_exam`
@@ -733,25 +766,18 @@ ALTER TABLE `tbl_score`
   ADD PRIMARY KEY (`score_id`);
 
 --
--- Indexes for table `tbl_test`
+-- Indexes for table `tests`
 --
-ALTER TABLE `tbl_test`
+ALTER TABLE `tests`
   ADD PRIMARY KEY (`test_id`),
   ADD KEY `section_id` (`section_id`);
 
 --
--- Indexes for table `tbl_test_question`
+-- Indexes for table `test_question`
 --
-ALTER TABLE `tbl_test_question`
+ALTER TABLE `test_question`
   ADD PRIMARY KEY (`test_id`),
   ADD KEY `question_id` (`question_id`);
-
---
--- Indexes for table `tbl_vocabulary`
---
-ALTER TABLE `tbl_vocabulary`
-  ADD PRIMARY KEY (`vocabulary_id`),
-  ADD KEY `topic_id` (`topic_id`);
 
 --
 -- Indexes for table `topics`
@@ -765,6 +791,13 @@ ALTER TABLE `topics`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indexes for table `vocabularys`
+--
+ALTER TABLE `vocabularys`
+  ADD PRIMARY KEY (`vocabulary_id`),
+  ADD KEY `topic_id` (`topic_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -795,6 +828,12 @@ ALTER TABLE `grammars`
   MODIFY `grammar_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `grammars_contents`
+--
+ALTER TABLE `grammars_contents`
+  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -822,7 +861,7 @@ ALTER TABLE `lesson_content`
 -- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
-  MODIFY `material_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `material_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -840,19 +879,13 @@ ALTER TABLE `sections`
 -- AUTO_INCREMENT for table `section_questions`
 --
 ALTER TABLE `section_questions`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_exam_question`
 --
 ALTER TABLE `tbl_exam_question`
   MODIFY `exam_question_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_grammar_content`
---
-ALTER TABLE `tbl_grammar_content`
-  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_learner_exam`
@@ -873,22 +906,16 @@ ALTER TABLE `tbl_score`
   MODIFY `score_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbl_test`
+-- AUTO_INCREMENT for table `tests`
 --
-ALTER TABLE `tbl_test`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_vocabulary`
---
-ALTER TABLE `tbl_vocabulary`
-  MODIFY `vocabulary_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tests`
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -897,8 +924,20 @@ ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `vocabularys`
+--
+ALTER TABLE `vocabularys`
+  MODIFY `vocabulary_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `grammars_contents`
+--
+ALTER TABLE `grammars_contents`
+  ADD CONSTRAINT `grammars_contents_ibfk_1` FOREIGN KEY (`grammar_id`) REFERENCES `grammars` (`grammar_id`);
 
 --
 -- Constraints for table `lessons`
@@ -926,12 +965,6 @@ ALTER TABLE `tbl_exam_question`
   ADD CONSTRAINT `tbl_exam_question_ibfk_1` FOREIGN KEY (`exam_id`) REFERENCES `exams` (`exam_id`);
 
 --
--- Constraints for table `tbl_grammar_content`
---
-ALTER TABLE `tbl_grammar_content`
-  ADD CONSTRAINT `tbl_grammar_content_ibfk_1` FOREIGN KEY (`grammar_id`) REFERENCES `grammars` (`grammar_id`);
-
---
 -- Constraints for table `tbl_learner_exam`
 --
 ALTER TABLE `tbl_learner_exam`
@@ -950,26 +983,26 @@ ALTER TABLE `tbl_learner_exam_question`
 --
 ALTER TABLE `tbl_learner_vocabulary`
   ADD CONSTRAINT `tbl_learner_vocabulary_ibfk_1` FOREIGN KEY (`learner_id`) REFERENCES `learners` (`learner_id`),
-  ADD CONSTRAINT `tbl_learner_vocabulary_ibfk_2` FOREIGN KEY (`vocabulary_id`) REFERENCES `tbl_vocabulary` (`vocabulary_id`);
+  ADD CONSTRAINT `tbl_learner_vocabulary_ibfk_2` FOREIGN KEY (`vocabulary_id`) REFERENCES `vocabularys` (`vocabulary_id`);
 
 --
--- Constraints for table `tbl_test`
+-- Constraints for table `tests`
 --
-ALTER TABLE `tbl_test`
-  ADD CONSTRAINT `tbl_test_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `sections` (`section_id`);
+ALTER TABLE `tests`
+  ADD CONSTRAINT `tests_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `sections` (`section_id`);
 
 --
--- Constraints for table `tbl_test_question`
+-- Constraints for table `test_question`
 --
-ALTER TABLE `tbl_test_question`
-  ADD CONSTRAINT `tbl_test_question_ibfk_1` FOREIGN KEY (`test_id`) REFERENCES `tbl_test` (`test_id`),
-  ADD CONSTRAINT `tbl_test_question_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `section_questions` (`question_id`);
+ALTER TABLE `test_question`
+  ADD CONSTRAINT `test_question_ibfk_1` FOREIGN KEY (`test_id`) REFERENCES `tests` (`test_id`),
+  ADD CONSTRAINT `test_question_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `section_questions` (`question_id`);
 
 --
--- Constraints for table `tbl_vocabulary`
+-- Constraints for table `vocabularys`
 --
-ALTER TABLE `tbl_vocabulary`
-  ADD CONSTRAINT `tbl_vocabulary_ibfk_1` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`);
+ALTER TABLE `vocabularys`
+  ADD CONSTRAINT `vocabularys_ibfk_1` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -12,7 +12,7 @@
     margin-bottom: 5px;
 }
 .search-bar {
-    margin-top: 10px;
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -22,7 +22,7 @@
     width: 50%;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 20px;
   }
   
   .search-bar .search-btn {
@@ -30,7 +30,7 @@
     background-color: #007bff;
     border: none;
     color: white;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
   }
   
@@ -40,7 +40,11 @@
   
   .main-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
   
   .topics {
@@ -54,6 +58,7 @@
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
+    width: 150px;
     padding: 10px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -61,9 +66,10 @@
   }
   
   .topic img {
-    width: 50px;
-    height: auto;
+    width: 100px;
+    height: 100px;
     margin-bottom: 10px;
+    border-radius: 5px;
   }
   
   .topic p {

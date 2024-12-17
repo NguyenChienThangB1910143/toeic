@@ -57,21 +57,21 @@
                     </thead>
 
                 <tbody>
-                    @forelse($grammar_contents as $grammar_content)
+                    @forelse($grammar_contents as $content)
                     <tr>
                         <td>{{ ($grammar_contents->currentPage() - 1) * $grammar_contents->perPage() + $loop->iteration }}</td>
-                        <td>{{ $grammar_content->title }}</td>
-                        <td>{{ $grammar_content->grammar_content }}</td>
-                        <td>{{ $grammar_content->created_at }}</td>
-                        <td>{{ $grammar_content->updated_at }}</td>
+                        <td>{{ $content->title }}</td>
+                        <td>{{ $content->content }}</td>
+                        <td>{{ $content->created_at }}</td>
+                        <td>{{ $content->updated_at }}</td>
                         <td>
-                            <button class="btn-edit" data-toggle="modal" data-target="#editgrammar_contentModal"
-                                data-id="{{ $grammar_content->grammar_content_id }}"
-                                data-title="{{ $grammar_content->title }}"
-                                data-grammar_content="{{ $grammar_content->grammar_content }}">
+                            <button class="btn-edit" data-toggle="modal" data-target="#editcontentModal"
+                                data-id="{{ $content->content_id }}"
+                                data-title="{{ $content->title }}"
+                                data-content="{{ $content->content }}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
-                            <form action="{{ route('grammar_contents.destroy', ['grammar_content' => $grammar_content->grammar_content_id, 'grammar_id' => request()->grammar_id]) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('grammar_contents.destroy', ['grammar_content' => $content->content_id, 'grammar_id' => request()->grammar_id]) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
@@ -113,8 +113,8 @@
 
                         <!-- grammar_content -->
                         <div class="form-group">
-                            <label for="grammar_content">Nội dung:</label>
-                            <textarea name="grammar_content" id="grammar_content" class="form-control" rows="4" required>{{ old('grammar_content') }}</textarea>
+                            <label for="content">Nội dung:</label>
+                            <textarea name="content" id="content" class="form-control" rows="4" required>{{ old('content') }}</textarea>
                         </div>
 
                         <input type="hidden" name="grammar_id" value="{{ $grammar_id }}">
@@ -148,8 +148,8 @@
                         </div>
                         <!-- Nội dung grammar_content -->
                         <div class="form-group">
-                            <label for="edit_grammar_content">Nội dung:</label>
-                            <textarea name="grammar_content" id="edit_grammar_content" class="form-control" rows="4" required></textarea>
+                            <label for="edit_content">Nội dung:</label>
+                            <textarea name="content" id="edit_content" class="form-control" rows="4" required></textarea>
                         </div>
 
                         <!-- Trường ẩn để giữ giá trị grammar_id -->
@@ -173,7 +173,7 @@
                 var button = $(event.relatedTarget);
                 var id = button.data('id');
                 var title = button.data('title');
-                var grammar_content = button.data('grammar_content');
+                var content = button.data('content');
 
                 // Lấy grammar_id từ URL
                 var urlParams = new URLSearchParams(window.location.search);
@@ -181,8 +181,8 @@
 
                 var modal = $(this);
                 modal.find('#edit_title').val(title);
-                modal.find('#edit_grammar_content').val(grammar_content);
-                modal.find('#editcontentForm').attr('action', '/contents/' + id);
+                modal.find('#edit_content').val(content);
+                modal.find('#editcontentForm').attr('action', '/grammar_contents/' + id);
 
                 // Đặt grammar_id vào trường ẩn trong form
                 modal.find('#edit_grammar_id').val(grammarId);

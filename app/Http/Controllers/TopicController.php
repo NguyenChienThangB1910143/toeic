@@ -15,8 +15,15 @@ class TopicController extends Controller
 
         return view('backend.topics.index', compact('topics'));
     }
+    public function showTopics()
+    {
+        // Lấy tất cả topics từ database
+        $topics = Topic::all(); // Hoặc thêm phân trang nếu cần: Topic::paginate(10);
 
-    // Hiển thị form tạo topic mới
+        // Trả về view với dữ liệu
+        return view('frontend.skill.topic', compact('topics'));
+    }
+
 
     // Lưu topic mới vào cơ sở dữ liệu
     public function store(Request $request)

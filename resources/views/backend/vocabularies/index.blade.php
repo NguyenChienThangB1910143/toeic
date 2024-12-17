@@ -60,14 +60,16 @@
                     </thead>
 
                 <tbody>
-                    @forelse($vocabularys as $vocabulary)
+                    @forelse($vocabularies as $vocabulary)
                     <tr>
-                        <td>{{ ($vocabularys->currentPage() - 1) * $vocabularys->perPage() + $loop->iteration }}</td>
-                        <td>{{ $vocabulary->image }}</td>
+                        <td>{{ ($vocabularies->currentPage() - 1) * $vocabularies->perPage() + $loop->iteration }}</td>
+                        <td>
+                            <img src="{{ asset('storage/' . $vocabulary->image) }}" alt="{{ $vocabulary->word }}" width="100">
+                        </td>
                         <td>{{ $vocabulary->word }}</td>
                         <td>{{ $vocabulary->ipa }}</td>
                         <td>{{ $vocabulary->meaning }}</td>
-                        <td>{{ $vocabulary->example }}</td>
+                        <td>{{ $vocabulary->example_sentence }}</td>
                         <td>{{ $vocabulary->created_at }}</td>
                         <td>{{ $vocabulary->updated_at }}</td>
                         <td>
@@ -77,10 +79,10 @@
                                 data-image="{{ $vocabulary->image }}"
                                 data-ipa="{{ $vocabulary->ipa }}"
                                 data-meaning="{{ $vocabulary->meaning }}"
-                                data-example="{{ $vocabulary->example }}">
+                                data-example_sentence="{{ $vocabulary->example_sentence }}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
-                            <form action="{{ route('vocabularys.destroy', ['vocabulary' => $vocabulary->vocabulary_id, 'topic_id' => request()->topic_id]) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('vocabularies.destroy', ['vocabulary' => $vocabulary->vocabulary_id, 'topic_id' => request()->topic_id]) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
@@ -98,7 +100,7 @@
             </table>
             </div>
         </div>
-        <div class="pagination-links">{{ $vocabularys->links() }}</div>
+        <div class="pagination-links">{{ $vocabularies->links() }}</div>
     </div>
             
     <!-- Modal Thêm vocabulary -->
@@ -112,7 +114,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('vocabularys.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('vocabularies.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- HÌnh ảnh -->
                         <div class="form-group">
@@ -136,8 +138,8 @@
                         </div>
                         <!-- example -->
                         <div class="form-group">
-                            <label for="example">Ví dụ:</label>
-                            <input type="text" name="example" id="example" class="form-control" value="{{ old('example') }}" required>
+                            <label for="example_sentence">Ví dụ:</label>
+                            <input type="text" name="example_sentence" id="example_sentence" class="form-control" value="{{ old('example_sentence') }}" required>
                         </div>
 
                         <input type="hidden" name="topic_id" value="{{ $topic_id }}">
@@ -186,8 +188,8 @@
                         </div>
                         <!-- example -->
                         <div class="form-group">
-                            <label for="edit_example">Ví dụ:</label>
-                            <input type="text" name="example" id="edit_example" class="form-control" required>
+                            <label for="edit_example_sentence">Ví dụ:</label>
+                            <input type="text" name="example_sentence" id="edit_example_sentence" class="form-control" required>
                         </div>
                     
                         <!-- Trường ẩn để giữ giá trị topic_id -->
@@ -215,7 +217,7 @@
                 var image = button.data('image');
                 var ipa = button.data('ipa');
                 var meaning = button.data('meaning');
-                var example = button.data('example');
+                var example_sentence = button.data('example_sentence');
                 
                 // Lấy topic_id từ URL
                 var urlParams = new URLSearchParams(window.location.search);
@@ -226,8 +228,8 @@
                 modal.find('#edit_word').val(word);
                 modal.find('#edit_ipa').val(ipa);
                 modal.find('#edit_meaning').val(meaning);
-                modal.find('#edit_example').val(example);
-                modal.find('#editvocabularyForm').attr('action', '/vocabularys/' + id);
+                modal.find('#edit_example_sentence').val(example_sentence);
+                modal.find('#editvocabularyForm').attr('action', '/vocabularies/' + id);
 
                 // Đặt topic_id vào trường ẩn trong form
                 modal.find('#edit_topic_id').val(topicId);

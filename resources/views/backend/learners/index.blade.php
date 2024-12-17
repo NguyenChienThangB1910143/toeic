@@ -45,7 +45,13 @@
                             <td>{{ $learner->address }}</td>
                             <td>{{ $learner->phoneNumber }}</td>
                             <td>{{ $learner->gender == 'male' ? 'Nam' : 'Nữ' }}</td>
-                            
+                            <td>
+                                @if ($learner->status == '1')
+                                    <a class="badge badge-success" href="{{ route('learner.status', $learner->learner_id) }}">Đang hoạt động</a>
+                                @else
+                                    <a class="badge badge-danger" href="{{ route('learner.status', $learner->learner_id) }}">Ngưng hoạt động</a> 
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

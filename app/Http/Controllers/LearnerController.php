@@ -15,25 +15,31 @@ class LearnerController extends Controller
         $learners = Learner::paginate(5);
         return view('backend.learners.index', compact('learners'));
     }
+    public function status(request $request){
+        $learner = Learner::find($request->learner_id);
+        $learner->status = $learner->status == '1' ? '0' : '1';
+        $learner->save();
+        return redirect()->route('qllearner');
+    }
+
+
     public function index(){
         return view('frontend.home');
     }
     // Hiển thị trang hồ sơ cá nhân
     public function profile()
-{
-    // Kiểm tra nếu người dùng chưa đăng nhập
-    if (!auth()->check()) {
-        return redirect()->route('login')->with('error', 'Vui lòng đăng nhập!');
+    {
+        // Kiểm tra nếu người dùng chưa đăng nhập
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Vui lòng đăng nhập!');
+        }
+        
+        // Lấy learner hiện tại
+        $learner = auth()->user(); // Hoặc Learner::find(auth()->id())
+        
+        // Truyền dữ liệu vào view
+        return view('frontend.profile.profile', compact('learner'));
     }
-    
-    // Lấy learner hiện tại
-    $learner = auth()->user(); // Hoặc Learner::find(auth()->id())
-    
-    // Truyền dữ liệu vào view
-    return view('frontend.profile.profile', compact('learner'));
-}
-
-    
 
     // Xử lý cập nhật ảnh đại diện
     public function updatePhoto(Request $request)

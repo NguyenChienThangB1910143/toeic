@@ -11,34 +11,114 @@
     #notification {
         display: none;
         position: fixed;
-        top: 0;
+        top: 20px;
         left: 50%;
         transform: translateX(-50%);
         padding: 15px;
-        background-color: #f44336;
+        background-color: #f44336; /*lỗi*/
         color: white;
         z-index: 1000;
-        border-radius: 2px;
+        border-radius: 5px;
+        width: 300px;
+        text-align: center;
+        font-size: 16px;
+    }
+    #notification.success {
+        background-color: #4CAF50; /*thanh cong*/
     }
 
+    #notification.warning {
+        background-color: #ff9800; /*caution*/
+    }
     #notification.show {
         display: block;
     }
+
+    #notification #close-button {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+    }
+    /* Style cho lỗi dưới các trường nhập liệu */
+    .error {
+        color: #ff0000;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    /* Style cho thông báo thành công, lỗi, cảnh báo dưới form */
+    .alert {
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .alert-warning {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+    }
+
+    /* Hiệu ứng cho thông báo */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
 </style>
 <body>
-    <div id="notification" class="{{ session('success') ? 'show' : '' }}">
-        <span id="message">{{ session('success') }}</span>
-        <button id="close-button">Đóng</button>
+    <div id="notificationModal" class="modal">
+        <div class="modal-content">
+            <span id="modal-close" class="close">&times;</span>
+            <p id="modal-message"></p>
+        </div>
     </div>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    
+    <!-- Hiển thị thông báo thành công -->
+    @if (session('success'))
+    <div id="notification" class="show success">
+        <span>{{ session('success') }}</span>
+        <button id="close-button">&times;</button>
     </div>
-@endif
+    @endif
+<!-- Hiển thị thông báo lỗi -->
+    @if (session('error'))
+    <div id="notification" class="show error">
+        <span>{{ session('error') }}</span>
+        <button id="close-button">&times;</button>
+    </div>
+    @endif
+    
+
+    <!-- Hiển thị thông báo cảnh báo -->
+    @if (session('warning'))
+    <div id="notification" class="show warning">
+        <span>{{ session('warning') }}</span>
+        <button id="close-button">&times;</button>
+    </div>
+    @endif
+
 
     <div class="container" id="container">
         <div class="form-container sign-up-container">
@@ -122,8 +202,25 @@
         window.onload = function() {
             const notification = document.getElementById('notification');
             const closeButton = document.getElementById('close-button');
+            const notificationModal = document.getElementById('notificationModal');
+            const modalCloseButton = document.getElementById('modal-close');
+            const modalMessage = document.getElementById('modal-message');
 
-            if (notification && closeButton) {
+            if (notification) {
+                notification.style.display = 'flex';
+                modalMessage.textContent = notification.textContent.trim();
+            }
+            modalCloseButton.onclick = function() {
+                notificationModal.style.display = 'none';
+            };
+
+            // Close modal when clicking outside the modal
+            window.onclick = function(event) {
+                if (event.target === notificationModal) {
+                    notificationModal.style.display = 'none';
+                }
+            };
+            if (closeButton) {
                 closeButton.onclick = function() {
                     notification.style.display = 'none';
                 };

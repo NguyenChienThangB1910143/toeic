@@ -29,7 +29,6 @@ class GrammarContentController extends Controller
             'grammar_id' => 'required|int',
             'title' => 'required|string|max:255',
             'content' => 'nullable|string',
-
         ]);
         GrammarContent::create([
             'title' => $request->title,
@@ -68,7 +67,6 @@ class GrammarContentController extends Controller
         return redirect()->route('qlgrammar_content', ['grammar_id' => $request->grammar_id])->with('success', 'Content updated successfully!');
     }
     
-
     // Xóa một grammar_content khỏi cơ sở dữ liệu
     public function destroy(GrammarContent $grammar_content, Request $request)
     {
