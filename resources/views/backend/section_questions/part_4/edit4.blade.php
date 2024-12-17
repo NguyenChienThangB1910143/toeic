@@ -62,7 +62,11 @@
 </div>
 
 <script>
+<<<<<<< HEAD
 $('#editquestionModal').on('show.bs.modal', function (event) {
+=======
+   $('#editquestionModal').on('show.bs.modal', function (event) {
+>>>>>>> 9f565d9c730c7f8ba3e7fd0a6e82ae77f653f354
     var button = $(event.relatedTarget);
     var questionId = button.data('id');
 
@@ -106,4 +110,11 @@ $('#editquestionModal').on('show.bs.modal', function (event) {
     });
 });
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 9f565d9c730c7f8ba3e7fd0a6e82ae77f653f354
 </script>
