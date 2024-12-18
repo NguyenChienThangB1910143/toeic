@@ -77,7 +77,14 @@ class TestQuestionController extends Controller
         ]);
     }
 
-    return back()->with('success', "Đã thêm $requiredQuestions câu hỏi vào test thành công.");
+    if ($section_id) {
+        $tests = Test::where('section_id', $section_id)->paginate(5);
+    } else {
+        $tests = Test::paginate(5);
+    }
+    // Chuyển hướng kèm thông báo thành công
+    return view('backend.tests.index', compact('tests', 'section_id'))
+        ->with('success', "Đã thêm $requiredQuestions câu hỏi vào test thành công.");
 }
 public function viewTest(Request $request, $section_id, $test_id)
 {
