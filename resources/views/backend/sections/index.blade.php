@@ -6,7 +6,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/QLSection.css') }}">
-    <title>Quản lý Section</title>
+    <title>Section</title>
 </head>
 <body>
     @include('backend.inc.topbar')
@@ -14,7 +14,7 @@
 
     <div class="admin-content">
         <div class="admin-section">
-            <h1 class="section-title">Quản Lý Section</h1>
+            <h1 class="section-title">Section</h1>
 
             <!-- Hiển thị thông báo -->
             @if (session('error'))
@@ -38,8 +38,8 @@
 
             <!-- Thanh tìm kiếm và nút thêm -->
             <div class="search-section">
-                <input type="text" class="search-input" placeholder="Tìm kiếm section..." id="searchsectionInput" onkeyup="filtersections()" />
-                <button class="btn-add" data-toggle="modal" data-target="#addsectionModal">Thêm section</button>
+                <input type="text" class="search-input" placeholder="Search..." id="searchsectionInput" onkeyup="filtersections()" />
+                <button class="btn-add" data-toggle="modal" data-target="#addsectionModal">Add section</button>
             </div>
 
             <!-- Bảng danh sách sections -->
@@ -47,13 +47,13 @@
                 <table class="table" id="sectionTable">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Tên section</th>
-                            <th>Hình ảnh</th>
-                            <th>Mô tả</th>
-                            <th>Loại</th>
-                            <th>Hành động</th>
-                            <th>Quản lý</th>
+                            <th>No.</th>
+                            <th>Section Name</th>
+                            <th>Image</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Action</th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -95,7 +95,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">Không có sections nào.</td>
+                                <td colspan="7" class="text-center">Không có phần nào.</td>
                             </tr>
                         @endforelse
                     </tbody>

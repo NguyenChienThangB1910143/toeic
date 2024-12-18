@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addSectionLabel">Thêm section mới</h5>
+                <h5 class="modal-title" id="addSectionLabel">Add Section</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,19 +12,19 @@
                     @csrf
                     <!-- Tên section -->
                     <div class="form-group">
-                        <label for="name">Tên section:</label>
+                        <label for="name">Name:</label>
                         <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
                     </div>
 
                     <!-- Ảnh section -->
                     <div class="form-group">
-                        <label for="image">Ảnh:</label>
+                        <label for="image">Image:</label>
                         <input type="file" name="image" id="image" class="form-control" accept="image/*" required>
                     </div>
 
                     <!-- Loại của section -->
                     <div class="form-group">
-                        <label for="type">Loại section:</label>
+                        <label for="type">Type:</label>
                         <select name="type" id="type" class="form-control" required>
                             <option value="part_1" {{ old('type') == 'part_1' ? 'selected' : '' }}>Part 1 - Mô Tả Hình Ảnh (Listening)</option>
                             <option value="part_2" {{ old('type') == 'part_2' ? 'selected' : '' }}>Part 2 - Hỏi Đáp (Listening)</option>
@@ -38,13 +38,15 @@
 
                     <!-- Mô tả (description) -->
                     <div class="form-group">
-                        <label for="description">Mô Tả:</label>
+                        <label for="description">Description:</label>
                         <textarea name="description" id="description" class="form-control">{{ old('description') }}</textarea>
                     </div>
 
                     <!-- Nút hành động -->
-                    <button type="submit" class="btn btn-primary">Thêm section</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mx-2">Add</button>
+                        <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+                    </div>
                 </form>
             </div>
         </div>

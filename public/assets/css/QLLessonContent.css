@@ -169,7 +169,6 @@ body {
 .table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 .table th,
@@ -186,6 +185,18 @@ body {
 .table tr:hover {
     background-color: #f1f3f7;
 }
+/* Đặt chiều rộng cố định cho từng cột nếu cần */
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+    width: 200px; 
+}
+
+.table th:nth-child(3),
+.table td:nth-child(3) {
+    width: 500px; 
+}
+
 
 /* Edit and Delete Buttons */
 .btn-edit,

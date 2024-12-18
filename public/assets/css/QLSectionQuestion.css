@@ -90,7 +90,6 @@ body {
     text-align: left;
 }
 
-
 /* Form Elements */
 .form-group {
     width: 100%;
@@ -170,7 +169,6 @@ body {
 .table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 .table th,
@@ -186,6 +184,16 @@ body {
 
 .table tr:hover {
     background-color: #f1f3f7;
+}
+/* Đặt chiều rộng cố định cho từng cột nếu cần */
+
+.table th:nth-child(10),
+.table td:nth-child(10) {
+    width: 400px; 
+}
+.table th:nth-child(11),
+.table td:nth-child(11) {
+    width: 150px; 
 }
 
 /* Edit and Delete Buttons */

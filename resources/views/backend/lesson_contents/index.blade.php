@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <title>Quản Lý Lesson Content</title>
+    <title>Lesson Content</title>
     <link rel="stylesheet" href="{{ asset('assets/css/QLLessonContent.css') }}">
 </head>
 <body>
@@ -18,7 +18,7 @@
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{ route('qlsection') }}">Section</a></li>
                   <li class="breadcrumb-item"><a href="{{ route('qllesson') }}">Lesson</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Lesson Content</li>
+                  <li class="breadcrumb-item active" aria-current="page">Content</li>
                 </ol>
             </nav>
             <!-- Hiển thị thông báo thành công -->
@@ -39,21 +39,21 @@
                 </script>
             @endif
             <div class="search-add">
-                <input type="text" class="search-input" placeholder="Tìm kiếm content..." />
+                <input type="text" class="search-input" placeholder="Search..." />
                 <!-- Nút mở Modal -->
-                <button class="btn-add" data-toggle="modal" data-target="#addcontentModal">Thêm content</button>
+                <button class="btn-add" data-toggle="modal" data-target="#addcontentModal">Add content</button>
             </div>
             <!-- Bảng lesson content -->
             <div class="table-container">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Tiêu đề</th>
-                            <th>Nội dung</th>
-                            <th>Ngày tạo</th>
-                            <th>Ngày cập nhật</th>
-                            <th>Hành động</th>
+                            <th>No.</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
 
@@ -83,7 +83,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center">Không có content nào.</td>
+                        <td colspan="6" class="text-center">Không có nội dung nào.</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -98,7 +98,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm content mới</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Content</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -108,17 +108,20 @@
                         @csrf
                         <!-- Tiêu đề content -->
                         <div class="form-group">
-                            <label for="title">Tiêu đề content:</label>
+                            <label for="title">Title:</label>
                             <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
                         </div>
                         <!-- Nội dung content -->
                         <div class="form-group">
-                            <label for="content">Nội dung content:</label>
-                            <textarea name="content" id="content" class="form-control" rows="4" required>{{ old('content') }}</textarea>
+                            <label for="content">Content:</label>
+                            <textarea name="content" id="content" class="form-control" value="{{ old('content') }}" rows="4" required></textarea>
                         </div>
                         <input type="hidden" name="lesson_id" value="{{ $lesson_id }}">
-                        <button type="submit" class="btn btn-primary">Thêm content</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <!-- Nút hành động -->
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary mx-2">Add</button>
+                            <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -130,7 +133,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editcontentLabel">Chỉnh Sửa Content</h5>
+                    <h5 class="modal-title" id="editcontentLabel">Edit Content</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -142,20 +145,22 @@
                         
                         <!-- Tiêu đề content -->
                         <div class="form-group">
-                            <label for="edit_title">Tiêu đề content:</label>
+                            <label for="edit_title">Title:</label>
                             <input type="text" name="title" id="edit_title" class="form-control" required>
                         </div>
                         <!-- Nội dung content -->
                         <div class="form-group">
-                            <label for="edit_content">Nội dung content:</label>
-                            <textarea name="content" id="edit_content" class="form-control" rows="4" required></textarea>
+                            <label for="edit_content">Content:</label>
+                            <textarea name="content" id="edit_content" class="form-control" rows="4" required>{{ old('content') }}</textarea>
                         </div>
-                    
+
                         <!-- Trường ẩn để giữ giá trị lesson_id -->
                         <input type="hidden" name="lesson_id" id="edit_lesson_id" value="{{ request('lesson_id') }}">
-                    
-                        <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <!-- Nút hành động -->
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary mx-2">Save</button>
+                            <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                     
                 </div>
@@ -181,6 +186,8 @@
 
                 var modal = $(this);
                 modal.find('#edit_title').val(title);
+                modal.find('#edit_content').val(content);
+
                 modal.find('#editcontentForm').attr('action', '/lesson_contents/' + id);
 
                 // Đặt lesson_id vào trường ẩn trong form

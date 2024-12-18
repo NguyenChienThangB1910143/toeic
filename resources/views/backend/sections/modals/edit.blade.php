@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editSectionLabel">Chỉnh sửa section</h5>
+                <h5 class="modal-title" id="editSectionLabel">Edit Section</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,20 +14,20 @@
 
                     <!-- Tên section -->
                     <div class="form-group">
-                        <label for="edit_name">Tên section:</label>
+                        <label for="edit_name">Name:</label>
                         <input type="text" name="name" id="edit_name" class="form-control" value="{{ old('name') }}" required>
                     </div>
 
                     <!-- Ảnh section (nếu người dùng muốn thay đổi) -->
                     <div class="form-group">
-                        <label for="edit_image">Ảnh mới:</label>
+                        <label for="edit_image">Image:</label>
                         <input type="file" name="image" id="edit_image" class="form-control" accept="image/*">
                         <img id="current_image" src="" alt="Current Image" class="img-thumbnail mt-2" width="150">
                     </div>
 
                     <!-- Loại của section -->
                     <div class="form-group">
-                        <label for="edit_type">Loại section:</label>
+                        <label for="edit_type">Type:</label>
                         <select name="type" id="edit_type" class="form-control" required>
                             <option value="part_1" {{ old('type') == 'part_1' ? 'selected' : '' }}>Part 1 - Mô Tả Hình Ảnh (Listening)</option>
                             <option value="part_2" {{ old('type') == 'part_2' ? 'selected' : '' }}>Part 2 - Hỏi Đáp (Listening)</option>
@@ -41,13 +41,15 @@
 
                     <!-- Mô tả (description) -->
                     <div class="form-group">
-                        <label for="edit_description">Mô tả:</label>
+                        <label for="edit_description">Description:</label>
                         <textarea name="description" id="edit_description" class="form-control">{{ old('description') }}</textarea>
                     </div>
 
                     <!-- Nút hành động -->
-                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mx-2">Save</button>
+                        <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+                    </div>
                 </form>
             </div>
         </div>

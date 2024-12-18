@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <title>Quản Lý Lesson</title>
+    <title>Lesson</title>
     <link rel="stylesheet" href="{{ asset('assets/css/QLLesson.css') }}">
 </head>
 <body>
@@ -38,21 +38,21 @@
                 </script>
             @endif
             <div class="search-add">
-                <input type="text" class="search-input" placeholder="Tìm kiếm lesson..." />
+                <input type="text" class="search-input" placeholder="Search..." />
                 <!-- Nút mở Modal -->
-                <button class="btn-add" data-toggle="modal" data-target="#addlessonModal">Thêm lesson</button>
+                <button class="btn-add" data-toggle="modal" data-target="#addlessonModal">Add lesson</button>
             </div>
             <!-- Bảng lesson -->
             <div class="table-container">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Tên</th>
-                            <th>Ngày tạo</th>
-                            <th>Ngày cập nhật</th>
-                            <th>Hành động</th>
-                            <th>Quản lý</th>
+                            <th>No.</th>
+                            <th>Lesson Name</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Action</th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
 
@@ -84,7 +84,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center">Không có lesson nào.</td>
+                        <td colspan="6" class="text-center">Không có bài học nào.</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -99,7 +99,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm lesson mới</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Lesson </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -109,12 +109,15 @@
                         @csrf
                         <!-- Tên lesson -->
                         <div class="form-group">
-                            <label for="name">Tên lesson:</label>
+                            <label for="name">Name:</label>
                             <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
                         </div>
                         <input type="hidden" name="section_id" value="{{ $section_id }}">
-                        <button type="submit" class="btn btn-primary">Thêm lesson</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <!-- Nút hành động -->
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mx-2">Add</button>
+                        <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+                    </div>
                     </form>
                 </div>
             </div>
@@ -126,7 +129,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editlessonLabel">Chỉnh Sửa lesson</h5>
+                    <h5 class="modal-title" id="editlessonLabel">Edit Lesson</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -138,15 +141,17 @@
                         
                         <!-- Tên lesson -->
                         <div class="form-group">
-                            <label for="edit_name">Tên lesson:</label>
+                            <label for="edit_name">Name:</label>
                             <input type="text" name="name" id="edit_name" class="form-control" required>
                         </div>
                     
                         <!-- Trường ẩn để giữ giá trị section_id -->
                         <input type="hidden" name="section_id" id="edit_section_id" value="{{ request('section_id') }}">
-                    
-                        <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <!-- Nút hành động -->
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary mx-2">Save</button>
+                            <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                     
                 </div>
