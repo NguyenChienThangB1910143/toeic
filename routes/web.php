@@ -77,6 +77,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('tests', TestController::class)->except(['show', 'create']);
     Route::get('/qltest', [TestController::class, 'showQLTest'])->name('qltest');
     Route::get('/qltest_question', [TestQuestionController::class, 'showQLTestQuestion'])->name('qltest_question');
+    Route::get('/view_test/{section_id}/{test_id}', [TestQuestionController::class, 'viewTest'])->name('view_test');
+
+
     Route::post('/store_test_questions', [TestQuestionController::class, 'storeSelectedQuestions'])->name('store_test_questions');
 
 
