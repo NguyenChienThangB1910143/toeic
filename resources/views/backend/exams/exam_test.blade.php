@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/Exam_test.css') }}">
     <title>Test Exam</title>
 </head>
-<body>
+<>
     @include('backend.inc.topbar')
     @include('backend.inc.sidebar')
 
@@ -59,46 +59,51 @@
                                 </div>
                             </form>
                         @endif
-                        
-                        <!-- Danh sách câu hỏi của Part 1 -->
-                        @if(!empty($part1_questions))
-                            <div class="questions-section">
-                                <h5>Questions (Part 1):</h5>
-                                <ul>
-                                    @foreach($part1_questions as $question)
-                                        <li>
-                                            <!-- Hiển thị audio nếu có -->
-                                            @if($question->audio)
-                                            <div class="audio-section">
-                                                <audio controls>
-                                                    <source src="{{ asset('storage/' . $question->audio) }}" type="audio/mp3">
-                                                        Your browser does not support the audio element.
-                                                </audio>
-                                            </div>
-                                            @else
-                                            <p>No audio available for this question.</p>
-                                            @endif
-
-                                            <!-- Hiển thị hình ảnh nếu có -->
-                                            @if($question->image)
-                                            <div class="image-section">
-                                                <img src="{{ asset('storage/' . $question->image) }}" alt="Question Image" class="img-fluid">
-                                            </div>
-                                            @else
-                                            <p>No image available for this question.</p>
-                                            @endif
-                                            <strong>{{ $question->content }}</strong>
-                                            <p>Option 1: {{ $question->option1 }}</p>
-                                            <p>Option 2: {{ $question->option2 }}</p>
-                                            <p>Option 3: {{ $question->option3 }}</p>
-                                            <p>Option 4: {{ $question->option4 }}</p>
-                                            <p>Correct Option: {{ $question->correct_option }}</p>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                    </div>
+                        <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#details-part-1" aria-expanded="false" aria-controls="details-part-1">
+                            View Details
+                        </button>
+                    
+                        <div id="details-part-1" class="collapse mt-2">
+                            <!-- Danh sách câu hỏi của Part 1 -->
+                            @if(!empty($part1_questions))
+                                <div class="questions-section">
+                                    <h5>Questions (Part 1):</h5>
+                                    <ul>
+                                        @foreach($part1_questions as $question)
+                                            <li>
+                                                <!-- Hiển thị audio nếu có -->
+                                                @if($question->audio)
+                                                    <div class="audio-section">
+                                                        <audio controls>
+                                                            <source src="{{ asset('storage/' . $question->audio) }}" type="audio/mp3">
+                                                            Your browser does not support the audio element.
+                                                        </audio>
+                                                    </div>
+                                                @else
+                                                    <p>No audio available for this question.</p>
+                                                @endif
+                    
+                                                <!-- Hiển thị hình ảnh nếu có -->
+                                                @if($question->image)
+                                                    <div class="image-section">
+                                                        <img src="{{ asset('storage/' . $question->image) }}" alt="Question Image" class="img-fluid">
+                                                    </div>
+                                                @else
+                                                    <p>No image available for this question.</p>
+                                                @endif
+                                                <strong>{{ $question->content }}</strong>
+                                                <p>Option 1: {{ $question->option1 }}</p>
+                                                <p>Option 2: {{ $question->option2 }}</p>
+                                                <p>Option 3: {{ $question->option3 }}</p>
+                                                <p>Option 4: {{ $question->option4 }}</p>
+                                                <p>Correct Option: {{ $question->correct_option }}</p>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
+                    </div>                    
                 
                     <!-- Phần Part 2 -->
                     <div class="part-section">
@@ -120,7 +125,11 @@
                                 </div>
                             </form>
                         @endif
-
+                        <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#details-part-2" aria-expanded="false" aria-controls="details-part-2">
+                            View Details
+                        </button>
+                    
+                        <div id="details-part-2" class="collapse mt-2">
                         <!-- Hiển thị Audio và Câu hỏi của Part 2 -->
                         @if(!empty($part2_questions))
                             <div class="questions-section">
@@ -150,6 +159,7 @@
                                 </ul>
                             </div>
                         @endif
+                        </div>
                     </div>
 
                     <!-- Phần Part 3 -->
@@ -173,7 +183,11 @@
                                 </div>
                             </form>
                         @endif
-
+                        <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#details-part-3" aria-expanded="false" aria-controls="details-part-3">
+                            View Details
+                        </button>
+                    
+                        <div id="details-part-3" class="collapse mt-2">
                         <!-- Danh sách câu hỏi của Part 3 -->
                         @if(!empty($part3_groups))
                             <div class="group-section">
@@ -206,6 +220,7 @@
                                 @endforeach
                             </div>
                         @endif
+                        </div>
                     </div>
 
                     <!-- Phần Part 4 -->
@@ -230,7 +245,11 @@
                                 </div>
                             </form>
                         @endif
-
+                        <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#details-part-4" aria-expanded="false" aria-controls="details-part-4">
+                            View Details
+                        </button>
+                    
+                        <div id="details-part-4" class="collapse mt-2">
                         <!-- Audio cho Part 4 -->
                         @if(!empty($part4_groups))
                             @foreach($part4_groups as $group)
@@ -256,6 +275,7 @@
                                 </div>
                             @endforeach
                         @endif
+                        </div>
                     </div>
 
                     <!-- Phần Part 5 -->
@@ -281,7 +301,11 @@
                                 </div>
                             </form>
                         @endif
-
+                        <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#details-part-5" aria-expanded="false" aria-controls="details-part-5">
+                            View Details
+                        </button>
+                    
+                        <div id="details-part-5" class="collapse mt-2">
                         <!-- Hiển thị câu hỏi cho Part 5 -->
                         @if(!empty($part5_groups))
                             @foreach($part5_groups as $group)
@@ -304,6 +328,7 @@
                         @else
                             <p>No questions available for Part 5.</p>
                         @endif
+                        </div>
                     </div>
                     <!-- Phần Part 6 -->
                     <div class="part-section">
@@ -329,7 +354,11 @@
                                 </div>
                             </form>
                         @endif
-
+                        <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#details-part-6" aria-expanded="false" aria-controls="details-part-6">
+                            View Details
+                        </button>
+                    
+                        <div id="details-part-6" class="collapse mt-2">
                         <!-- Hiển thị câu hỏi cho Part 6 -->
                         @if(!empty($part6_groups))
                             @foreach($part6_groups as $group)
@@ -351,6 +380,7 @@
                         @else
                             <p>No questions available for Part 6.</p>
                         @endif
+                        </div>
                     </div>
 
                     <!-- Phần Part 7 -->
@@ -378,7 +408,11 @@
                                 </div>
                             </form>
                         @endif
+                        <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#details-part-7" aria-expanded="false" aria-controls="details-part-7">
+                            View Details
+                        </button>
                     
+                        <div id="details-part-7" class="collapse mt-2">
                         <!-- Hiển thị câu hỏi cho Part 7 -->
                         @if(!empty($part7_groups))
                             @foreach($part7_groups as $group)
@@ -400,6 +434,7 @@
                         @else
                             <p>No questions available for Part 7.</p>
                         @endif
+                        </div>
                     </div>
                     <form method="POST" action="{{ route('exam_test.store') }}">
                         @csrf <!-- CSRF Token for security -->
@@ -418,5 +453,10 @@
             </div>
         </div>
     </div>
+<!-- Thêm JavaScript của jQuery và Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

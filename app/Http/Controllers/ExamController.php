@@ -85,24 +85,27 @@ class ExamController extends Controller
         return redirect()->back()->with('error', 'Không tìm thấy thông tin bài kiểm tra.');
     }
 
-    // Lấy tất cả test_id từ các cột partX_test_id
-    $testIds = collect([
-        $examTests->part1_test_id,
-        $examTests->part2_test_id,
-        $examTests->part3_test_id,
-        $examTests->part4_test_id,
-        $examTests->part5_test_id,
-        $examTests->part6_test_id,
-        $examTests->part7_test_id,
-    ])->filter(); // Loại bỏ các giá trị null
+    // Tạo danh sách test_id kèm theo thứ tự part
+    $testsByPart = [
+        'Part 1' => $examTests->part1_test_id,
+        'Part 2' => $examTests->part2_test_id,
+        'Part 3' => $examTests->part3_test_id,
+        'Part 4' => $examTests->part4_test_id,
+        'Part 5' => $examTests->part5_test_id,
+        'Part 6' => $examTests->part6_test_id,
+        'Part 7' => $examTests->part7_test_id,
+    ];
+
+    // Loại bỏ các phần không có test_id
+    $testsByPart = collect($testsByPart)->filter();
 
     // Lấy tất cả câu hỏi từ các test
     $questions = TestQuestion::with(['question.group'])
-        ->whereIn('test_id', $testIds)
+        ->whereIn('test_id', $testsByPart->values())
         ->get()
         ->groupBy('test_id'); // Nhóm câu hỏi theo test_id
 
-    return view('backend.exams.view_exam_details', compact('exam', 'examTests', 'questions'));
+    return view('backend.exams.view_exam_details', compact('exam', 'examTests', 'questions', 'testsByPart'));
 }
 
 }
