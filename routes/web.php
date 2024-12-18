@@ -22,6 +22,7 @@ use App\Http\Controllers\DictionaryController;
 use App\Http\Controllers\TestQuestionController;
 use App\Http\Controllers\ExamTestController;
 use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\FullTestController;
 
 
 
@@ -144,6 +145,9 @@ Route::prefix('learner')->group(function () {
 
     Route::get('/dictionary', [DictionaryController::class, 'index']);
     Route::post('/search', [DictionaryController::class, 'search']);
+    
+    Route::get('/fulltest', [FullTestController::class, 'showQLExam'])->name('fulltest');
+    Route::get('/fulltest/{exam_id}/test', [FullTestController::class, 'test'])->name('fulltest.test');
 });
 
 
@@ -165,9 +169,6 @@ Route::get('dictionary', function () {
     return view('frontend.skill.dictionary');
 })->name('dictionary');
 
-Route::get('fulltest', function () {
-    return view('frontend.fulltest.fulltest');
-})->name('fulltest');
 
 Route::get('material',[MaterialController::class,'showMaterials'])->name('material');
 

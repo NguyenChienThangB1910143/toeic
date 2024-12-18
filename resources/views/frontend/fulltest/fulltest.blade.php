@@ -26,8 +26,80 @@
             </li>
         </ul>
     </div>
+    
 </div>
+<div class="exam_list">
+    <h1 class="exam-title">Quản Lý Exam</h1>
 
+            <!-- Hiển thị thông báo thành công -->
+            @if (session('success'))
+            <div id="success-message" class="alert alert-success">
+                {{ session('success') }}
+            </div>
+
+            @if (session('error'))
+            <div id="success-message" class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+            @endif
+
+            <script>
+                // Tự động ẩn thông báo sau 3 giây
+                setTimeout(function() {
+                    let successMessage = document.getElementById('success-message');
+                    successMessage.style.transition = 'opacity 1s ease';
+                    successMessage.style.opacity = 0;
+                    setTimeout(function() {
+                        successMessage.style.display = 'none';
+                    }, 1000); // Đợi cho đến khi hoàn tất hiệu ứng mờ dần
+                }, 3000);
+            </script>
+            @endif
+
+            <div class="search-add">
+                <input type="text" class="search-input" placeholder="Tìm kiếm exam..." />
+                <button class="btn-add" data-toggle="modal" data-target="#addexamModal">Thêm exam</button>
+            </div>
+
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên exam</th>
+                            <th>Thời gian</th>
+                            <th>Ngày tạo</th>
+                            <th>Ngày cập nhật</th>
+                            <th>Quản lý</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($exams as $exam)
+                        <tr>
+                            <td>{{ ($exams->currentPage() - 1) * $exams->perPage() + $loop->iteration }}</td>
+                            <td>{{ $exam->name }}</td>
+                            <td>{{ $exam->duration }}</td>
+                            <td>{{ $exam->created_at }}</td>
+                            <td>{{ $exam->updated_at }}</td>
+                            <td>
+                                @php
+                                    $exam_id = $exam->exam_id;
+                                @endphp
+                                <a href="{{ route('fulltest.test', ['exam_id' => $exam_id]) }}" class="btn btn-primary btn-manage indicateBtn">Test </a>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Không có exams nào.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>                    
+                </table>
+            </div>
+            <div class="pagination-links">
+                {{ $exams->links() }}
+            </div>
+</div>
 
 
 {{-- Bao gồm footer --}}
