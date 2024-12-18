@@ -80,7 +80,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/view_test/{section_id}/{test_id}', [TestQuestionController::class, 'viewTest'])->name('view_test');
 
 
-    Route::post('/store_test_questions', [TestQuestionController::class, 'storeSelectedQuestions'])->name('store_test_questions');
+    Route::post('/qltest', [TestQuestionController::class, 'storeSelectedQuestions'])->name('store_test_questions');
 
 
     
