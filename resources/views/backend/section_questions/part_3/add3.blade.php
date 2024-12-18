@@ -8,62 +8,67 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Audio chung cho cả nhóm -->
-                <div class="form-group">
-                    <label for="audio">Âm thanh:</label>
-                    <input type="file" name="audio" id="audio" class="form-control" accept="audio/*">
-                </div>
+                <form action="{{ route('section_questions.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="section_id" id="section_id" value="{{ $section_id }}">
+                    <!-- Audio chung cho cả nhóm -->
+                    <div class="form-group">
+                        <label for="audio">Audio:</label>
+                        <input type="file" name="audio" id="audio" class="form-control" accept="audio/*">
+                    </div>
 
-                <!-- Loop qua các câu hỏi -->
-                @for ($i = 0; $i < 3; $i++)
-                <div class="question-group">
-                    <h6>Câu hỏi {{ $i + 1 }}</h6>
-                    <!-- Các input cho câu hỏi -->
-                    <div class="form-group">
-                        <label for="content_{{ $i }}">Nội dung:</label>
-                        <input type="text" name="questions[{{ $i }}][content]" id="content_{{ $i }}" class="form-control" required>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="option1_{{ $i }}">Đáp án A:</label>
-                            <input type="text" name="questions[{{ $i }}][option1]" id="option1_{{ $i }}" class="form-control" required>
+                    <!-- Loop qua các câu hỏi -->
+                    @for ($i = 0; $i < 3; $i++)
+                    <div class="question-group">
+                        <h6>Question {{ $i + 1 }}</h6>
+                        <!-- Các input cho câu hỏi -->
+                        <div >
+                            <label for="content_{{ $i }}">Content:</label>
+                            <textarea name="questions[{{ $i }}][content]" id="content_{{ $i }}" class="form-control" required></textarea>
                         </div>
-                        <div class="col-md-6">
-                            <label for="option2_{{ $i }}">Đáp án B:</label>
-                            <input type="text" name="questions[{{ $i }}][option2]" id="option2_{{ $i }}" class="form-control" required>
+                        <div >
+                            <div>
+                                <label for="option1_{{ $i }}">Opt A:</label>
+                                <textarea name="questions[{{ $i }}][option1]" id="option1_{{ $i }}" class="form-control" required></textarea>
+                            </div>
+                            <div >
+                                <label for="option2_{{ $i }}">Opt B:</label>
+                                <textarea name="questions[{{ $i }}][option2]" id="option2_{{ $i }}" class="form-control" required></textarea>
+                            </div>
+                        </div>
+                        <div >
+                            <div >
+                                <label for="option3_{{ $i }}">Opt C:</label>
+                                <textarea name="questions[{{ $i }}][option3]" id="option3_{{ $i }}" class="form-control" required></textarea>
+                            </div>
+                            <div >
+                                <label for="option4_{{ $i }}">Opt D:</label>
+                                <textarea name="questions[{{ $i }}][option4]" id="option4_{{ $i }}" class="form-control" required></textarea>
+                            </div>
+                        </div>
+                        <div >
+                            <label for="correct_option_{{ $i }}">Correct Option:</label>
+                            <select name="questions[{{ $i }}][correct_option]" id="correct_option_{{ $i }}" class="form-control" required>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="option3_{{ $i }}">Đáp án C:</label>
-                            <input type="text" name="questions[{{ $i }}][option3]" id="option3_{{ $i }}" class="form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="option4_{{ $i }}">Đáp án D:</label>
-                            <input type="text" name="questions[{{ $i }}][option4]" id="option4_{{ $i }}" class="form-control" required>
-                        </div>
+                    <hr>
+                    @endfor
+
+                    <div >
+                        <label for="script">Script:</label>
+                        <textarea name="script" id="script" class="form-control" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="correct_option_{{ $i }}">Đáp án đúng:</label>
-                        <select name="questions[{{ $i }}][correct_option]" id="correct_option_{{ $i }}" class="form-control" required>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                        </select>
+                    <!-- Nút hành động -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary mx-2">Add</button>
+                        <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
                     </div>
-                    <div class="form-group">
-                        <label for="script_{{ $i }}">Script:</label>
-                        <input type="text" name="questions[{{ $i }}][script]" id="script_{{ $i }}" class="form-control" required>
-                    </div>
-                </div>
-                <hr>
-                @endfor
-            </div>
-            <!-- Nút hành động -->
-            <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary mx-2">Add</button>
-                <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+                </form>
             </div>
         </div>
     </div>

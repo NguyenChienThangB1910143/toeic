@@ -17,7 +17,7 @@
                             <!-- Content -->
                             <div class="form-group">
                                 <label for="content">Content:</label>
-                                <input type="text" name="content" id="content" class="form-control" value="{{ old('content') }}" required>
+                                <textarea name="content" id="content" class="form-control" value="{{ old('content') }}" required></textarea>
                             </div>
             
                             <!-- Audio -->
@@ -29,7 +29,7 @@
                             <!-- Script -->
                             <div class="form-group">
                                 <label for="script">Script:</label>
-                                <input type="text" name="script" id="script" class="form-control" value="{{ old('script') }}" required>
+                                <textarea name="script" id="script" class="form-control" value="{{ old('script') }}" required></textarea>
                             </div>
                         </div>
             
@@ -38,25 +38,19 @@
                             <!-- Đáp án A -->
                             <div class="form-group">
                                 <label for="option1">Opt A:</label>
-                                <input type="text" name="option1" id="option1" class="form-control" value="{{ old('option1') }}" required>
+                                <textarea name="option1" id="option1" class="form-control" value="{{ old('option1') }}" required></textarea>
                             </div>
             
                             <!-- Đáp án B -->
                             <div class="form-group">
                                 <label for="option2">Opt B:</label>
-                                <input type="text" name="option2" id="option2" class="form-control" value="{{ old('option2') }}" required>
+                                <textarea name="option2" id="option2" class="form-control" value="{{ old('option2') }}" required></textarea>
                             </div>
             
                             <!-- Đáp án C -->
                             <div class="form-group">
                                 <label for="option3">Opt C:</label>
-                                <input type="text" name="option3" id="option3" class="form-control" value="{{ old('option3') }}" required>
-                            </div>
-            
-                            <!-- Đáp án D -->
-                            <div class="form-group">
-                                <label for="option4">Opt D:</label>
-                                <input type="text" name="option4" id="option4" class="form-control" value="{{ old('option4') }}" required>
+                                <textarea name="option3" id="option3" class="form-control" value="{{ old('option3') }}" required></textarea>
                             </div>
             
                             <!-- Đáp án đúng -->
@@ -66,7 +60,6 @@
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                     <option value="C">C</option>
-                                    <option value="D">D</option>
                                 </select>
                             </div>
                         </div>
