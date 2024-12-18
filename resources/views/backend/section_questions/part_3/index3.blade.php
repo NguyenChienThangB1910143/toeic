@@ -43,24 +43,69 @@
                 <button class="btn-add" data-toggle="modal" data-target="#addquestionModal">Thêm question</button>
             </div>
             
-            <div class="table-container">
+            <div class="table-container part-3">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Stt</th>
-                            <th>Nhóm</th>
+                            <th>No.</th>
+                            <th>Group ID</th>
                             <th>Content</th>
-                            <th>Opt A</th>
-                            <th>Opt B</th>
-                            <th>Opt C</th>
-                            <th>Opt D</th>
-                            <th>Correct Opt</th>
+                            <th>Option 1</th>
+                            <th>Option 2</th>
+                            <th>Option 3</th>
+                            <th>Option 4</th>
+                            <th>Correct Option</th>
                             <th>Audio</th>
                             <th>Script</th>
-                            <th>Hành động</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
+
                     <tbody>
+                        @forelse($questions as $question)
+                        <tr>
+                            <td>{{ ($questions->currentPage() - 1) * $questions->perPage() + $loop->iteration }}</td>
+                            <td>{{ $question->question_group_id }}</td>
+                            <td>{{ $question->content }}</td>
+                            <td>{{ $question->option1 }}</td>
+                            <td>{{ $question->option2 }}</td>
+                            <td>{{ $question->option3 }}</td>
+                            <td>{{ $question->option4 }}</td>
+                            <td>{{ $question->correct_option }}</td>
+                            <td>
+                                @if($question->group && $question->group->audio)
+                                <audio controls>
+                                    <source src="{{ asset('storage/' . $question->group->audio) }}" type="audio/mpeg">
+                                    Trình duyệt không hỗ trợ.
+                                </audio>
+                                @else
+                                Không có
+                                @endif
+                            </td>
+                            <td>{{ $question->script }}</td>
+                            <td>
+                                <button class="btn-edit" data-toggle="modal" data-target="#editquestionModal" data-id="{{ $question->question_id }}" data-type="{{ request()->type }}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <form action="{{ route('section_questions.destroy', $question->question_id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="section_id" value="{{ request()->section_id }}">
+                                    <input type="hidden" name="type" value="{{ request()->type }}">
+                                    <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="11" class="text-center">Không có câu hỏi nào.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+
+                    {{-- <tbody>
                         @forelse($questions as $question)
                         <tr>
                             <td>{{ ($questions->currentPage() - 1) * $questions->perPage() + $loop->iteration }}</td>
@@ -109,7 +154,7 @@
                             <td colspan="11" class="text-center">Không có câu hỏi nào.</td>
                         </tr>
                         @endforelse
-                    </tbody>
+                    </tbody> --}}
                 </table>
             </div>
             <div class="pagination-links">{{ $questions->appends(['section_id' => request()->section_id, 'type' => request()->type])->links() }}</div>            

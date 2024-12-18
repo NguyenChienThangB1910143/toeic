@@ -186,7 +186,6 @@ body {
     background-color: #f1f3f7;
 }
 /* Đặt chiều rộng cố định cho từng cột nếu cần */
-
 .table th:nth-child(10),
 .table td:nth-child(10) {
     width: 400px; 
@@ -195,6 +194,37 @@ body {
 .table td:nth-child(11) {
     width: 150px; 
 }
+/* .table th:last-child(),
+.table td:last-child() {
+    width: 150px; 
+} */
+
+.part-2 .table th:nth-child(8), 
+.part-2 .table td:nth-child(8) {
+    width: 400px;
+}
+.part-2 .table th:nth-child(9), 
+.part-2 .table td:nth-child(9) {
+    width: 150px;
+}
+
+.part-3 .table th:nth-child(11),
+.part-3 .table td:nth-child(11) {
+    width: 150px;
+}
+
+.part-3 .table th:nth-child(10),
+.part-3 .table td:nth-child(10) {
+    width: 150px;
+}
+/* .part-5 .table th:nth-child(10), 
+.part-5 .table td:nth-child(10),
+.part-6 .table th:nth-child(10),
+.part-6 .table td:nth-child(10),
+.part-7 .table th:nth-child(10),
+.part-7 .table td:nth-child(10) {
+    display: none;
+} */
 
 /* Edit and Delete Buttons */
 .btn-edit,

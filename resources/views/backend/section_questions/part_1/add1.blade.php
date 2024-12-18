@@ -92,19 +92,19 @@
     .modal-body .d-flex {
     display: flex;
     gap: 20px;
-}
+    }
 
-.form-left, .form-right {
-    flex: 1;
-}
+    .form-left, .form-right {
+        flex: 1;
+    }
 
-.form-left {
-    padding-right: 10px;
-    border-right: 1px solid #ccc;
-}
+    .form-left {
+        padding-right: 10px;
+        border-right: 1px solid #ccc;
+    }
 
-.form-right {
-    padding-left: 10px;
-}
+    .form-right {
+        padding-left: 10px;
+    }
 
 </style>
