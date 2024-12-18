@@ -293,6 +293,7 @@ class SectionQuestionController extends Controller
                         'option4' => $question['option4'],
                         'correct_option' => $question['correct_option'],
                         'script' => $request->input('script'),
+                        'text'=> $request->input('text'),
                         'section_id' => $request->input('section_id'),
                         'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào từng câu hỏi
                     ]);
@@ -335,6 +336,7 @@ class SectionQuestionController extends Controller
                         'option4' => $question['option4'],
                         'correct_option' => $question['correct_option'],
                         'script' => $request->input('script'),
+                        'text' => $request->input('text'),
                         'section_id' => $request->input('section_id'),
                         'question_group_id' => $questionGroup->question_group_id, // Gắn group_id vào từng câu hỏi
                     ]);
@@ -561,6 +563,7 @@ class SectionQuestionController extends Controller
             $question->option4 = $request->input('option4');
             $question->correct_option = $request->input('correct_option');
             $question->script = $request->input('script');
+            $question->text = $request->input('text');
             $question->save();
         
             return redirect()->route('qlsection_question', [
@@ -596,6 +599,7 @@ class SectionQuestionController extends Controller
             $question->option4 = $request->input('option4');
             $question->correct_option = $request->input('correct_option');
             $question->script = $request->input('script');
+            $question->text = $request->input('text');
             $question->save();
         
             return redirect()->route('qlsection_question', [

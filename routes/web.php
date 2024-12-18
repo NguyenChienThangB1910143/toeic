@@ -152,9 +152,9 @@ Route::get('/practice/section/{id}', [PracticeController::class, 'show'])->name(
 Route::get('/practice/section/lesson/{id}', [PracticeController::class, 'lesson'])->name('practice.lesson');
 Route::get('/practice/test/{id}', [PracticeController::class, 'test'])->name('practice.test');
 
-Route::get('grammar', function () {
-    return view('frontend.skill.grammar');
-})->name('grammar');
+Route::get('grammar', [GrammarController::class, 'showGrammars'])->name('grammar');
+Route::get('/grammar/content/{grammar_id}', [GrammarController::class, 'grammarContent'])->name('grammar.content');
+
 
 Route::get('topic', [TopicController::class, 'showTopics'])->name('topic');
 Route::get('/topics/{id}/vocabularies', [VocabularyController::class, 'showVocabulariesByTopic'])->name('topic.vocabularies');

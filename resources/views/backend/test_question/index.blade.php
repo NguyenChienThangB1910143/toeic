@@ -18,7 +18,6 @@
             <nav style="--bs-breadcrumb-divider: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'8\' height=\'8\'%3E%3Cpath d=\'M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z\' fill=\'%236c757d\'/%3E%3C/svg%3E');" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('qlsection') }}">Section</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('qlsection_question') }}">Question</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Test</li>
                 </ol>
             </nav>
@@ -36,7 +35,7 @@
 
             <!-- Form và tìm kiếm -->
             <div class="search-add">
-                <input type="text" class="search-input" placeholder="Tìm kiếm question..." />
+                <input type="text" class="search-input" placeholder="Tìm kiếm test..." />
                 <button class="btn-add">Random</button>
                 <form id="selectedQuestionsForm" action="{{ route('store_test_questions') }}" method="POST">
                     @csrf
@@ -53,13 +52,11 @@
                     <thead>
                         <tr>
                             <th>Stt</th>
-                            <th>Id</th>
                             <th id="section-info" data-type="{{ $section->type }}">Check ({{ $section->type }})</th>
                             <th>Content</th>
-                            <th>Image</th>
-                            <th>Audio</th>
+                            <th id="image-column">Image</th>
+                            <th id="audio-column">Audio</th>                           
                             <th>Script</th>
-                            <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,7 +70,6 @@
                             @endphp
                             <tr data-question-id="{{ $question->question_id }}" data-question-group-id="{{ $question->question_group_id }}">
                                 <td>{{ ($questions->currentPage() - 1) * $questions->perPage() + $loop->iteration }}</td>
-                                <td>{{ $question->question_id }}</td>
                                 <td>
                                     @if($question->question_group_id && $isGroupCheckboxDisplayed)
                                         <input type="checkbox" class="checkbox group-checkbox" data-group-id="{{ $question->question_group_id }}">
@@ -81,7 +77,21 @@
                                         <input type="checkbox" class="checkbox single-checkbox">
                                     @endif
                                 </td>
-                                <td>{{ $question->content }}</td>
+                    {{-- đang lỗi --}}
+                                <td>
+                                    @if($question->question_group_id && $question->group)
+                                        @if($question->group->text)
+                                            {{$question->group->text}}
+                                        @else
+                                            Không có
+                                        @endif
+                                    @elseif($question->content)
+                                        {{ $question->content }}
+                                    @else
+                                        Không có
+                                    @endif
+                                </td>
+                    {{-- end --}}
                                 <td>
                                     @if($question->question_group_id && $question->group)
                                         @if($question->group->image)
@@ -115,19 +125,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $question->script }}</td>
-                                <td>
-                                    <button class="btn-edit" data-toggle="modal" data-target="#editQuestionModal" data-id="{{ $question->question_id }}">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                    <form action="{{ route('section_questions.destroy', $question->question_id) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="hidden" name="section_id" value="{{ request()->section_id }}">
-                                        <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-                                </td>
+                                
                             </tr>
                         @empty
                             <tr>
@@ -192,5 +190,59 @@
             document.getElementById('selected_questions').value = JSON.stringify(Array.from(selectedQuestions));
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let imageColumn = document.getElementById('image-column');
+            let audioColumn = document.getElementById('audio-column');
+            let hasImage = false;
+            let hasAudio = false;
+    
+            // Duyệt qua tất cả các hàng để kiểm tra dữ liệu hình ảnh và âm thanh
+            document.querySelectorAll('tbody tr').forEach(row => {
+                let imageCell = row.querySelector('td:nth-child(4) img');
+                let audioCell = row.querySelector('td:nth-child(5) audio');
+    
+                if (imageCell) hasImage = true;
+                if (audioCell) hasAudio = true;
+            });
+    
+            // Ẩn cột Image nếu không có dữ liệu
+            if (!hasImage) {
+                imageColumn.style.display = 'none';
+                document.querySelectorAll('td:nth-child(4)').forEach(cell => cell.style.display = 'none');
+            }
+    
+            // Ẩn cột Audio nếu không có dữ liệu
+            if (!hasAudio) {
+                audioColumn.style.display = 'none';
+                document.querySelectorAll('td:nth-child(5)').forEach(cell => cell.style.display = 'none');
+            }
+        });
+    </script>
+    <script>
+        document.querySelector('.btn-add').addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const type = document.getElementById('section-info').getAttribute('data-type');
+    
+            // Xác định số lượng câu hỏi cần chọn theo "part"
+            const requiredQuestions = type === 'part_1' ? 6 : type === 'part_2' ? 25 :
+                type === 'part_3' ? 39 : type === 'part_4' ? 30 :
+                type === 'part_5' ? 30 : type === 'part_6' ? 16 : type === 'part_7' ? 54 : 0;
+    
+            // Lấy tất cả các checkbox có sẵn
+            const allCheckboxes = document.querySelectorAll('.checkbox');
+    
+            // Xóa trạng thái chọn trước đó
+            allCheckboxes.forEach(checkbox => checkbox.checked = false);
+    
+            // Chọn ngẫu nhiên các checkbox theo số lượng cần thiết
+            const shuffled = Array.from(allCheckboxes).sort(() => 0.5 - Math.random());
+            const selected = shuffled.slice(0, requiredQuestions);
+    
+            selected.forEach(checkbox => checkbox.checked = true);
+        });
+    </script>
+    
 </body>
 </html>
