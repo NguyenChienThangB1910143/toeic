@@ -7,6 +7,29 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <title>Quản Lý Test</title>
     <link rel="stylesheet" href="{{ asset('assets/css/QLTest.css') }}">
+    <style>
+    /* Tùy chỉnh chiều rộng và chiều cao của modal */
+    .modal-content {
+        width: 100%; /* Đặt chiều rộng của modal content thành 100% */
+        max-width: 1200px; /* Giới hạn chiều rộng tối đa nếu muốn */
+        height: 80vh; /* Chiều cao modal chiếm 80% chiều cao màn hình */
+        margin: 0 auto; /* Căn giữa modal content */
+    }
+
+    /* Tùy chỉnh modal background */
+    .modal-backdrop {
+        background-color:white;
+        opacity: 0.5; /* Điều chỉnh độ mờ của nền */
+    }
+
+    /* Nếu bạn muốn kiểm soát chiều cao cụ thể */
+    .modal-body {
+        background-color: white;
+        height: 100%; /* Tùy chỉnh chiều cao của nội dung modal */
+        overflow-y: auto; /* Thêm thanh cuộn nếu nội dung vượt quá chiều cao */
+    }
+</style>
+
 </head>
 <body>
     @include('backend.inc.topbar')
@@ -97,9 +120,9 @@
                     @endforelse
                 </tbody>
             </table>
-                <!-- Modal -->
+                <!-- Modal xem bài test -->
                 <div class="modal fade" id="viewTestModal" tabindex="-1" aria-labelledby="viewTestModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
+                    <div class="modal-dialog modal-md">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="viewTestModalLabel">Chi tiết bài test</h5>

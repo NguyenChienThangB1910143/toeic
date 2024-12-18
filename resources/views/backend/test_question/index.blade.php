@@ -81,7 +81,7 @@
                                 <td>
                                     @if($question->question_group_id && $question->group)
                                         @if($question->group->text)
-                                            {{$question->group->text}}
+                                            {!!$question->group->text!!}
                                         @else
                                             {{ $question->content }}
                                         @endif
