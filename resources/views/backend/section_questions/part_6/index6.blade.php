@@ -48,6 +48,7 @@
                     <thead>
                         <tr>
                             <th>Stt</th>
+                            <th>Text</th>
                             <th>Content</th>
                             <th>Opt A</th>
                             <th>Opt B</th>
@@ -62,6 +63,7 @@
                         @forelse($questions as $question)
                         <tr>
                             <td>{{ ($questions->currentPage() - 1) * $questions->perPage() + $loop->iteration }}</td>
+                            <td>{!! $question->text!!}</td>
                             <td>{{ $question->content}}</td>
                             <td>{{ $question->option1 }}</td>
                             <td>{{ $question->option2 }}</td>
