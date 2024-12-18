@@ -83,7 +83,7 @@
                                         @if($question->group->text)
                                             {{$question->group->text}}
                                         @else
-                                            Không có
+                                            {{ $question->content }}
                                         @endif
                                     @elseif($question->content)
                                         {{ $question->content }}

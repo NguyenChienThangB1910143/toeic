@@ -22,6 +22,7 @@ use App\Http\Controllers\DictionaryController;
 use App\Http\Controllers\TestQuestionController;
 use App\Http\Controllers\ExamTestController;
 use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\FullTestController;
 
 
 
@@ -76,6 +77,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('tests', TestController::class)->except(['show', 'create']);
     Route::get('/qltest', [TestController::class, 'showQLTest'])->name('qltest');
     Route::get('/qltest_question', [TestQuestionController::class, 'showQLTestQuestion'])->name('qltest_question');
+    Route::get('/view_test/{section_id}/{test_id}', [TestQuestionController::class, 'viewTest'])->name('view_test');
+
+
     Route::post('/store_test_questions', [TestQuestionController::class, 'storeSelectedQuestions'])->name('store_test_questions');
 
 
@@ -144,6 +148,9 @@ Route::prefix('learner')->group(function () {
 
     Route::get('/dictionary', [DictionaryController::class, 'index']);
     Route::post('/search', [DictionaryController::class, 'search']);
+    
+    Route::get('/fulltest', [FullTestController::class, 'showQLExam'])->name('fulltest');
+    Route::get('/fulltest/{exam_id}/test', [FullTestController::class, 'test'])->name('fulltest.test');
 });
 
 
@@ -165,9 +172,6 @@ Route::get('dictionary', function () {
     return view('frontend.skill.dictionary');
 })->name('dictionary');
 
-Route::get('fulltest', function () {
-    return view('frontend.fulltest.fulltest');
-})->name('fulltest');
 
 Route::get('material',[MaterialController::class,'showMaterials'])->name('material');
 

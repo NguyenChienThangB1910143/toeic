@@ -79,6 +79,15 @@ class TestQuestionController extends Controller
 
     return back()->with('success', "Đã thêm $requiredQuestions câu hỏi vào test thành công.");
 }
+public function viewTest(Request $request, $section_id, $test_id)
+{
+    $testQuestions = TestQuestion::where('test_id', $test_id)
+        ->with(['question', 'question.group'])
+        ->get();
+    $test = Test::find($test_id);
+    $section = Section::find($section_id);
 
+    return view('backend.tests.view_test', compact('testQuestions', 'test', 'section'));
+}
 
 }

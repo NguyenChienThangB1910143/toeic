@@ -79,8 +79,16 @@
                             
                         </td>
                         <td>
-                            <a href="{{ route('qltest_question', ['section_id' => $section_id, 'test_id' => $test->test_id]) }}" class="btn-manage indicateBtn">Indicate Question</a>
-                        </td>
+                            @if (DB::table('test_question')->where('test_id', $test->test_id)->exists())
+                                <button class="btn btn-primary view-test-btn" 
+                                        data-section-id="{{ $section_id }}" 
+                                        data-test-id="{{ $test->test_id }}">
+                                    Xem Test
+                                </button>
+                            @else
+                                <a href="{{ route('qltest_question', ['section_id' => $section_id, 'test_id' => $test->test_id]) }}" class="btn btn-secondary">Indicate Question</a>
+                            @endif
+                        </td>                        
                     </tr>
                     @empty
                     <tr>
@@ -89,6 +97,23 @@
                     @endforelse
                 </tbody>
             </table>
+                <!-- Modal -->
+                <div class="modal fade" id="viewTestModal" tabindex="-1" aria-labelledby="viewTestModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewTestModalLabel">Chi tiết bài test</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modalContent">
+                                <!-- Nội dung bài test sẽ được tải vào đây -->
+                                <div class="text-center">
+                                    <span class="spinner-border" role="status" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="pagination-links">{{ $tests->links() }}</div>
@@ -177,6 +202,30 @@
                 modal.find('#edit_section_id').val(sectionId);
             });
 
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.view-test-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const sectionId = this.getAttribute('data-section-id');
+                        const testId = this.getAttribute('data-test-id');
+
+                        // Hiển thị modal với loader
+                        const modalContent = document.getElementById('modalContent');
+                        modalContent.innerHTML = '<div class="text-center"><span class="spinner-border" role="status" aria-hidden="true"></span></div>';
+                        const viewTestModal = new bootstrap.Modal(document.getElementById('viewTestModal'));
+                        viewTestModal.show();
+
+                        // Gửi AJAX để tải nội dung view_test
+                        fetch(`/view_test/${sectionId}/${testId}`)
+                            .then(response => response.text())
+                            .then(html => {
+                                modalContent.innerHTML = html;
+                            })
+                            .catch(error => {
+                                modalContent.innerHTML = '<div class="text-danger">Lỗi khi tải nội dung bài test!</div>';
+                            });
+                    });
+                });
+            });
     </script>
 </body>
 </html>
