@@ -38,64 +38,68 @@
                 </script>
             @endif
             <div class="search-add">
-                <input type="text" class="search-input" placeholder="Tìm kiếm question..." />
+                <input type="text" class="search-input" placeholder="Search..." />
                 <!-- Nút mở Modal -->
-                <button class="btn-add" data-toggle="modal" data-target="#addquestionModal">Thêm question</button>
+                <button class="btn-add" data-toggle="modal" data-target="#addquestionModal">Add question</button>
             </div>
             
             <div class="table-container part-7">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Stt</th>
+                            {{-- <th>No.</th> --}}
+                            <th>Group ID</th>
                             <th>Text</th>
                             <th>Content</th>
-                            <th>Opt A</th>
-                            <th>Opt B</th>
-                            <th>Opt C</th>
-                            <th>Opt D</th>
+                            <th>Opt 1</th>
+                            <th>Opt 2</th>
+                            <th>Opt 3</th>
+                            <th>Opt 4</th>
                             <th>Correct Opt</th>
                             <th>Script</th>
-                            <th>Hành động</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($questions as $question)
-                        <tr>
-                            <td>{{ ($questions->currentPage() - 1) * $questions->perPage() + $loop->iteration }}</td>
-                            <td>{!! $question->text!!}</td>
-                            <td>{{ $question->content}}</td>
-                            <td>{{ $question->option1 }}</td>
-                            <td>{{ $question->option2 }}</td>
-                            <td>{{ $question->option3 }}</td>
-                            <td>{{ $question->option4 }}</td>
-                            <td>{{ $question->correct_option }}</td>
-                            <td>{{ $question->script }}</td>
-                            <td>
-                                <!-- Nút chỉnh sửa -->
-                                <button class="btn-edit" 
-                                data-toggle="modal" 
-                                data-target="#editquestionModal" 
-                                data-id="{{ $question->question_id }}" 
-                                data-type="{{ request()->type }}">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                
-                                <form action="{{ route('section_questions.destroy', $question->question_id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="section_id" value="{{ request()->section_id }}">
-                                    <input type="hidden" name="type" value="{{ request()->type }}">
-                                    <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </form>                               
-                            </td>
-                        </tr>
+                        @php
+                            $groupedQuestions = $questions->groupBy('question_group_id');
+                        @endphp
+                        @forelse($groupedQuestions as $groupId => $groupQuestions)
+                            @foreach($groupQuestions as $index => $question)
+                                <tr>
+
+                                    @if($index == 0)
+                                        <td rowspan="{{ count($groupQuestions) }}" class="text-center-gr">{{ $groupId }}</td>
+                                        <td rowspan="{{ count($groupQuestions) }}" class="text-center-gr">{!! $question->text !!}</td>
+                                    @endif
+
+                                    <td>{{ $question->content }}</td>
+                                    <td>{{ $question->option1 }}</td>
+                                    <td>{{ $question->option2 }}</td>
+                                    <td>{{ $question->option3 }}</td>
+                                    <td>{{ $question->option4 }}</td>
+                                    <td>{{ $question->correct_option }}</td>
+                                    <td >{{ $question->script }}</td>
+                                    <td>
+                                        <button class="btn-edit" data-toggle="modal" data-target="#editquestionModal" data-id="{{ $question->question_id }}" data-type="{{ request()->type }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        <form action="{{ route('section_questions.destroy', $question->question_id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="section_id" value="{{ request()->section_id }}">
+                                            <input type="hidden" name="type" value="{{ request()->type }}">
+                                            <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         @empty
-                        <tr>
-                            <td colspan="11" class="text-center">Không có câu hỏi nào.</td>
-                        </tr>
+                            <tr>
+                                <td colspan="11" class="text-center-gr">Không có câu hỏi nào.</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>

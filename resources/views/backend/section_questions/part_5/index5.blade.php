@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <title>Quản Lý Question</title>
+    <title>Question</title>
     <link rel="stylesheet" href="{{ asset('assets/css/QLSectionQuestion.css') }}">
 </head>
 <body>
@@ -38,24 +38,24 @@
                 </script>
             @endif
             <div class="search-add">
-                <input type="text" class="search-input" placeholder="Tìm kiếm question..." />
+                <input type="text" class="search-input" placeholder="Search..." />
                 <!-- Nút mở Modal -->
-                <button class="btn-add" data-toggle="modal" data-target="#addquestionModal">Thêm question</button>
+                <button class="btn-add" data-toggle="modal" data-target="#addquestionModal">Add question</button>
             </div>
             
             <div class="table-container part-5">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Stt</th>
-                            <th>Text</th>
+                            <th>No.</th>
+                            <th>Content</th>
                             <th>Opt A</th>
                             <th>Opt B</th>
                             <th>Opt C</th>
                             <th>Opt D</th>
                             <th>Correct Opt</th>
                             <th>Script</th>
-                            <th>Hành động</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
