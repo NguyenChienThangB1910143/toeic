@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Learner;
+use Illuminate\Support\Facades\Auth;   
 
 class LearnerController extends Controller
 {
@@ -43,25 +44,32 @@ class LearnerController extends Controller
 
     // Xử lý cập nhật ảnh đại diện
     public function updatePhoto(Request $request)
-    {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+{
+    $request->validate([
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        $learner = auth()->user();
+    $learner = Auth::user();
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/images', $imageName);
-            
-            // Cập nhật thông tin ảnh đại diện vào database
-            $learner->image = $imageName;
-            $learner->save();
-        }
-
-        return redirect()->route('profile')->with('success', 'Ảnh đại diện đã được cập nhật');
+    // Xóa hình ảnh cũ nếu tồn tại
+    if ($learner->image && Storage::disk('public')->exists('images/' . $learner->image)) {
+        Storage::disk('public')->delete('images/' . $learner->image);
     }
+
+    // Lưu file mới
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs('images', $imageName, 'public'); // Lưu vào public/storage/images
+
+        // Cập nhật thông tin ảnh đại diện trong database
+        $learner->image = 'images/' . $imageName; // Lưu đường dẫn đầy đủ
+        $learner->save();
+    }
+
+    return redirect()->route('profile')->with('success', 'Ảnh đại diện đã được cập nhật');
+}
+
 
     // Xử lý đổi mật khẩu
     public function changePassword(Request $request)

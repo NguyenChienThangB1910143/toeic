@@ -119,19 +119,25 @@ public function submitTest(Request $request, $exam_id)
     }
 
     // Tính điểm phần Nghe
-    if ($numListenCorrectAns <= 3) {
+    if ($numListenCorrectAns =0) {
         $listenScore = 5;
     } else {
-        $listenScore = 5 + ($numListenCorrectAns - 3) * 5;
+        if( $numListenCorrectAns =1) {
+            $listenScore =15;
+        }else{
+            if($numListenCorrectAns <=96){
+                $listenScore = 15 + ($numListenCorrectAns - 1) * 5;
+            } else {
+                $listenScore = 495;
+            }
+        }
     }
 
     // Tính điểm phần Đọc
-    if ($numReadCorrectAns == 0) {
+    if ($numReadCorrectAns <= 2) {
         $readScore = 5;
-    } elseif ($numReadCorrectAns <= 96) {
-        $readScore = 5 + $numReadCorrectAns * 5;
     } else {
-        $readScore = 5 + 96 * 5;  // Giới hạn điểm cho phần Đọc nếu đạt 97-100 câu đúng
+        $readScore = 5 + ($numReadCorrectAns-2) * 5; 
     }
 
     // Tính điểm tổng

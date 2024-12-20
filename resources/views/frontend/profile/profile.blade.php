@@ -19,7 +19,7 @@
         <div class="profile-picture-section">
             <!-- khung Ảnh đại diện -->
 
-            <img src="{{ asset('storage/images/' . ($learner->image ?? 'default-avatar.png')) }}" 
+            <img src="{{ asset('storage/' . $learner->image)}}" 
                 alt="Ảnh đại diện" class="profile-picture">
 
             <!-- Form cập nhật ảnh -->
