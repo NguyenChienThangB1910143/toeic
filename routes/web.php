@@ -151,6 +151,9 @@ Route::prefix('learner')->group(function () {
     
     Route::get('/fulltest', [FullTestController::class, 'showQLExam'])->name('fulltest');
     Route::get('/fulltest/{exam_id}/test', [FullTestController::class, 'test'])->name('fulltest.test');
+    Route::post('/test/{exam_id}/submit', [FullTestController::class, 'submitTest'])->name('submitTest');
+
+
 });
 
 

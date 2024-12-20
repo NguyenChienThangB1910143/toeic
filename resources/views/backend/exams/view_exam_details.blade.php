@@ -13,30 +13,36 @@
     <div class="container">
         <h2>Chi tiết bài thi: {{ $exam->name }}</h2>
         <p>Thời gian làm bài: {{ $exam->duration }} phút</p>
-    
+
+        @php
+            $questionNumber = 1; // Biến đếm toàn cục cho số thứ tự câu hỏi
+        @endphp
+
         @foreach ($testsByPart as $partName => $testId)
             <div class="test-section">
                 <h3>{{ $partName }}</h3>
-    
+
                 @if (isset($questions[$testId]))
+                    @php
+                        $previousGroupId = null; // Theo dõi group_id trước đó
+                    @endphp
+
                     @foreach ($questions[$testId] as $testQuestion)
                         @php
                             $question = $testQuestion->question;
-                            $group = $question->group; // Nếu câu hỏi thuộc nhóm
-                            $image = $group->image ?? $question->image ?? null;
+                            $group = $question->group; // Nhóm của câu hỏi (nếu có)
+                            $groupId = $question->question_group_id ?? null;
+                            $image = $question->image ?? null;
                             $audio = $group->audio ?? $question->audio ?? null;
                             $text = $group->text ?? $question->text ?? null;
                         @endphp
-                        
-                        {{-- Hiển thị nội dung của nhóm (nếu thuộc nhóm) --}}
-                        @if ($group && $loop->first) {{-- Hiển thị 1 lần cho nhóm câu hỏi --}}
+
+                        {{-- Hiển thị nội dung nhóm nếu group_id khác trước đó --}}
+                        @if ($groupId && $groupId !== $previousGroupId)
+                            @php
+                                $previousGroupId = $groupId; // Cập nhật group_id đã hiển thị
+                            @endphp
                             <div class="group-content">
-                                @if ($image)
-                                    <div>
-                                        <strong>Hình ảnh nhóm:</strong>
-                                        <img src="{{ asset('storage/' . $image) }}" alt="Group Image" style="max-width: 100%; height: auto;">
-                                    </div>
-                                @endif
                                 @if ($audio)
                                     <div>
                                         <strong>Audio nhóm:</strong>
@@ -54,41 +60,27 @@
                                 @endif
                             </div>
                         @endif
-                        
+
                         {{-- Hiển thị câu hỏi --}}
                         <div class="question">
-                            @if( $question->content == null)
-                                <h4>Câu hỏi: {!! $question->group->text !!}</h4>
-                            @else
+                            <h4>Câu hỏi {{ $questionNumber }}:</h4> <!-- Hiển thị số thứ tự câu hỏi -->
+                            @php
+                                $questionNumber++; // Tăng số thứ tự câu hỏi
+                            @endphp
 
-                                <h4>Câu hỏi: {{ $question->content}}</h4>
+                            @if ($question->audio)
+                                <audio controls>
+                                    <source src="{{ asset('storage/' . $audio) }}" type="audio/mpeg">
+                                    Trình duyệt không hỗ trợ audio.
+                                </audio>
                             @endif
-                            
-                            {{-- Hiển thị nội dung riêng của câu hỏi nếu không thuộc nhóm --}}
-                            @if (!$group)
-                                @if ($image)
-                                    <div>
-                                        <strong>Hình ảnh:</strong>
-                                        <img src="{{ asset('storage/' . $image) }}" alt="Question Image" style="max-width: 100%; height: auto;">
-                                    </div>
-                                @endif
-                                @if ($audio)
-                                    <div>
-                                        <strong>Audio:</strong>
-                                        <audio controls>
-                                            <source src="{{ asset('storage/' . $audio) }}" type="audio/mpeg">
-                                            Trình duyệt không hỗ trợ audio.
-                                        </audio>
-                                    </div>
-                                @endif
-                                @if ($text)
-                                    <div>
-                                        <strong>Text:</strong>
-                                        <p>{!! $text !!}</p>
-                                    </div>
-                                @endif
+                            @if ($image)
+                                <img src="{{ asset('storage/' . $image) }}" alt="Image" width="100">
                             @endif
-    
+                            @if ($question->content)
+                                <p>{!! $question->content !!}</p>
+                            @endif
+
                             {{-- Hiển thị đáp án --}}
                             <ul>
                                 <li>A: {{ $question->option1 }}</li>
@@ -97,6 +89,7 @@
                                 @if (!empty($question->option4))
                                     <li>D: {{ $question->option4 }}</li>
                                 @endif
+                                <li>{{ $question->correct_option }}</li>
                             </ul>
                         </div>
                     @endforeach
@@ -106,7 +99,7 @@
             </div>
         @endforeach
     </div>
-</div>    
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

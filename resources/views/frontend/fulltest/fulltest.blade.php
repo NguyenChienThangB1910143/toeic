@@ -55,12 +55,6 @@
                 }, 3000);
             </script>
             @endif
-
-            <div class="search-add">
-                <input type="text" class="search-input" placeholder="Tìm kiếm exam..." />
-                <button class="btn-add" data-toggle="modal" data-target="#addexamModal">Thêm exam</button>
-            </div>
-
             <div class="table-container">
                 <table class="table">
                     <thead>
@@ -84,7 +78,42 @@
                             <td>
                                 @php
                                     $exam_id = $exam->exam_id;
+                                    $learner_id = Auth::user()->learner_id;
+
+                                    // Truy vấn kết quả thi lần gần nhất
+                                    $learnerExam = DB::table('tbl_learner_exam')
+                                        ->where('exam_id', $exam_id)
+                                        ->where('learner_id', $learner_id)
+                                        ->orderBy('created_at', 'desc')
+                                        ->first();
                                 @endphp
+                                @if($learnerExam)
+                                <!-- Nút mở modal -->
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resultModal-{{ $exam_id }}">
+                                    Xem KQ
+                                </button>
+                
+                                <!-- Modal hiển thị kết quả -->
+                                <div class="modal fade" id="resultModal-{{ $exam_id }}" tabindex="-1" aria-labelledby="resultModalLabel-{{ $exam_id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="resultModalLabel-{{ $exam_id }}">Kết Quả Thi</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><strong>Điểm nghe:</strong> {{ $learnerExam->listen_score }}</p>
+                                                <p><strong>Điểm đọc:</strong> {{ $learnerExam->read_score }}</p>
+                                                <p><strong>Tổng điểm:</strong> {{ $learnerExam->total_score }}</p>
+                                                <p><strong>Thời gian hoàn thành:</strong> {{ $learnerExam->completion_time }}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                                 <a href="{{ route('fulltest.test', ['exam_id' => $exam_id]) }}" class="btn btn-primary btn-manage indicateBtn">Test </a>
                             </td>
                         </tr>

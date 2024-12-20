@@ -2,7 +2,7 @@
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 80%;
     margin: 20px auto;
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -77,4 +77,57 @@
 
 .start-button:hover {
     background-color: #0056b3;
+}
+/* Định dạng đồng hồ đếm ngược nhỏ và cố định ở phía trên bảng câu hỏi */
+#countdown {
+    position: fixed;
+    top: 80px;  /* Cách từ trên xuống 100px */
+    right: 20px; /* Cách từ bên phải sang 20px */
+    font-size: 16px; /* Kích thước chữ nhỏ */
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Viền bóng nhẹ */
+    z-index: 999; /* Đảm bảo đồng hồ luôn nằm trên các phần tử khác */
+}
+
+#question-table {
+    position: fixed;
+    top: 140px; /* Đặt bảng câu hỏi cách trên 160px */
+    right: 20px; /* Cách từ bên phải sang 20px */
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* 10 ô mỗi hàng */
+    gap: 2px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    max-height: 80%;
+    overflow-y: auto;
+    font-size: 10px;
+}
+
+/* Thêm lớp cho câu hỏi đã chọn */
+.answered {
+    background-color: #28a745;  /* Màu xanh lá cho câu hỏi đã chọn */
+    color: white;               /* Màu chữ trắng */
+}
+
+.question-box {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 20px;
+    background-color: #f8f9fa;  /* Màu nền mặc định */
+    color: #007bff;             /* Màu chữ mặc định */
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.question-box.answered {
+    background-color: #28a745;  /* Màu xanh lá khi câu hỏi đã trả lời */
+    color: white;               /* Màu chữ trắng */
+}
+
+.question-box:hover {
+    background-color: #d4d4d4;  /* Màu nền khi hover */
 }

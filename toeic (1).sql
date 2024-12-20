@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2024 at 02:16 AM
+-- Generation Time: Dec 18, 2024 at 03:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -92,7 +92,8 @@ INSERT INTO `exams` (`exam_id`, `name`, `duration`, `created_at`, `updated_at`) 
 (4, 'Test 4', '120 phút', '2024-12-11 18:11:43', '2024-12-11 18:11:43'),
 (5, 'Test 1', '120', '2024-12-17 11:05:15', '2024-12-17 11:05:15'),
 (6, 'Test 2', '120', '2024-12-17 11:05:31', '2024-12-17 11:05:31'),
-(7, 'Test 3', '120', '2024-12-17 11:05:37', '2024-12-17 11:05:37');
+(7, 'Test 3', '120', '2024-12-17 11:05:37', '2024-12-17 11:05:37'),
+(8, 'Test 5', '120', '2024-12-18 08:02:41', '2024-12-18 08:02:41');
 
 -- --------------------------------------------------------
 
@@ -120,7 +121,8 @@ CREATE TABLE `exam_tests` (
 
 INSERT INTO `exam_tests` (`id`, `exam_id`, `part1_test_id`, `part2_test_id`, `part3_test_id`, `part4_test_id`, `part5_test_id`, `part6_test_id`, `part7_test_id`, `created_at`, `updated_at`) VALUES
 (11, 1, 1, 2, 3, 4, 5, 6, 7, NULL, NULL),
-(12, 3, 1, 2, 3, 4, 5, 6, 7, NULL, NULL);
+(12, 3, 1, 2, 3, 4, 5, 6, 7, NULL, NULL),
+(13, 8, 11, 12, 13, 14, 15, 10, 16, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -633,6 +635,22 @@ INSERT INTO `section_questions` (`question_id`, `section_id`, `question_group_id
 (513, 3, NULL, 'part1 ls7', 'A', 'B', 'C', 'D', 'C', 'questions/images/Q8bFoR8iPSTdOXsSd2zXW8PNG2ZdKsEwkcXA0x73.jpg', 'questions/audio/vEc2EwU76MhEqdDl9j8RUZ4NFWXUeMUbo9c7PKSD.mp3', NULL, '(A) The woman is talking on the phone.(B) The woman is using her cell phone.(C) The woman is typing on the laptop.(D) The woman is writing in her notebook.', '2024-12-17 13:50:19', '2024-12-17 13:50:19'),
 (514, 3, NULL, 'part1 ls7', 'A', 'B', 'C', 'D', 'C', 'questions/images/wzHvroWNU9XfEGgxRgO504YLtryi1u23AZ5rBOCz.jpg', 'questions/audio/qtJRzQTPO4n2gDtqqJ4IFeQgmwYGSumV8VsJTSKp.mp3', NULL, '(A) The woman is talking on the phone.(B) The woman is using her cell phone.(C) The woman is typing on the laptop.(D) The woman is writing in her notebook.', '2024-12-17 13:50:19', '2024-12-17 13:50:19'),
 (515, 3, NULL, 'part1 ls7', 'A', 'B', 'C', 'D', 'C', 'questions/images/dwMPxEaInXXcNWsjiMO9UK1gXruzzPkd3Y70JomE.jpg', 'questions/audio/mHu9eBm6ieIjCNa2i0NeExfV59ffQvxW212zUpXN.mp3', NULL, '(A) The woman is talking on the phone.(B) The woman is using her cell phone.(C) The woman is typing on the laptop.(D) The woman is writing in her notebook.', '2024-12-17 13:50:19', '2024-12-17 13:50:19');
+INSERT INTO `section_questions` (`question_id`, `section_id`, `question_group_id`, `content`, `option1`, `option2`, `option3`, `option4`, `correct_option`, `image`, `audio`, `text`, `script`, `updated_at`, `created_at`) VALUES
+(516, 9, 174, 'Điền vào chỗ trống', 'A. is requesting', 'B. has requested', 'C. have to request', 'D. had to request', 'A', NULL, NULL, '<p><strong>To:</strong>&nbsp;All Staff<br />\r\n<strong>From:</strong>&nbsp;Michael Davis, Head Technician<br />\r\n<strong>Subject:</strong>&nbsp;Network Upgrade</p>\r\n\r\n<p>We regret to inform the staff that as of next week, Monday the 13th of November to sometime midweek, the employee key card system will not be active. In order to get into and out of the building, you will need to buzz security. In order to unlock, or lock, any door, you will ___(1)__ assistance from the security team.</p>\r\n\r\n<p>The old system was reviewed and many vulnerabilities were discovered. ___(2)___the company has decided to replace the old system. This process should take 3 to four days.</p>\r\n\r\n<p>As part of the process, new key cards will be issued to each member of the staff. Key cards will be available for you to pick up from Wednesday, the 15th of November, in the security office. Please, feel free to stop by any time ___(3)___ the day to collect yours___(4)___.</p>\r\n\r\n<p>We apologize for any inconvenience this may cause.</p>', 'abc', '2024-12-18 06:48:15', '2024-12-18 06:48:15'),
+(517, 9, 174, 'Điền vào chỗ trống', 'A. Unfortunately', 'B. Therefore', 'C. Regardless', 'D. Finally', 'B', NULL, NULL, '<p><strong>To:</strong>&nbsp;All Staff<br />\r\n<strong>From:</strong>&nbsp;Michael Davis, Head Technician<br />\r\n<strong>Subject:</strong>&nbsp;Network Upgrade</p>\r\n\r\n<p>We regret to inform the staff that as of next week, Monday the 13th of November to sometime midweek, the employee key card system will not be active. In order to get into and out of the building, you will need to buzz security. In order to unlock, or lock, any door, you will ___(1)__ assistance from the security team.</p>\r\n\r\n<p>The old system was reviewed and many vulnerabilities were discovered. ___(2)___the company has decided to replace the old system. This process should take 3 to four days.</p>\r\n\r\n<p>As part of the process, new key cards will be issued to each member of the staff. Key cards will be available for you to pick up from Wednesday, the 15th of November, in the security office. Please, feel free to stop by any time ___(3)___ the day to collect yours___(4)___.</p>\r\n\r\n<p>We apologize for any inconvenience this may cause.</p>', 'abc', '2024-12-18 06:48:15', '2024-12-18 06:48:15'),
+(518, 9, 174, 'Điền vào chỗ trống', 'A. upon', 'B. during', 'C. before', 'D. at', 'C', NULL, NULL, '<p><strong>To:</strong>&nbsp;All Staff<br />\r\n<strong>From:</strong>&nbsp;Michael Davis, Head Technician<br />\r\n<strong>Subject:</strong>&nbsp;Network Upgrade</p>\r\n\r\n<p>We regret to inform the staff that as of next week, Monday the 13th of November to sometime midweek, the employee key card system will not be active. In order to get into and out of the building, you will need to buzz security. In order to unlock, or lock, any door, you will ___(1)__ assistance from the security team.</p>\r\n\r\n<p>The old system was reviewed and many vulnerabilities were discovered. ___(2)___the company has decided to replace the old system. This process should take 3 to four days.</p>\r\n\r\n<p>As part of the process, new key cards will be issued to each member of the staff. Key cards will be available for you to pick up from Wednesday, the 15th of November, in the security office. Please, feel free to stop by any time ___(3)___ the day to collect yours___(4)___.</p>\r\n\r\n<p>We apologize for any inconvenience this may cause.</p>', 'abc', '2024-12-18 06:48:15', '2024-12-18 06:48:15'),
+(519, 9, 174, 'Điền vào chỗ trống', 'A. The move from keys to keyless entry should make the facility more secure.', 'B. We will be looking forward to seeing you sometime next week', 'C. The security office is open 24 hours a day.', 'D. This is for product security.', 'D', NULL, NULL, '<p><strong>To:</strong>&nbsp;All Staff<br />\r\n<strong>From:</strong>&nbsp;Michael Davis, Head Technician<br />\r\n<strong>Subject:</strong>&nbsp;Network Upgrade</p>\r\n\r\n<p>We regret to inform the staff that as of next week, Monday the 13th of November to sometime midweek, the employee key card system will not be active. In order to get into and out of the building, you will need to buzz security. In order to unlock, or lock, any door, you will ___(1)__ assistance from the security team.</p>\r\n\r\n<p>The old system was reviewed and many vulnerabilities were discovered. ___(2)___the company has decided to replace the old system. This process should take 3 to four days.</p>\r\n\r\n<p>As part of the process, new key cards will be issued to each member of the staff. Key cards will be available for you to pick up from Wednesday, the 15th of November, in the security office. Please, feel free to stop by any time ___(3)___ the day to collect yours___(4)___.</p>\r\n\r\n<p>We apologize for any inconvenience this may cause.</p>', 'abc', '2024-12-18 06:48:15', '2024-12-18 06:48:15'),
+(520, 9, 175, '...', 'A. active', 'B. actived', 'C. actively', 'D. activated', 'A', NULL, NULL, '<p><strong>Music Teacher Needed</strong></p>\r\n\r\n<p>Mike&rsquo;s Music School is seeking a new piano instructor for weekend and evening classes. Mike&rsquo;s Music School has been operating in the Central district since 1992. Because of this, we hope to hire a long-time resident of Central to join our team. Applicants should be well-versed in teaching techniques. If you are interested in the position, we will be holding interviews and auditions this Saturday at 12 noon, at our main studio on Elm Street and Dupont Ave.</p>', 'ahkdhy', '2024-12-18 06:53:23', '2024-12-18 06:53:23'),
+(521, 9, 175, '...', 'A. Our company tries to work with outside communities.', 'B. Our commitment to the community is as important as our commitment to our students.', 'C. Our company is unique and uses strange instruments.', 'D. Our company is in a special location, next to the auto service center.', 'A', NULL, NULL, '<p><strong>Music Teacher Needed</strong></p>\r\n\r\n<p>Mike&rsquo;s Music School is seeking a new piano instructor for weekend and evening classes. Mike&rsquo;s Music School has been operating in the Central district since 1992. Because of this, we hope to hire a long-time resident of Central to join our team. Applicants should be well-versed in teaching techniques. If you are interested in the position, we will be holding interviews and auditions this Saturday at 12 noon, at our main studio on Elm Street and Dupont Ave.</p>', 'ahkdhy', '2024-12-18 06:53:23', '2024-12-18 06:53:23'),
+(522, 9, 175, '...', 'A. contemporary', 'B. unknown', 'C. strange', 'D. boring', 'C', NULL, NULL, '<p><strong>Music Teacher Needed</strong></p>\r\n\r\n<p>Mike&rsquo;s Music School is seeking a new piano instructor for weekend and evening classes. Mike&rsquo;s Music School has been operating in the Central district since 1992. Because of this, we hope to hire a long-time resident of Central to join our team. Applicants should be well-versed in teaching techniques. If you are interested in the position, we will be holding interviews and auditions this Saturday at 12 noon, at our main studio on Elm Street and Dupont Ave.</p>', 'ahkdhy', '2024-12-18 06:53:23', '2024-12-18 06:53:23'),
+(523, 9, 175, '...', 'A. apply', 'B. applied', 'C. applying', 'D. to apply', 'D', NULL, NULL, '<p><strong>Music Teacher Needed</strong></p>\r\n\r\n<p>Mike&rsquo;s Music School is seeking a new piano instructor for weekend and evening classes. Mike&rsquo;s Music School has been operating in the Central district since 1992. Because of this, we hope to hire a long-time resident of Central to join our team. Applicants should be well-versed in teaching techniques. If you are interested in the position, we will be holding interviews and auditions this Saturday at 12 noon, at our main studio on Elm Street and Dupont Ave.</p>', 'ahkdhy', '2024-12-18 06:53:23', '2024-12-18 06:53:23'),
+(524, 9, 176, '...', 'A. make', 'B. plan', 'C. conceive', 'D. deliver', 'B', NULL, NULL, '<p><strong>Employee Message Board</strong></p>\r\n\r\n<p><strong>Request for Feedback</strong></p>\r\n\r\n<p><strong>Posted by James Frohm, Human Resource Director</strong></p>\r\n\r\n<p><strong>Hello colleagues,</strong></p>\r\n\r\n<p>The holiday season is fast approaching and we need to plan our office party! There have been several suggestions for locations and themes made to me directly, but I wanted to invite everyone in the office to give me their feedback. All ideas are welcome, but I must remind everyone that our office policies must be respected. Our party can include all forms of secular celebration, but out of respect for everyone, there may be no religious themes. Please respond to me directly by email at jamesfrohm@ccn.net, so I can get started making plans.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>James</strong></p>', 'abc', '2024-12-18 07:05:44', '2024-12-18 07:05:44'),
+(525, 9, 176, '...', 'A. comments', 'B. suggestions', 'C. spots', 'D. suggested', 'D', NULL, NULL, '<p><strong>Employee Message Board</strong></p>\r\n\r\n<p><strong>Request for Feedback</strong></p>\r\n\r\n<p><strong>Posted by James Frohm, Human Resource Director</strong></p>\r\n\r\n<p><strong>Hello colleagues,</strong></p>\r\n\r\n<p>The holiday season is fast approaching and we need to plan our office party! There have been several suggestions for locations and themes made to me directly, but I wanted to invite everyone in the office to give me their feedback. All ideas are welcome, but I must remind everyone that our office policies must be respected. Our party can include all forms of secular celebration, but out of respect for everyone, there may be no religious themes. Please respond to me directly by email at jamesfrohm@ccn.net, so I can get started making plans.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>James</strong></p>', 'abc', '2024-12-18 07:05:44', '2024-12-18 07:05:44'),
+(526, 9, 176, 'zzz', 'A. is a safe space for all customs and cultures', 'B. stays open late on Tuesday', 'C. needs a new janitor', 'D. will move next week', 'C', NULL, NULL, '<p><strong>Employee Message Board</strong></p>\r\n\r\n<p><strong>Request for Feedback</strong></p>\r\n\r\n<p><strong>Posted by James Frohm, Human Resource Director</strong></p>\r\n\r\n<p><strong>Hello colleagues,</strong></p>\r\n\r\n<p>The holiday season is fast approaching and we need to plan our office party! There have been several suggestions for locations and themes made to me directly, but I wanted to invite everyone in the office to give me their feedback. All ideas are welcome, but I must remind everyone that our office policies must be respected. Our party can include all forms of secular celebration, but out of respect for everyone, there may be no religious themes. Please respond to me directly by email at jamesfrohm@ccn.net, so I can get started making plans.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>James</strong></p>', 'abc', '2024-12-18 07:05:44', '2024-12-18 07:05:44'),
+(527, 9, 176, 'aa', 'A. I look forward to your ideas and enthusiasm.', 'B. I\'m look forward to your ideas and enthusiasm.', 'C. I look forward to you\'re undivided attention.', 'D. I hope you reply before its too late.', 'A', NULL, NULL, '<p><strong>Employee Message Board</strong></p>\r\n\r\n<p><strong>Request for Feedback</strong></p>\r\n\r\n<p><strong>Posted by James Frohm, Human Resource Director</strong></p>\r\n\r\n<p><strong>Hello colleagues,</strong></p>\r\n\r\n<p>The holiday season is fast approaching and we need to plan our office party! There have been several suggestions for locations and themes made to me directly, but I wanted to invite everyone in the office to give me their feedback. All ideas are welcome, but I must remind everyone that our office policies must be respected. Our party can include all forms of secular celebration, but out of respect for everyone, there may be no religious themes. Please respond to me directly by email at jamesfrohm@ccn.net, so I can get started making plans.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>James</strong></p>', 'abc', '2024-12-18 07:05:44', '2024-12-18 07:05:44'),
+(528, 6, 177, 'What are the speakers mainly discussing?', 'A. A training seminar.', 'B. The installation of a television.', 'C. The date of a presentation.', 'D. A software upgrade.', 'A', NULL, NULL, NULL, 'abc', '2024-12-18 10:03:20', '2024-12-18 10:03:20'),
+(529, 6, 177, 'Where is most likely true about James and Aaron?', 'A. They are competitors.', 'B. They are related.', 'C. They are married.', 'D. They are friends.', 'A', NULL, NULL, NULL, 'abc', '2024-12-18 10:03:20', '2024-12-18 10:03:20'),
+(530, 6, 177, 'What is indicated about Aaron?', 'A. He is not very good at his job these days.', 'B. The owner loves him.', 'C. There are problems in the main office.', 'D. He will keep his job after the evaluations come in.', 'A', NULL, NULL, NULL, 'abc', '2024-12-18 10:03:20', '2024-12-18 10:03:20');
 
 -- --------------------------------------------------------
 
@@ -654,7 +672,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('MAVO0JVLM7hlOol5VthMpYVgR5Jkdm4ER3RXKLcA', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiN3RsUWtjV2tybzlYcjF5MDNXRktZNVBWTUNIbFI1eE80V3FSNTlDVCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyODoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3FsZXhhbSI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjYwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvcWx0ZXN0X3F1ZXN0aW9uP3NlY3Rpb25faWQ9NiZ0ZXN0X2lkPTMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1734444762);
+('AdSVvdWHYI3RLsnBJgfCkKtsZFyWyOCWWMj2wZvN', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoielVsRXhYRjQ1TTc1SlRncVVBejdQT0JiMHc1TEI2QzVEUU1VNTUxWCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo2MDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3FsdGVzdF9xdWVzdGlvbj9zZWN0aW9uX2lkPTYmdGVzdF9pZD0zIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9xbHRvcGljIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=', 1734532819);
 
 -- --------------------------------------------------------
 
@@ -918,7 +936,11 @@ INSERT INTO `tbl_question_group` (`question_group_id`, `audio`, `image`, `passag
 (171, NULL, NULL, NULL, NULL, '<p><strong>To:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentsolutions.com\" target=\"_blank\">kalberts@emergentsolutions.com</a></p>\r\n\r\n<p><strong>From:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices\" target=\"_blank\">cpierce@actionservices</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 13</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Hello Mr. Alberts,</strong></p>\r\n\r\n<p>I am writing on behalf of my company, Action Services. Our company specializes in creating personalized flower arrangements, gift baskets, and novelty gifts. Recently, we have been reviewing our shipping costs and realized we are paying too much to our current shipping company. We would be interested in offering you the opportunity to take over our account if you could provide us with some competitive rates. I have included a recent invoice of shipping costs with our current carrier, Express Corp. If you feel that you could beat their prices, we would like to try to work with you. Please let me know what you think.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>Clarissa Pierce</strong></p>\r\n\r\n<p><strong>Account Manager, Action Services</strong><br />\r\n&nbsp;</p>\r\n\r\n<hr />\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>From:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentservices.com\" target=\"_blank\">kalberts@emergentservices.com</a></p>\r\n\r\n<p><strong>To:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices.com\" target=\"_blank\">cpierce@actionservices.com</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 14</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Dear Ms. Pierce,</strong></p>\r\n\r\n<p>Thank you for contacting us at Emergent Solutions. I have taken a look at your invoice from your last bill from Express Corp, and I believe that we can beat their prices. I would be happy to send over my account director to talk to you about a delivery package that is perfect for your needs. Since most of the shipping that you do is within the state, we use fuel-efficient vehicles to run our small express courier service with perfect and composed reliability for small items, I believe or express courier service will be perfect. We focus on the future health of both our environment and are able to pass on savings to our customers. As the Accounts Director, I look forward to working with Action Services in cutting costs while achieving real results.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>Ken Alberts</strong></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<hr />\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>To:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentsolutions.com\" target=\"_blank\">kalberts@emergentsolutions.com</a></p>\r\n\r\n<p><strong>From:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices\" target=\"_blank\">cpierce@actionservices</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 16</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Mr. Alberts,</strong></p>\r\n\r\n<p>This sounds amazing! You have no idea how much it means to our company that you are using environmentally responsible transportation. Action Services was originally formed by a collection of Environmental Studies students at City College here. Everything we do is ethically sourced and recyclable. We can&rsquo;t wait to meet with your team.</p>\r\n\r\n<p><strong>Best,</strong></p>\r\n\r\n<p><strong>Clarissa Pierce</strong></p>\r\n\r\n<p><strong>Account Manager, Action Services</strong></p>', '2024-12-17 13:41:15', '2024-12-17 13:41:15');
 INSERT INTO `tbl_question_group` (`question_group_id`, `audio`, `image`, `passage`, `script`, `text`, `created_at`, `updated_at`) VALUES
 (172, NULL, NULL, NULL, NULL, '<p><strong>To:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentsolutions.com\" target=\"_blank\">kalberts@emergentsolutions.com</a></p>\r\n\r\n<p><strong>From:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices\" target=\"_blank\">cpierce@actionservices</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 13</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Hello Mr. Alberts,</strong></p>\r\n\r\n<p>I am writing on behalf of my company, Action Services. Our company specializes in creating personalized flower arrangements, gift baskets, and novelty gifts. Recently, we have been reviewing our shipping costs and realized we are paying too much to our current shipping company. We would be interested in offering you the opportunity to take over our account if you could provide us with some competitive rates. I have included a recent invoice of shipping costs with our current carrier, Express Corp. If you feel that you could beat their prices, we would like to try to work with you. Please let me know what you think.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>Clarissa Pierce</strong></p>\r\n\r\n<p><strong>Account Manager, Action Services</strong><br />\r\n&nbsp;</p>\r\n\r\n<hr />\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>From:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentservices.com\" target=\"_blank\">kalberts@emergentservices.com</a></p>\r\n\r\n<p><strong>To:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices.com\" target=\"_blank\">cpierce@actionservices.com</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 14</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Dear Ms. Pierce,</strong></p>\r\n\r\n<p>Thank you for contacting us at Emergent Solutions. I have taken a look at your invoice from your last bill from Express Corp, and I believe that we can beat their prices. I would be happy to send over my account director to talk to you about a delivery package that is perfect for your needs. Since most of the shipping that you do is within the state, we use fuel-efficient vehicles to run our small express courier service with perfect and composed reliability for small items, I believe or express courier service will be perfect. We focus on the future health of both our environment and are able to pass on savings to our customers. As the Accounts Director, I look forward to working with Action Services in cutting costs while achieving real results.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>Ken Alberts</strong></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<hr />\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>To:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentsolutions.com\" target=\"_blank\">kalberts@emergentsolutions.com</a></p>\r\n\r\n<p><strong>From:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices\" target=\"_blank\">cpierce@actionservices</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 16</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Mr. Alberts,</strong></p>\r\n\r\n<p>This sounds amazing! You have no idea how much it means to our company that you are using environmentally responsible transportation. Action Services was originally formed by a collection of Environmental Studies students at City College here. Everything we do is ethically sourced and recyclable. We can&rsquo;t wait to meet with your team.</p>\r\n\r\n<p><strong>Best,</strong></p>\r\n\r\n<p><strong>Clarissa Pierce</strong></p>\r\n\r\n<p><strong>Account Manager, Action Services</strong></p>', '2024-12-17 13:41:15', '2024-12-17 13:41:15'),
-(173, NULL, NULL, NULL, NULL, '<p><strong>To:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentsolutions.com\" target=\"_blank\">kalberts@emergentsolutions.com</a></p>\r\n\r\n<p><strong>From:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices\" target=\"_blank\">cpierce@actionservices</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 13</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Hello Mr. Alberts,</strong></p>\r\n\r\n<p>I am writing on behalf of my company, Action Services. Our company specializes in creating personalized flower arrangements, gift baskets, and novelty gifts. Recently, we have been reviewing our shipping costs and realized we are paying too much to our current shipping company. We would be interested in offering you the opportunity to take over our account if you could provide us with some competitive rates. I have included a recent invoice of shipping costs with our current carrier, Express Corp. If you feel that you could beat their prices, we would like to try to work with you. Please let me know what you think.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>Clarissa Pierce</strong></p>\r\n\r\n<p><strong>Account Manager, Action Services</strong><br />\r\n&nbsp;</p>\r\n\r\n<hr />\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>From:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentservices.com\" target=\"_blank\">kalberts@emergentservices.com</a></p>\r\n\r\n<p><strong>To:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices.com\" target=\"_blank\">cpierce@actionservices.com</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 14</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Dear Ms. Pierce,</strong></p>\r\n\r\n<p>Thank you for contacting us at Emergent Solutions. I have taken a look at your invoice from your last bill from Express Corp, and I believe that we can beat their prices. I would be happy to send over my account director to talk to you about a delivery package that is perfect for your needs. Since most of the shipping that you do is within the state, we use fuel-efficient vehicles to run our small express courier service with perfect and composed reliability for small items, I believe or express courier service will be perfect. We focus on the future health of both our environment and are able to pass on savings to our customers. As the Accounts Director, I look forward to working with Action Services in cutting costs while achieving real results.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>Ken Alberts</strong></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<hr />\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>To:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentsolutions.com\" target=\"_blank\">kalberts@emergentsolutions.com</a></p>\r\n\r\n<p><strong>From:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices\" target=\"_blank\">cpierce@actionservices</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 16</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Mr. Alberts,</strong></p>\r\n\r\n<p>This sounds amazing! You have no idea how much it means to our company that you are using environmentally responsible transportation. Action Services was originally formed by a collection of Environmental Studies students at City College here. Everything we do is ethically sourced and recyclable. We can&rsquo;t wait to meet with your team.</p>\r\n\r\n<p><strong>Best,</strong></p>\r\n\r\n<p><strong>Clarissa Pierce</strong></p>\r\n\r\n<p><strong>Account Manager, Action Services</strong></p>', '2024-12-17 13:41:15', '2024-12-17 13:41:15');
+(173, NULL, NULL, NULL, NULL, '<p><strong>To:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentsolutions.com\" target=\"_blank\">kalberts@emergentsolutions.com</a></p>\r\n\r\n<p><strong>From:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices\" target=\"_blank\">cpierce@actionservices</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 13</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Hello Mr. Alberts,</strong></p>\r\n\r\n<p>I am writing on behalf of my company, Action Services. Our company specializes in creating personalized flower arrangements, gift baskets, and novelty gifts. Recently, we have been reviewing our shipping costs and realized we are paying too much to our current shipping company. We would be interested in offering you the opportunity to take over our account if you could provide us with some competitive rates. I have included a recent invoice of shipping costs with our current carrier, Express Corp. If you feel that you could beat their prices, we would like to try to work with you. Please let me know what you think.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>Clarissa Pierce</strong></p>\r\n\r\n<p><strong>Account Manager, Action Services</strong><br />\r\n&nbsp;</p>\r\n\r\n<hr />\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>From:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentservices.com\" target=\"_blank\">kalberts@emergentservices.com</a></p>\r\n\r\n<p><strong>To:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices.com\" target=\"_blank\">cpierce@actionservices.com</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 14</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Dear Ms. Pierce,</strong></p>\r\n\r\n<p>Thank you for contacting us at Emergent Solutions. I have taken a look at your invoice from your last bill from Express Corp, and I believe that we can beat their prices. I would be happy to send over my account director to talk to you about a delivery package that is perfect for your needs. Since most of the shipping that you do is within the state, we use fuel-efficient vehicles to run our small express courier service with perfect and composed reliability for small items, I believe or express courier service will be perfect. We focus on the future health of both our environment and are able to pass on savings to our customers. As the Accounts Director, I look forward to working with Action Services in cutting costs while achieving real results.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>Ken Alberts</strong></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<hr />\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>To:</strong>&nbsp;Ken Alberts&nbsp;<a href=\"mailto:kalberts@emergentsolutions.com\" target=\"_blank\">kalberts@emergentsolutions.com</a></p>\r\n\r\n<p><strong>From:</strong>&nbsp;Clarissa Pierce&nbsp;<a href=\"mailto:cpierce@actionservices\" target=\"_blank\">cpierce@actionservices</a></p>\r\n\r\n<p><strong>Date:</strong>&nbsp;June 16</p>\r\n\r\n<p><strong>Subject:</strong>&nbsp;Shipping contracts</p>\r\n\r\n<p><strong>Mr. Alberts,</strong></p>\r\n\r\n<p>This sounds amazing! You have no idea how much it means to our company that you are using environmentally responsible transportation. Action Services was originally formed by a collection of Environmental Studies students at City College here. Everything we do is ethically sourced and recyclable. We can&rsquo;t wait to meet with your team.</p>\r\n\r\n<p><strong>Best,</strong></p>\r\n\r\n<p><strong>Clarissa Pierce</strong></p>\r\n\r\n<p><strong>Account Manager, Action Services</strong></p>', '2024-12-17 13:41:15', '2024-12-17 13:41:15'),
+(174, NULL, NULL, NULL, NULL, '<p><strong>To:</strong>&nbsp;All Staff<br />\r\n<strong>From:</strong>&nbsp;Michael Davis, Head Technician<br />\r\n<strong>Subject:</strong>&nbsp;Network Upgrade</p>\r\n\r\n<p>We regret to inform the staff that as of next week, Monday the 13th of November to sometime midweek, the employee key card system will not be active. In order to get into and out of the building, you will need to buzz security. In order to unlock, or lock, any door, you will ___(1)__ assistance from the security team.</p>\r\n\r\n<p>The old system was reviewed and many vulnerabilities were discovered. ___(2)___the company has decided to replace the old system. This process should take 3 to four days.</p>\r\n\r\n<p>As part of the process, new key cards will be issued to each member of the staff. Key cards will be available for you to pick up from Wednesday, the 15th of November, in the security office. Please, feel free to stop by any time ___(3)___ the day to collect yours___(4)___.</p>\r\n\r\n<p>We apologize for any inconvenience this may cause.</p>', '2024-12-18 06:48:15', '2024-12-18 06:48:15'),
+(175, NULL, NULL, NULL, NULL, '<p><strong>Music Teacher Needed</strong></p>\r\n\r\n<p>Mike&rsquo;s Music School is seeking a new piano instructor for weekend and evening classes. Mike&rsquo;s Music School has been operating in the Central district since 1992. Because of this, we hope to hire a long-time resident of Central to join our team. Applicants should be well-versed in teaching techniques. If you are interested in the position, we will be holding interviews and auditions this Saturday at 12 noon, at our main studio on Elm Street and Dupont Ave.</p>', '2024-12-18 06:53:23', '2024-12-18 06:53:23'),
+(176, NULL, NULL, NULL, NULL, '<p><strong>Employee Message Board</strong></p>\r\n\r\n<p><strong>Request for Feedback</strong></p>\r\n\r\n<p><strong>Posted by James Frohm, Human Resource Director</strong></p>\r\n\r\n<p><strong>Hello colleagues,</strong></p>\r\n\r\n<p>The holiday season is fast approaching and we need to plan our office party! There have been several suggestions for locations and themes made to me directly, but I wanted to invite everyone in the office to give me their feedback. All ideas are welcome, but I must remind everyone that our office policies must be respected. Our party can include all forms of secular celebration, but out of respect for everyone, there may be no religious themes. Please respond to me directly by email at jamesfrohm@ccn.net, so I can get started making plans.</p>\r\n\r\n<p><strong>Sincerely,</strong></p>\r\n\r\n<p><strong>James</strong></p>', '2024-12-18 07:05:44', '2024-12-18 07:05:44'),
+(177, 'questions/audio/EKiPTsGjnrGcnkPhWKQoZ4pNabaCvB3YflL0VMBm.mp3', NULL, NULL, NULL, NULL, '2024-12-18 10:03:20', '2024-12-18 10:03:20');
 
 -- --------------------------------------------------------
 
@@ -959,7 +981,15 @@ INSERT INTO `tests` (`test_id`, `section_id`, `name`, `created_at`, `updated_at`
 (5, 8, 'Test 1 p5', '2024-12-08 06:34:34', '2024-12-08 06:34:34'),
 (6, 9, 'Test 1 p6', '2024-12-08 06:40:02', '2024-12-08 06:40:02'),
 (7, 10, 'test 1 p7', '2024-12-08 06:52:32', '2024-12-08 06:52:32'),
-(8, 3, 'Part 1 Test 2', '2024-12-17 03:29:53', '2024-12-17 13:46:17');
+(8, 3, 'Part 1 Test 2', '2024-12-17 03:29:53', '2024-12-17 13:46:17'),
+(9, 3, 'Part 1 Test 3', '2024-12-18 03:08:23', '2024-12-18 03:08:23'),
+(10, 9, 'Part 6 Test 1', '2024-12-18 04:17:39', '2024-12-18 04:17:39'),
+(11, 3, 'Part 1 Test 4', '2024-12-18 07:57:29', '2024-12-18 07:57:29'),
+(12, 4, 'Part 2 Test 1', '2024-12-18 07:58:11', '2024-12-18 07:58:19'),
+(13, 6, 'Part 3 Test 1', '2024-12-18 07:59:35', '2024-12-18 07:59:35'),
+(14, 7, 'Part 4 Test 1', '2024-12-18 08:00:06', '2024-12-18 08:00:06'),
+(15, 8, 'Part 5 Test 1', '2024-12-18 08:00:45', '2024-12-18 08:00:45'),
+(16, 10, 'Part 7 Test 1', '2024-12-18 08:01:46', '2024-12-18 08:01:46');
 
 -- --------------------------------------------------------
 
@@ -1300,7 +1330,213 @@ INSERT INTO `test_question` (`test_question_id`, `test_id`, `question_id`, `crea
 (318, 1, 263, '2024-12-17 13:43:32', '2024-12-17 13:43:32'),
 (319, 1, 264, '2024-12-17 13:43:32', '2024-12-17 13:43:32'),
 (320, 1, 265, '2024-12-17 13:43:32', '2024-12-17 13:43:32'),
-(321, 1, 266, '2024-12-17 13:43:32', '2024-12-17 13:43:32');
+(321, 1, 266, '2024-12-17 13:43:32', '2024-12-17 13:43:32'),
+(322, 9, 263, '2024-12-18 03:08:34', '2024-12-18 03:08:34'),
+(323, 9, 264, '2024-12-18 03:08:34', '2024-12-18 03:08:34'),
+(324, 9, 266, '2024-12-18 03:08:34', '2024-12-18 03:08:34'),
+(325, 9, 511, '2024-12-18 03:08:34', '2024-12-18 03:08:34'),
+(326, 9, 512, '2024-12-18 03:08:34', '2024-12-18 03:08:34'),
+(327, 9, 515, '2024-12-18 03:08:34', '2024-12-18 03:08:34'),
+(328, 10, 392, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(329, 10, 393, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(330, 10, 394, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(331, 10, 395, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(332, 10, 396, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(333, 10, 397, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(334, 10, 398, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(335, 10, 399, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(336, 10, 400, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(337, 10, 401, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(338, 10, 402, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(339, 10, 403, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(340, 10, 404, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(341, 10, 405, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(342, 10, 406, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(343, 10, 407, '2024-12-18 04:18:07', '2024-12-18 04:18:07'),
+(344, 11, 262, '2024-12-18 07:57:49', '2024-12-18 07:57:49'),
+(345, 11, 264, '2024-12-18 07:57:50', '2024-12-18 07:57:50'),
+(346, 11, 266, '2024-12-18 07:57:50', '2024-12-18 07:57:50'),
+(347, 11, 511, '2024-12-18 07:57:50', '2024-12-18 07:57:50'),
+(348, 11, 512, '2024-12-18 07:57:50', '2024-12-18 07:57:50'),
+(349, 11, 514, '2024-12-18 07:57:50', '2024-12-18 07:57:50'),
+(350, 12, 267, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(351, 12, 268, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(352, 12, 269, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(353, 12, 270, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(354, 12, 271, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(355, 12, 272, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(356, 12, 273, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(357, 12, 274, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(358, 12, 275, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(359, 12, 276, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(360, 12, 277, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(361, 12, 278, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(362, 12, 279, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(363, 12, 280, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(364, 12, 281, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(365, 12, 282, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(366, 12, 283, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(367, 12, 284, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(368, 12, 285, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(369, 12, 286, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(370, 12, 287, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(371, 12, 288, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(372, 12, 289, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(373, 12, 290, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(374, 12, 295, '2024-12-18 07:59:07', '2024-12-18 07:59:07'),
+(375, 13, 292, '2024-12-18 07:59:47', '2024-12-18 07:59:47'),
+(376, 13, 293, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(377, 13, 294, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(378, 13, 296, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(379, 13, 297, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(380, 13, 298, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(381, 13, 299, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(382, 13, 300, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(383, 13, 301, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(384, 13, 302, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(385, 13, 303, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(386, 13, 304, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(387, 13, 305, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(388, 13, 306, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(389, 13, 307, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(390, 13, 308, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(391, 13, 309, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(392, 13, 310, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(393, 13, 311, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(394, 13, 312, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(395, 13, 313, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(396, 13, 314, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(397, 13, 315, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(398, 13, 316, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(399, 13, 317, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(400, 13, 318, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(401, 13, 319, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(402, 13, 320, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(403, 13, 321, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(404, 13, 322, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(405, 13, 323, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(406, 13, 324, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(407, 13, 325, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(408, 13, 326, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(409, 13, 327, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(410, 13, 328, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(411, 13, 329, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(412, 13, 330, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(413, 13, 331, '2024-12-18 07:59:48', '2024-12-18 07:59:48'),
+(414, 14, 332, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(415, 14, 333, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(416, 14, 334, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(417, 14, 335, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(418, 14, 336, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(419, 14, 337, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(420, 14, 338, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(421, 14, 339, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(422, 14, 340, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(423, 14, 341, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(424, 14, 342, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(425, 14, 343, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(426, 14, 344, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(427, 14, 345, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(428, 14, 346, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(429, 14, 347, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(430, 14, 348, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(431, 14, 349, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(432, 14, 350, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(433, 14, 351, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(434, 14, 352, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(435, 14, 353, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(436, 14, 354, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(437, 14, 355, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(438, 14, 356, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(439, 14, 357, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(440, 14, 358, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(441, 14, 359, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(442, 14, 360, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(443, 14, 361, '2024-12-18 08:00:13', '2024-12-18 08:00:13'),
+(444, 15, 362, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(445, 15, 363, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(446, 15, 364, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(447, 15, 365, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(448, 15, 366, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(449, 15, 367, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(450, 15, 368, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(451, 15, 369, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(452, 15, 370, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(453, 15, 371, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(454, 15, 372, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(455, 15, 373, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(456, 15, 374, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(457, 15, 375, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(458, 15, 376, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(459, 15, 377, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(460, 15, 378, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(461, 15, 379, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(462, 15, 380, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(463, 15, 381, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(464, 15, 382, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(465, 15, 383, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(466, 15, 384, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(467, 15, 385, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(468, 15, 386, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(469, 15, 387, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(470, 15, 388, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(471, 15, 389, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(472, 15, 390, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(473, 15, 391, '2024-12-18 08:00:52', '2024-12-18 08:00:52'),
+(474, 16, 408, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(475, 16, 409, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(476, 16, 410, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(477, 16, 411, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(478, 16, 412, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(479, 16, 413, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(480, 16, 414, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(481, 16, 415, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(482, 16, 462, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(483, 16, 463, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(484, 16, 464, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(485, 16, 468, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(486, 16, 469, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(487, 16, 470, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(488, 16, 471, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(489, 16, 472, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(490, 16, 473, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(491, 16, 474, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(492, 16, 475, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(493, 16, 476, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(494, 16, 477, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(495, 16, 478, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(496, 16, 479, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(497, 16, 480, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(498, 16, 481, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(499, 16, 482, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(500, 16, 483, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(501, 16, 484, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(502, 16, 485, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(503, 16, 486, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(504, 16, 487, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(505, 16, 488, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(506, 16, 489, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(507, 16, 490, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(508, 16, 491, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(509, 16, 492, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(510, 16, 493, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(511, 16, 494, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(512, 16, 495, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(513, 16, 496, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(514, 16, 497, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(515, 16, 498, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(516, 16, 499, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(517, 16, 500, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(518, 16, 501, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(519, 16, 502, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(520, 16, 503, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(521, 16, 504, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(522, 16, 505, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(523, 16, 506, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(524, 16, 507, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(525, 16, 508, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(526, 16, 509, '2024-12-18 08:02:15', '2024-12-18 08:02:15'),
+(527, 16, 510, '2024-12-18 08:02:15', '2024-12-18 08:02:15');
 
 -- --------------------------------------------------------
 
@@ -1606,13 +1842,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `exams`
 --
 ALTER TABLE `exams`
-  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `exam_tests`
 --
 ALTER TABLE `exam_tests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1654,7 +1890,7 @@ ALTER TABLE `lessons`
 -- AUTO_INCREMENT for table `lesson_content`
 --
 ALTER TABLE `lesson_content`
-  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `materials`
@@ -1678,7 +1914,7 @@ ALTER TABLE `sections`
 -- AUTO_INCREMENT for table `section_questions`
 --
 ALTER TABLE `section_questions`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=516;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=531;
 
 --
 -- AUTO_INCREMENT for table `tbl_exam_question`
@@ -1696,7 +1932,7 @@ ALTER TABLE `tbl_learner_exam`
 -- AUTO_INCREMENT for table `tbl_question_group`
 --
 ALTER TABLE `tbl_question_group`
-  MODIFY `question_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `question_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 
 --
 -- AUTO_INCREMENT for table `tbl_score`
@@ -1708,13 +1944,13 @@ ALTER TABLE `tbl_score`
 -- AUTO_INCREMENT for table `tests`
 --
 ALTER TABLE `tests`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `test_question`
 --
 ALTER TABLE `test_question`
-  MODIFY `test_question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
+  MODIFY `test_question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=528;
 
 --
 -- AUTO_INCREMENT for table `topics`
