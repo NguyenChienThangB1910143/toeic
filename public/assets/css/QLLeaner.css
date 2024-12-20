@@ -120,3 +120,11 @@ body {
     background-color: #007bff;
     color: white;
 }
+.table th:first-child,
+.table td:first-child {
+    width: 50px;
+}
+.table th:last-child,
+.table td:last-child {
+    width: 130px;
+}

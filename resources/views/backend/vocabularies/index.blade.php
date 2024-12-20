@@ -38,7 +38,7 @@
                 </script>
             @endif
             <div class="search-add">
-                <input type="text" class="search-input" placeholder="Search vocabulary..." />
+                <input type="text" class="search-input" placeholder="Search..." />
                 <!-- Nút mở Modal -->
                 <button class="btn-add" data-toggle="modal" data-target="#addvocabularyModal">Add Vocabulary</button>
             </div>
@@ -47,15 +47,15 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Hình ảnh</th>
-                            <th>Từ vựng</th>
-                            <th>Phiên âm</th>
-                            <th>Nghĩa</th>
-                            <th>Ví dụ</th>
-                            <th>Ngày tạo</th>
-                            <th>Ngày cập nhật</th>
-                            <th>Hành động</th>
+                            <th>No.</th>
+                            <th>Image</th>
+                            <th>Word</th>
+                            <th>IPA</th>
+                            <th>Meaning</th>
+                            <th>Example</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -93,7 +93,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center">Không có vocabulary nào.</td>
+                        <td colspan="6" class="text-center">Không có từ vựng nào.</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -108,7 +108,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm vocabulary mới</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Vocabulary</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -118,33 +118,35 @@
                         @csrf
                         <!-- HÌnh ảnh -->
                         <div class="form-group">
-                            <label for="image">Hình ảnh:</label>
+                            <label for="image">Image:</label>
                             <input type="file" name="image" id="image" class="form-control" accept="image/*">
                         </div>
                         <!-- từ vựng -->
                         <div class="form-group">
-                            <label for="word">Từ vựng:</label>
-                            <input type="text" name="word" id="word" class="form-control" value="{{ old('word') }}" required>
+                            <label for="word">Word:</label>
+                            <textarea name="word" id="word" class="form-control" value="{{ old('word') }}" required></textarea>
                         </div>
                         <!-- ipa -->
                         <div class="form-group">
                             <label for="ipa">IPA:</label>
-                            <input type="text" name="ipa" id="ipa" class="form-control" value="{{ old('ipa') }}" required>
+                            <textarea name="ipa" id="ipa" class="form-control" value="{{ old('ipa') }}" required></textarea>
                         </div>
                         <!-- meaning -->
                         <div class="form-group">
-                            <label for="meaning">Nghĩa:</label>
-                            <input type="text" name="meaning" id="meaning" class="form-control" value="{{ old('meaning') }}" required>
+                            <label for="meaning">Meaning:</label>
+                            <textarea name="meaning" id="meaning" class="form-control" value="{{ old('meaning') }}" required></textarea>
                         </div>
                         <!-- example -->
                         <div class="form-group">
-                            <label for="example_sentence">Ví dụ:</label>
-                            <input type="text" name="example_sentence" id="example_sentence" class="form-control" value="{{ old('example_sentence') }}" required>
+                            <label for="example_sentence">Example:</label>
+                            <textarea name="example_sentence" id="example_sentence" class="form-control" value="{{ old('example_sentence') }}" required></textarea>
                         </div>
 
                         <input type="hidden" name="topic_id" value="{{ $topic_id }}">
-                        <button type="submit" class="btn btn-primary">Thêm từ vựng</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -156,7 +158,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editvocabularyLabel">Chỉnh sửa từ vựng</h5>
+                    <h5 class="modal-title" id="editvocabularyLabel">Edit Vocabulary</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -167,36 +169,37 @@
                         @method('PUT')
                         <!-- hình ảnh -->
                         <div class="form-group">
-                            <label for="edit_image">Hình ảnh:</label>
+                            <label for="edit_image">Image:</label>
                             <input type="file" name="image" id="edit_image" class="form-control" accept="image/*">
                             <img id="edit_current_image" src="" alt="Current Image" class="img-thumbnail mt-2" width="150">
                         </div>
                         <!-- Từ vựng -->
                         <div class="form-group">
-                            <label for="edit_word">Từ vựng:</label>
-                            <input type="text" name="word" id="edit_word" class="form-control" required>
+                            <label for="edit_word">Word:</label>
+                            <textarea name="word" id="edit_word" class="form-control" required></textarea>
                         </div>
                         <!-- ipa -->
                         <div class="form-group">
                             <label for="edit_ipa">IPA:</label>
-                            <input type="text" name="ipa" id="edit_ipa" class="form-control" required>
+                            <textarea name="ipa" id="edit_ipa" class="form-control" required></textarea>
                         </div>
                         <!-- meaning -->
                         <div class="form-group">
-                            <label for="edit_meaning">Nghĩa:</label>
-                            <input type="text" name="meaning" id="edit_meaning" class="form-control" required>
+                            <label for="edit_meaning">Meaning:</label>
+                            <textarea name="meaning" id="edit_meaning" class="form-control" required></textarea>
                         </div>
                         <!-- example -->
                         <div class="form-group">
-                            <label for="edit_example_sentence">Ví dụ:</label>
-                            <input type="text" name="example_sentence" id="edit_example_sentence" class="form-control" required>
+                            <label for="edit_example_sentence">Example:</label>
+                            <textarea name="example_sentence" id="edit_example_sentence" class="form-control" required></textarea>
                         </div>
                     
                         <!-- Trường ẩn để giữ giá trị topic_id -->
                         <input type="hidden" name="topic_id" id="edit_topic_id" value="{{ request('topic_id') }}">
-                    
-                        <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                     
                 </div>
@@ -224,7 +227,7 @@
                 var topicId = urlParams.get('topic_id');
 
                 var modal = $(this);
-                modal.find('#edit_current_image').attr('src', image);
+                modal.find('#edit_current_image').attr('src', '/storage/' + image);
                 modal.find('#edit_word').val(word);
                 modal.find('#edit_ipa').val(ipa);
                 modal.find('#edit_meaning').val(meaning);

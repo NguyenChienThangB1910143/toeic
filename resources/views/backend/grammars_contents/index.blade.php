@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <title>Quản Lý Grammar Content</title>
+    <title>Grammar Content</title>
     <link rel="stylesheet" href="{{ asset('assets/css/QLGrammarContent.css') }}">
 </head>
 <body>
@@ -38,7 +38,7 @@
                 </script>
             @endif
             <div class="search-add">
-                <input type="text" class="search-input" placeholder="Search content..." />
+                <input type="text" class="search-input" placeholder="Search..." />
                 <!-- Nút mở Modal -->
                 <button class="btn-add" data-toggle="modal" data-target="#addcontentModal">Add content</button>
             </div>
@@ -47,12 +47,12 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Tiêu đề</th>
-                            <th>Nội dung</th>
-                            <th>Ngày tạo</th>
-                            <th>Ngày cập nhật</th>
-                            <th>Hành động</th>
+                            <th>No.</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -82,7 +82,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center">Không có content nào.</td>
+                        <td colspan="6" class="text-center">Không có nội dung ngữ pháp nào.</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -97,7 +97,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm content mới</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Content</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -107,19 +107,21 @@
                         @csrf
                         <!-- title -->
                         <div class="form-group">
-                            <label for="title">Tiêu đề:</label>
-                            <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
+                            <label for="title">Title:</label>
+                            <textarea name="title" id="title" class="form-control" value="{{ old('title') }}" required></textarea>
                         </div>
 
                         <!-- grammar_content -->
                         <div class="form-group">
-                            <label for="content">Nội dung:</label>
+                            <label for="content">Content:</label>
                             <textarea name="content" id="content" class="form-control" rows="4" required>{{ old('content') }}</textarea>
                         </div>
 
                         <input type="hidden" name="grammar_id" value="{{ $grammar_id }}">
-                        <button type="submit" class="btn btn-primary">Thêm</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -131,7 +133,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editcontentLabel">CHỈNH SỬA</h5>
+                    <h5 class="modal-title" id="editcontentLabel">Edit Content</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -143,20 +145,22 @@
                         
                         <!-- Tiêu đề grammar_content -->
                         <div class="form-group">
-                            <label for="edit_title">Tiêu đề:</label>
-                            <input type="text" name="title" id="edit_title" class="form-control" required>
+                            <label for="edit_title">Title:</label>
+                            <textarea name="title" id="edit_title" class="form-control" required></textarea>
                         </div>
                         <!-- Nội dung grammar_content -->
                         <div class="form-group">
-                            <label for="edit_content">Nội dung:</label>
+                            <label for="edit_content">Content:</label>
                             <textarea name="content" id="edit_content" class="form-control" rows="4" required></textarea>
                         </div>
 
                         <!-- Trường ẩn để giữ giá trị grammar_id -->
                         <input type="hidden" name="grammar_id" id="edit_grammar_id" value="{{ request('grammar_id') }}">
                     
-                        <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>

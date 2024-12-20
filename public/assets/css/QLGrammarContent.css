@@ -168,7 +168,6 @@ body {
 .table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 .table th,
@@ -268,3 +267,25 @@ body {
     background-color: #007bff;
     color: white;
 }
+.modal-header {
+    background-color: #ffffff !important;
+}
+.modal-body {
+    width: auto;
+    width: 100%;
+}
+.modal-footer {
+    display: flex;
+    justify-content: center !important;
+    margin-top: 20px;
+}
+.table th:last-child,
+.table td:last-child {
+    width: 130px;
+}
+
+.table th:nth-child(2), 
+.table td:nth-child(2) {
+    width: 200px;
+}
+

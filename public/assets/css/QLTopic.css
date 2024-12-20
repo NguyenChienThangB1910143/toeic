@@ -52,7 +52,18 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
+.modal-header {
+    background-color: #ffffff !important;
+}
+.modal-body {
+    width: auto;
+    width: 100%;
+}
+.modal-footer {
+    display: flex;
+    justify-content: center !important;
+    margin-top: 20px;
+}
 .modal-content h2 {
     text-align: left;
     color: #4e73df;
@@ -166,7 +177,6 @@ body {
 .table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 .table th,
@@ -234,7 +244,7 @@ body {
 
 /* Image in Table */
 .table-image {
-    width: 50px;
+    width: 100px;
     height: auto;
     border-radius: 5px;
 }
@@ -251,7 +261,6 @@ body {
     font-size: 14px; /* Kích thước chữ của các nút phân trang */
     display: flex;
     justify-content: center; /* Căn giữa các nút phân trang */
-    margin-top: 20px; /* Khoảng cách trên phân trang */
 }
 
 /* Cải thiện giao diện của các nút phân trang */
