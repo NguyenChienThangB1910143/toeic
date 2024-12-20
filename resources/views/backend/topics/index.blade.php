@@ -6,7 +6,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/QLTopic.css') }}">
-    <title>Quản lý Topic</title>
+    <title>Topic</title>
 </head>
 <body>
     @include('backend.inc.topbar')
@@ -14,7 +14,7 @@
 
     <div class="admin-content">
         <div class="admin-topic">
-            <h1 class="topic-title">Quản Lý Topic</h1>
+            <h1 class="topic-title">Topic</h1>
 
             <!-- Hiển thị thông báo thành công -->
         @if (session('success'))
@@ -36,9 +36,9 @@
     @endif
 
             <div class="search-add">
-                <input type="text" class="search-input" placeholder="Tìm kiếm topic..." />
+                <input type="text" class="search-input" placeholder="Search..." />
                 <!-- Nút mở Modal -->
-                <button class="btn-add" data-toggle="modal" data-target="#addTopicModal">Thêm Topic</button>
+                <button class="btn-add" data-toggle="modal" data-target="#addTopicModal">Add Topic</button>
             </div>
 
             <!-- Bảng Topic -->
@@ -47,13 +47,13 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Tên Topic</th>
-                            <th>Hình ảnh</th>
-                            <th>Ngày tạo</th>
-                            <th>Ngày cập nhật</th>
-                            <th>Hành động</th>
-                            <th>Quản lý</th>
+                            <th>No.</th>
+                            <th>Topic Name</th>
+                            <th>Image</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Action</th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     
@@ -86,7 +86,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Không có topics nào.</td>
+                            <td colspan="6" class="text-center">Không có chủ đề nào.</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -105,7 +105,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm Topic Mới</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Topic</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -115,18 +115,20 @@
                         @csrf
                         <!-- Tên topic -->
                         <div class="form-group">
-                            <label for="name">Tên Topic:</label>
+                            <label for="name">Topic Name:</label>
                             <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
                         </div>
 
                         <!-- Ảnh topic -->
                         <div class="form-group">
-                            <label for="image">Ảnh:</label>
+                            <label for="image">Image:</label>
                             <input type="file" name="image" id="image" class="form-control" accept="image/*" required>
                         </div>                      
 
-                        <button type="submit" class="btn btn-primary">Thêm Topic</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -138,7 +140,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editTopicLabel">Chỉnh Sửa Topic</h5>
+                    <h5 class="modal-title" id="editTopicLabel">Edit Topic</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -150,19 +152,20 @@
 
                         <!-- Tên topic -->
                         <div class="form-group">
-                            <label for="edit_name">Tên Topic:</label>
+                            <label for="edit_name">Topic Name:</label>
                             <input type="text" name="name" id="edit_name" class="form-control" required>
                         </div>
 
                         <!-- Ảnh topic (nếu người dùng muốn thay đổi) -->
                         <div class="form-group">
-                            <label for="edit_image">Ảnh Mới:</label>
+                            <label for="edit_image">Image:</label>
                             <input type="file" name="image" id="edit_image" class="form-control" accept="image/*">
                             <img id="current_image" src="" alt="Current Image" class="img-thumbnail" width="150">
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>

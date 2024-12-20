@@ -1,4 +1,4 @@
-<div class="modal" id="editquestionModal" tabindex="-1" role="dialog" aria-labelledby="editquestionLabel" aria-hidden="true">
+<div class="modal fade" id="editquestionModal" tabindex="-1" role="dialog" aria-labelledby="editquestionLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,7 +16,7 @@
                             <!-- Content -->
                             <div class="form-group">
                                 <label for="edit_content">Content:</label>
-                                <input type="text" name="content" id="edit_content" class="form-control" value="{{ old('content') }}" required>
+                                <textarea name="content" id="edit_content" class="form-control" value="{{ old('content') }}" required></textarea>
                             </div>
                             <!-- Image -->
                             <div class="form-group">
@@ -34,7 +34,7 @@
                             <!-- Script -->
                             <div class="form-group">
                                 <label for="edit_script">Script:</label>
-                                <input type="text" name="script" id="edit_script" class="form-control">
+                                <textarea name="script" id="edit_script" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-right">
@@ -42,13 +42,12 @@
                             @foreach(['A' => 'option1', 'B' => 'option2', 'C' => 'option3', 'D' => 'option4'] as $key => $option)
                             <div class="form-group">
                                 <label for="edit_{{ $option }}">Option {{ $key }}:</label>
-                                <input 
-                                    type="text" 
+                                <textarea
                                     name="{{ $option }}" 
                                     id="edit_{{ $option }}" 
                                     class="form-control" 
                                     value="{{ old('option') }}" 
-                                    required>
+                                    required></textarea>
                             </div>
                             @endforeach
 
@@ -96,7 +95,9 @@
     .form-right {
         padding-left: 10px;
     }
-
+    .modal-content {
+        max-width: 700px !important;
+    }
 </style>
 <script>
    $('#editquestionModal').on('show.bs.modal', function (event) {

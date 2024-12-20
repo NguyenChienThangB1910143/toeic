@@ -48,22 +48,19 @@ class LearnerController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $learner = Learner::find(auth()->id());
+        $learner = auth()->user();
 
         if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->storeAs('public/images', $imageName);
-    
-            // Xóa ảnh cũ
-            if ($learner->image && Storage::exists('public/images/' . $learner->image)) {
-                Storage::delete('public/images/' . $learner->image);
-            }
-    
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            
+            // Cập nhật thông tin ảnh đại diện vào database
             $learner->image = $imageName;
             $learner->save();
         }
 
-        return redirect()->route('profile')->with('success', 'Cập nhật ảnh thành công!');
+        return redirect()->route('profile')->with('success', 'Ảnh đại diện đã được cập nhật');
     }
 
     // Xử lý đổi mật khẩu

@@ -43,7 +43,7 @@
                 <button class="btn-add" data-toggle="modal" data-target="#addquestionModal">Add question</button>
             </div>
             
-            <div class="table-container">
+            <div class="table-container part-1">
                 <table class="table">
                     <thead>
                         <tr>

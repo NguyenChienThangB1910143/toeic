@@ -62,7 +62,7 @@
                         @forelse($questions as $question)
                         <tr>
                             <td>{{ ($questions->currentPage() - 1) * $questions->perPage() + $loop->iteration }}</td>
-                            <td>{{ $question->group->text }}</td>
+                            <td>{{ $question->content }}</td>
                             <td>{{ $question->option1 }}</td>
                             <td>{{ $question->option2 }}</td>
                             <td>{{ $question->option3 }}</td>
@@ -87,7 +87,7 @@
                                     <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
-                                </form>                               
+                                </form>      
                             </td>
                         </tr>
                         @empty

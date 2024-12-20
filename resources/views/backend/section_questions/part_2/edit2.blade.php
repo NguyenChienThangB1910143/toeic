@@ -1,8 +1,8 @@
-<div class="modal" id="editquestionModal" tabindex="-1" role="dialog" aria-labelledby="editquestionLabel" aria-hidden="true">
+<div class="modal fade" id="editquestionModal" tabindex="-1" role="dialog" aria-labelledby="editquestionLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editquestionLabel">Chỉnh Sửa Question</h5>
+                <h5 class="modal-title" id="editquestionLabel">Edit Question</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,60 +11,87 @@
                 <form id="editquestionForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    <div class="d-flex">
+                        <div class="form-left">
+                            <!-- Content -->
+                            <div class="form-group">
+                                <label for="edit_content">Content:</label>
+                                <textarea name="content" id="edit_content" class="form-control" value="{{ old('content') }}" required></textarea>
+                            </div>
 
-                    <!-- Content -->
-                    <div class="form-group">
-                        <label for="edit_content">Content:</label>
-                        <input type="text" name="content" id="edit_content" class="form-control" required>
-                    </div>
-
-                    <!-- Options -->
-                    @foreach(['A' => 'option1', 'B' => 'option2', 'C' => 'option3'] as $key => $option)
-                        <div class="form-group">
-                            <label for="edit_{{ $option }}">Option {{ $key }}:</label>
-                            <input 
-                                type="text" 
-                                name="{{ $option }}" 
-                                id="edit_{{ $option }}" 
-                                class="form-control" 
-                                value="" 
-                                required>
+                            <!-- Audio -->
+                            <div class="form-group">
+                                <label for="edit_audio">Audio:</label>
+                                <input type="file" name="audio" id="edit_audio" class="form-control" accept="audio/*">
+                                <audio id="current_audio" controls class="mt-2"></audio>
+                            </div>
+                            <!-- Script -->
+                            <div class="form-group">
+                                <label for="edit_script">Script:</label>
+                                <textarea name="script" id="edit_script" class="form-control"></textarea>
+                            </div>
                         </div>
-                        @endforeach
+                        <div class="form-right">
+                            <!-- Options -->
+                            @foreach(['A' => 'option1', 'B' => 'option2', 'C' => 'option3'] as $key => $option)
+                            <div class="form-group">
+                                <label for="edit_{{ $option }}">Option {{ $key }}:</label>
+                                <textarea
+                                    name="{{ $option }}" 
+                                    id="edit_{{ $option }}" 
+                                    class="form-control" 
+                                    value="{{ old('option') }}" 
+                                    required></textarea>
+                            </div>
+                            @endforeach
 
-                    <!-- Correct Option -->
-                    <div class="form-group">
-                        <label for="edit_correct_option">Correct Option:</label>
-                        <select name="correct_option" id="edit_correct_option" class="form-control" required>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                        </select>
+                            <!-- Correct Option -->
+                            <div class="form-group">
+                                <label for="edit_correct_option">Correct Option:</label>
+                                <select name="correct_option" id="edit_correct_option" class="form-control" required>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Audio -->
-                    <div class="form-group">
-                        <label for="edit_audio">Audio:</label>
-                        <input type="file" name="audio" id="edit_audio" class="form-control" accept="audio/*">
-                        <audio id="current_audio" controls class="mt-2"></audio>
-                    </div>
-                    <!-- script -->
-                    <div class="form-group">
-                        <label for="script">Script:</label>
-                        <input type="text" name="script" id="script" class="form-control" value="{{ old('script') }}" required>
-                    </div>
-
+                    
                     <input type="hidden" name="section_id" id="edit_section_id">
                     <input type="hidden" name="type" value="{{ request()->type }}">
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <!-- Nút hành động -->
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mx-2">Save</button>
+                        <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<style>
+    .modal-body .d-flex {
+    display: flex;
+    gap: 20px;
+    }
 
+    .form-left, .form-right {
+        flex: 1;
+    }
+
+    .form-left {
+        padding-right: 10px;
+        border-right: 1px solid #ccc;
+    }
+
+    .form-right {
+        padding-left: 10px;
+    }
+    .modal-content {
+        max-width: 700px !important;
+    }
+</style>
 <script>
    $('#editquestionModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
@@ -109,4 +136,5 @@
         }
     });
 });
+
 </script>

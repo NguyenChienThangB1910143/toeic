@@ -61,6 +61,20 @@ body {
     color: #4e73df;
     margin-bottom: 15px;
 }
+.modal-header {
+    background-color: #ffffff !important;
+}
+.modal-body {
+    width: auto;
+    width: 100%;
+    max-height: 75vh; /* Đặt chiều cao tối đa cho modal */
+    overflow-y: auto; /* Cuộn nội dung nếu quá dài */
+}
+.modal-footer {
+    display: flex;
+    justify-content: center !important;
+    margin-top: 20px;
+}
 
 .btn-close {
     position: absolute;
@@ -169,7 +183,6 @@ body {
 .table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 .table th,
@@ -268,4 +281,13 @@ body {
 .pagination-links .pagination .page-item.active .page-link {
     background-color: #007bff;
     color: white;
+}
+
+.table th:first-child,
+.table td:first-child {
+    width: 50px;
+}
+.table th:last-child,
+.table td:last-child {
+    width: 130px;
 }

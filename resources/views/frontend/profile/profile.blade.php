@@ -17,6 +17,8 @@
     <div class="profile-content">
         <!-- Profile Picture Section -->
         <div class="profile-picture-section">
+            <!-- khung Ảnh đại diện -->
+
             <img src="{{ asset('storage/images/' . ($learner->image ?? 'default-avatar.png')) }}" 
                 alt="Ảnh đại diện" class="profile-picture">
 
@@ -31,7 +33,6 @@
         </div>
 
         <!-- General Information Section -->
-        
         <form action="{{ route('profile.update') }}" method="POST" class="profile-info">
             @csrf
             @method('POST') {{-- Phương thức cập nhật --}}

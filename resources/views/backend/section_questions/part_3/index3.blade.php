@@ -88,21 +88,22 @@
                                             @endif
                                         </td>
                                         <td rowspan="{{ count($groupQuestions) }}" class="text-center-gr">{{ $question->script }}</td>
-                                    @endif
-                                    <td class="text-center-gr">
-                                        <button class="btn-edit" data-toggle="modal" data-target="#editquestionModal" data-id="{{ $question->question_id }}" data-type="{{ request()->type }}">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                        <form action="{{ route('section_questions.destroy', $question->question_id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="section_id" value="{{ request()->section_id }}">
-                                            <input type="hidden" name="type" value="{{ request()->type }}">
-                                            <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                                <i class="fa-solid fa-trash-can"></i>
+                                        <td class="text-center-gr">
+                                            <button class="btn-edit" data-toggle="modal" data-target="#editquestionModal" data-id="{{ $question->question_id }}" data-type="{{ request()->type }}">
+                                                <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
-                                        </form>
-                                    </td>
+                                            <form action="{{ route('section_questions.destroy', $question->question_id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="section_id" value="{{ request()->section_id }}">
+                                                <input type="hidden" name="type" value="{{ request()->type }}">
+                                                <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    @endif
+                                    
                                 </tr>
                             @endforeach
                         @empty

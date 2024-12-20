@@ -6,7 +6,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/QLGrammar.css') }}">
-    <title>Quản lý Grammar</title>
+    <title>Grammar</title>
 </head>
 <body>
     @include('backend.inc.topbar')
@@ -14,7 +14,7 @@
 
     <div class="admin-content">
         <div class="admin-grammar">
-            <h1 class="grammar-title">Quản Lý Grammar</h1>
+            <h1 class="grammar-title">Grammar</h1>
 
             <!-- Hiển thị thông báo thành công -->
             @if (session('success'))
@@ -36,20 +36,20 @@
             @endif
 
             <div class="search-add">
-                <input type="text" class="search-input" placeholder="Tìm kiếm grammar..." />
-                <button class="btn-add" data-toggle="modal" data-target="#addgrammarModal">Thêm grammar</button>
+                <input type="text" class="search-input" placeholder="Search..." />
+                <button class="btn-add" data-toggle="modal" data-target="#addgrammarModal">Add grammar</button>
             </div>
 
             <div class="table-container">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Tên grammar</th>
-                            <th>Ngày tạo</th>
-                            <th>Ngày cập nhật</th>
-                            <th>Hành động</th>
-                            <th>Quản lý</th>
+                            <th>No.</th>
+                            <th>Grammar Name</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Action</th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,7 +81,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Không có grammars nào.</td>
+                            <td colspan="6" class="text-center">Không có ngữ pháp nào.</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -98,7 +98,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm grammar mới</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Grammar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -107,11 +107,13 @@
                     <form action="{{ route('grammars.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Tên grammar:</label>
+                            <label for="name">Grammar Name:</label>
                             <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Thêm grammar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -123,7 +125,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editgrammarLabel">Chỉnh Sửa grammar</h5>
+                    <h5 class="modal-title" id="editgrammarLabel">Edit Grammar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -133,11 +135,13 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="edit_name">Tên grammar:</label>
+                            <label for="edit_name">Grammar Name:</label>
                             <input type="text" name="name" id="edit_name" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>

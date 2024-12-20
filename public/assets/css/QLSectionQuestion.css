@@ -69,6 +69,7 @@ background-color: #ffffff !important;
 .modal-body {
     max-height: 75vh; /* Đặt chiều cao tối đa cho modal */
     overflow-y: auto; /* Cuộn nội dung nếu quá dài */
+    width: 100%;
 }
 .modal-body h6 {
     font-weight: bold;
@@ -78,7 +79,7 @@ background-color: #ffffff !important;
 }
 .modal-footer {
     display: flex;
-    justify-content: center;
+    justify-content: center ! important;
     margin-top: 20px;
 }
 
@@ -211,16 +212,10 @@ background-color: #ffffff !important;
     background-color: #f1f3f7;
 }
 /* Đặt chiều rộng cố định cho từng cột nếu cần */
-
-.table th:nth-child(10),
-.table td:nth-child(10) {
-    width: 400px; 
+.part-5 .table th:nth-child(2), 
+.part-5 .table td:nth-child(2){
+    width: 600px;
 }
-.table th:nth-child(11),
-.table td:nth-child(11) {
-    width: 130px; 
-}
-
 .part-2 .table th:nth-child(8), 
 .part-2 .table td:nth-child(8) {
     width: 400px;
@@ -246,7 +241,10 @@ background-color: #ffffff !important;
 .part-7 .table td:nth-child(10) {
     width: 130px;
 }
-
+.part-1 .table th:nth-child(11),
+.part-1 .table td:nth-child(11) {
+    width: 130px;
+}
 /* Style cho các nút */
 .btn {
     border-radius: 5px;

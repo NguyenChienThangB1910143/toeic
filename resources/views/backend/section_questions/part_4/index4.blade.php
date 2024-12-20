@@ -88,21 +88,22 @@
                                             @endif
                                         </td>
                                         <td rowspan="{{ count($groupQuestions) }}" class="text-center-gr">{{ $question->script }}</td>
-                                    @endif
-                                    <td class="text-center-gr">
-                                        <button class="btn-edit" data-toggle="modal" data-target="#editquestionModal" data-id="{{ $question->question_id }}" data-type="{{ request()->type }}">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                        <form action="{{ route('section_questions.destroy', $question->question_id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="section_id" value="{{ request()->section_id }}">
-                                            <input type="hidden" name="type" value="{{ request()->type }}">
-                                            <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                                <i class="fa-solid fa-trash-can"></i>
+                                        <td class="text-center-gr">
+                                            <button class="btn-edit" data-toggle="modal" data-target="#editquestionModal" data-id="{{ $question->question_id }}" data-type="{{ request()->type }}">
+                                                <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
-                                        </form>
-                                    </td>
+                                            <form action="{{ route('section_questions.destroy', $question->question_id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="section_id" value="{{ request()->section_id }}">
+                                                <input type="hidden" name="type" value="{{ request()->type }}">
+                                                <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    @endif
+                                    
                                 </tr>
                             @endforeach
                         @empty
@@ -111,6 +112,57 @@
                             </tr>
                         @endforelse
                     </tbody>
+
+                    {{-- <tbody>
+                        @forelse($questions as $question)
+                        <tr>
+                            <td>{{ ($questions->currentPage() - 1) * $questions->perPage() + $loop->iteration }}</td>
+                            <td>{{ $question->question_group_id}}</td>
+                            <td>{{ $question->content }}</td>
+                            <td>{{ $question->option1 }}</td>
+                            <td>{{ $question->option2 }}</td>
+                            <td>{{ $question->option3 }}</td>
+                            <td>{{ $question->option4 }}</td>
+                            <td>{{ $question->correct_option }}</td>
+                            <td>
+                                @if($question->group && $question->group->audio) <!-- Kiểm tra tồn tại question_group và audio -->
+                                    <audio controls>
+                                        <source src="{{ asset('storage/' . $question->group->audio) }}" type="audio/mpeg">
+                                        Trình duyệt không hỗ trợ.
+                                    </audio>
+                                @else
+                                    Không có
+                                @endif
+                            </td>
+                            
+                            <td>{{ $question->script }}</td>
+                            <td>
+                                <!-- Nút chỉnh sửa -->
+                                <button class="btn-edit" 
+                                data-toggle="modal" 
+                                data-target="#editquestionModal" 
+                                data-id="{{ $question->question_id }}" 
+                                data-type="{{ request()->type }}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                
+                                <form action="{{ route('section_questions.destroy', $question->question_id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="section_id" value="{{ request()->section_id }}">
+                                    <input type="hidden" name="type" value="{{ request()->type }}">
+                                    <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="11" class="text-center">Không có câu hỏi nào.</td>
+                        </tr>
+                        @endforelse
+                    </tbody> --}}
                 </table>
             </div>
             <div class="pagination-links">{{ $questions->appends(['section_id' => request()->section_id, 'type' => request()->type])->links() }}</div>            

@@ -6,7 +6,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/QLLeaner.css') }}">
-    <title>Quản Lý Học Viên</title>
+    <title>Learner</title>
 
 </head>
 <body>
@@ -15,22 +15,22 @@
 
     <div class="admin-content">
         <div class="admin-learner">
-            <h1 class="leaner-title">Quản Lý Học Viên</h1>
+            <h1 class="learner-title">Learner</h1>
             <div class="search-learner">
-                <input type="text" class="search-input" placeholder="Tìm kiếm học viên..." id="searchlearnerInput" onkeyup="filterlearners()">
+                <input type="text" class="search-input" placeholder="Search..." id="searchlearnerInput" onkeyup="filterlearners()">
             </div>
             <div class="table-container">
                 <table class="table" id="learnerTable">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Hình ảnh</th>
+                            <th>No.</th>
+                            <th>Image</th>
                             <th>Email</th>
                             <th>Username</th>
-                            <th>Địa chỉ</th>
-                            <th>Số điện thoại</th>
-                            <th>Giới tính</th>
-                            <th>Trạng thái</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Gender</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,7 +38,11 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
+                                @if ($learner->image)
                                 <img src="{{ asset('storage/' . $learner->image) }}" alt="Hình ảnh" class="table-image" width="50" height="50">
+                                @else
+                                <span>Đang cập nhật...</span>
+                                @endif
                             </td>
                             <td>{{ $learner->email }}</td>
                             <td>{{ $learner->username }}</td>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('assets/css/QLmaterial.css') }}">
-    <title>Quản lý material</title>
+    <title>Material</title>
 </head>
 <body>
     @include('backend.inc.topbar')
@@ -12,7 +12,7 @@
 
     <div class="admin-content">
         <div class="admin-material">
-            <h1 class="material-title">Quản Lý material</h1>
+            <h1 class="material-title">Material</h1>
 
             <!-- Hiển thị thông báo thành công -->
             @if (session('error'))
@@ -39,8 +39,8 @@
             @endif
 
             <div class="search-material">
-                <input type="text" class="search-input" placeholder="Tìm kiếm material..." />
-                <button class="btn-add" data-toggle="modal" data-target="#addmaterialModal">Thêm material</button>
+                <input type="text" class="search-input" placeholder="Search..." />
+                <button class="btn-add" data-toggle="modal" data-target="#addmaterialModal">Add material</button>
             </div>
 
             <!-- Bảng material -->
@@ -48,13 +48,13 @@
                 <table class="table" id="materialTable">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Tiêu đề</th>
-                            <th>Mô tả</th>
+                            <th>No.</th>
+                            <th>Title</th>
+                            <th>Description</th>
                             <th>File</th>
-                            <th>Thêm</th>
-                            <th>Cập nhật</th>
-                            <th>Hành động</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,7 +84,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Không có materials nào.</td>
+                            <td colspan="6" class="text-center">Không có tài liệu nào.</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -102,7 +102,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm material mới</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Material</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -112,13 +112,13 @@
                         @csrf
                         <!-- Tên material -->
                         <div class="form-group">
-                            <label for="title">Tiêu đề material:</label>
-                            <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
+                            <label for="title">Title:</label>
+                            <textarea name="title" id="title" class="form-control" value="{{ old('title') }}" required></textarea>
                         </div>
 
                         <!-- Mô tả (description) -->
                         <div class="form-group">
-                            <label for="description">Mô Tả:</label>
+                            <label for="description">Description:</label>
                             <textarea name="description" id="description" class="form-control">{{ old('description') }}</textarea>
                         </div>
 
@@ -127,9 +127,11 @@
                             <label for="file">File:</label>
                             <input type="file" name="file_pdf" id="file" class="form-control" accept="application/pdf" required>
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Thêm material</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        
                     </form>
                 </div>
             </div>
@@ -141,7 +143,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editMaterialLabel">Chỉnh Sửa material</h5>
+                    <h5 class="modal-title" id="editMaterialLabel">Edit Material</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -153,13 +155,13 @@
 
                         <!-- Tên material -->
                         <div class="form-group">
-                            <label for="edit_title">Tiêu đề material:</label>
-                            <input type="text" name="title" id="edit_title" class="form-control" required>
+                            <label for="edit_title">Title:</label>
+                            <textarea name="title" id="edit_title" class="form-control" required></textarea>
                         </div>
 
                         <!-- Mô tả (description) -->
                         <div class="form-group">
-                            <label for="edit_description">Mô Tả:</label>
+                            <label for="edit_description">Description:</label>
                             <textarea name="description" id="edit_description" class="form-control" required></textarea>
                         </div>
 
@@ -168,9 +170,10 @@
                             <label for="edit_file">File:</label>
                             <input type="file" name="file_pdf" id="edit_file" class="form-control" accept="application/pdf">
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -188,7 +191,11 @@
             var title = button.data('title');
             var description = button.data('description');
             var file_pdf = button.data('file');
-
+            // if (file_pdf) {
+            //     $('#current_image').attr('src', '/storage/' + question.image).show();
+            // } else {
+            //     $('#current_image').hide();
+            // }
             var modal = $(this);
             modal.find('#edit_title').val(title);
             modal.find('#edit_description').val(description);

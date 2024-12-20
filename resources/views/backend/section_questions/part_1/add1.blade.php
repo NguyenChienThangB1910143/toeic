@@ -106,5 +106,7 @@
     .form-right {
         padding-left: 10px;
     }
-
+    .modal-content {
+        max-width: 700px !important;
+    }
 </style>
